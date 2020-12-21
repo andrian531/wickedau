@@ -1,0 +1,173 @@
+<ion-content class="d-none d-sm-block hidden-xs">
+  <section id="homeBanner" class="section section--borderless">
+    <div class="wck-homepage">
+      <div class="home">
+        <div class="bannerspecials">
+          <div class="slick-slider">
+            <div class="slick-slide">
+              <div class="cbBgPattern">
+              <div class="desc-wrapper">
+              <h1>Wicked Campers Promo</h1>
+            </div>
+          </div>
+         
+        </div>
+        </div>
+      </div>
+      </div>
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/promo">Promo</a></li>
+    </ul>
+    <div class="col-md-12">
+      
+      <ion-list lines="none" *ngIf="pokemon.length == 0">
+        <ion-item *ngFor="let i of [1,2]">
+          <ion-skeleton-text animated style="width: 33.333333%;height: 363px;margin-right: 5px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 33.333333%;height: 363px;margin-right: 5px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 33.333333%;height: 363px;"></ion-skeleton-text>
+      </ion-item>
+        </ion-list>
+        <div class="card-deck mb-3 text-center">
+                                  
+          <div *ngFor="let page of pages" [routerLink]="[ page.slug ]" class="col-xs-4 card box-shadow">
+            <div class="tix-promo-card card-box">
+              <div class="header">
+                <a>
+                <img src="{{ page.thumbs }}">
+                  </a>
+              </div>
+              <div class="body">
+                  <div class="info-promo">
+                      <h2 class="title-promo">{{page.title}}</h2>
+                  </div>
+                  <div class="period-platform">
+                      <p>Valid until <span>{{page.enddate}}</span></p>
+                      <p>Platform: <span>All platform</span></p>
+                  </div>
+                  <!--<div class="promo-label">
+                      <div class="active ">
+                          <p>Promo code</p>
+                          <p class="promo-code">Wicked</p><button class="btn-copy"><i class="tixicon-copy"></i></button></div>
+                  </div>-->
+                  
+                  <a class="btn btn-promo-detail" target="_blank" rel="noopener noreferrer">SEE DETAIL</a></div>
+          </div>
+          </div>
+
+        </div>
+        <!--<div class="col-xs-4">
+          <div class="product-card">
+            <div class="photo">
+              <img src="{{ poke.thumbnail }}" />
+            </div>
+            <div class="body">
+              <h2 class="product-name">{{ poke.title }}</h2>
+              <div class="loc-date">{{ poke.address }}</div>
+             
+              <div class="footer"><div class="price-info"><span class="amount">Opening Hours :</span></div></div>
+              <div class="opening-hours">Monday to Friday:9am to 4pm
+                Saturdays:9am to 12pm
+                Sundays:Closed
+              </div>
+
+        </div>
+        </div>
+      </div>-->
+      
+    
+      </div>
+   
+   
+    
+  
+  </div>
+  </div>
+  </section>
+  <div [innerHTML]="footer"></div>
+</ion-content>
+
+
+<ion-header no-border class="d-lg-none hidden-lg hidden-md">
+  <ion-toolbar>
+       <ion-buttons slot="start">
+           <ion-back-button color="light" defaultHref="/"></ion-back-button>
+       </ion-buttons>
+       <ion-title class="ion-text-capitalize">All Promo </ion-title>
+   </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="hidden-lg hidden-md">
+  <ion-list lines="none" *ngIf="pokemon.length == 0">
+    <ion-item *ngFor="let i of [1,2,3,4,5]">
+      <ion-skeleton-text animated style="width: 100%;height: 135px;"></ion-skeleton-text>
+    </ion-item>
+  </ion-list>
+  
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="listing">		
+		<div class="filter-search-wrapper">		
+		<div class="search-result">
+	
+			<div id="app">
+
+    <div class="search-page__content">
+      <div class="subcategory-container"><div class="white-background"></div></div>
+      <div class="infinite-scroll-component__outerdiv">
+          <div class="infinite-scroll-component" style="height: auto; overflow: auto; -webkit-overflow-scrolling: touch;">
+              
+              
+              <!--<div *ngFor="let page of pages;" [routerLink]="[page?.slug]" class="product-card">
+               
+                  <div class="image-ratio image-ratio--product">
+                      <img
+                          alt="Campervan Hire Locations"
+                          src="{{ page?.thumbnail }}"
+                      />
+                  </div>
+                  <div class="pc__content">
+                      <div class="pc__top">
+                          <span class="pc__city">{{ page?.title }}</span>
+                          <p class="pc__title">{{ page?.intro }}</p>
+                      </div>
+                      
+                  </div>
+            
+              </div>-->
+              <div class="promo-list ">
+                <div *ngFor="let page of pages;" [routerLink]="[page?.slug]" class="promo-list-box"><a href="https://m.tiket.com/promo/promo-hotel"><img class="image-back" src="{{page.thumbs}}" alt="Diskon hotel domestik hingga 30%"></a>
+                    <div
+                        class="promo-list-desc">
+                        <h2 class="desc-title">{{page.title}}</h2>
+                        <div class="desc-info period">Valid until <span class="info-content">{{page.enddate}}</span></div>
+                        <div class="desc-info channel">
+                            <div class="info-section platform">Platform</div>
+                            <div class="info-content"><span>All Platform</span></div>
+                        </div>
+                        
+                        <a class="btn-detail" href="https://m.tiket.com/promo/promo-hotel">See Detail</a></div>
+            </div>
+            
+           
+            </div>
+          
+            
+          </div>
+      </div>
+    
+  </div>
+  </div>
+  </div>
+  </div>
+
+  </div>
+</ion-content>

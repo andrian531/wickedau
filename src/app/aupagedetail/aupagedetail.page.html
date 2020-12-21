@@ -1,0 +1,759 @@
+<ion-content class="hidden-xs d-none d-sm-block">
+  <section id="homeBanner" class="section section--borderless">
+    <div class="wck-homepage">
+      
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/p/{{details?.slug}}">{{details?.title}}</a></li>
+    </ul>
+   
+  <div *ngIf="details">
+<div class="vehicle-details__header">
+<div class="col-md-12 nopadding">
+  
+    <div class="vehicle-details__header-content white">
+     
+ 
+      
+      <div id="vehicle-overview">
+        <div class="gausianefect">
+          <a href="{{ details.custom_data }}" class="lazy-load replace">
+            <img src="https://cdn-images-1.medium.com/freeze/max/27/1*sg-uLNm73whmdOgKlrQdZA.jpeg?q=20"  class="preview" alt="wicked specials"/>
+          </a>
+        </div>
+
+     
+          <div style="font-size: 1rem">
+            <h1>{{details?.title}}</h1>
+            </div>
+            <div id="divVehicleOverview"><p [innerHTML]="details.intro"></p></div>
+            
+            <div *ngIf="router.url === '/p/faq'">
+              <div class="container demo">
+          
+                <h1>Information About Our Vehicles...</h1>
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                      <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="more-less glyphicon glyphicon-plus"></i>
+                          Toll Road Tags
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                        <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                          <div itemprop="text" class="grid-layout grid-layout2 clearafter">
+                          <div class="grid-col"><div class="grid-col_inner">
+                          <h3>What is a Toll Road?</h3>There are 15 Toll Roads on Australia’s East Coast. Many are unavoidable, major arterial roads and all are a complete &amp; utter rip-off. Any vehicle traversing on these roads is required to pay a Toll Fee within 3 days. If the Toll Fee isn’t paid, the Toll Companies send Wicked Campers a letter of demand with an Additional Administration Fee of up to $30 (for each Toll infringement). Wicked Campers has until this point, been passing these fees on to the customer (sometimes we don’t receive notification for up to 3 months after the Infringement Date).
+                                                              <p>Wicked Camper’s competitors charge their customers $60-$80 per infringement as an additional administration fee if they do not pay their Toll Fees on time.
+                                                                  </p><p>
+                          </p><h3>Toll Roads Levy $35</h3>As of 10th April 2015, all Wicked Campers are registered with Toll Road companies around Australia.
+                                                                      <p>
+                          </p></div></div>
+                          <div class="grid-col grid-lastcol"><div class="grid-col_inner">
+                          <h3>What am I getting for $35?</h3>By paying the Wicked Campers Toll Roads Levy, you have Unlimited access to Toll Roads in Australia. You do not have to stress about paying them – we will pay them. Just enjoy your holiday knowing there will be no nasty surprises after your trip!
+                                                              <p>
+                          </p><h3>Do I Have to Pay the Toll Roads Levy?</h3>If you are travelling in or through Brisbane, Sydney or Melbourne, you must pay the Toll Roads Levy. The Levy is non-refundable.
+                                                                  <p>
+                          <b>Note:</b>Wicked Campers Toll Levy does NOT cover infringements received for illegal conduct (Speeding, DUI etc.) or Parking fines.</p>
+                          </div></div>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          <i class="more-less glyphicon glyphicon-plus"></i>
+                          Camping Equipment Included
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+                        <h2>Wicked Campervans &amp; 4WD Hire Vehicles Include:</h2>All Wicked Campers (except Damn Cheap Classic Cars) include a good range of camping equipment so you can be completely self-sufficient on your roadtrip.
+                                      <div itemprop="text" class="grid-layout grid-layout5 clearafter">
+          <div align="center" class="grid-col"><div class="grid-col_inner">
+          <img src="../../assets/img/cutlery.jpg" style="width:100px;">
+          <h4>Cutlery &amp; Crockery</h4>
+          </div></div>
+          <div align="center" class="grid-col"><div class="grid-col_inner">
+          <img src="../../assets/img/gas-cooker.jpg" style="width:100px;">
+          <h4>Gas Stove</h4>
+          </div></div>
+          <div align="center" class="grid-col"><div class="grid-col_inner">
+          <img src="../../assets/img/ice-box.jpg" style="width:100px;">
+          <h4>Ice Cooler (Esky)</h4>
+          </div></div>
+          <div align="center" class="grid-col"><div class="grid-col_inner">
+          <img src="../../assets/img/pots.jpg" style="width:100px;">
+          <h4>Fry Pan &amp; Sauce Pan</h4>
+          </div></div>
+          <div align="center" class="grid-col grid-lastcol"><div class="grid-col_inner">
+          <img src="../../assets/img/mattress.jpg" style="width:100px;">
+          <h4>Mattress</h4>
+          </div></div>
+          </div>
+          <p></p>
+          <hr>
+          <div class="grid-layout grid-layout2 clearafter">
+          <div class="grid-col"><div class="grid-col_inner">
+          <h3>Optional Extras</h3>
+          <ul>
+          <li>Camping Table and Chairs (Optional $15 fixed fee)</li>
+          <li>Automatic Transmission Guarantee (Optional $5 per day)</li>
+          </ul>
+          <p>
+          </p><h3>Does the vehicle come with Linen?</h3>No – for hygeine puposes, our vehicles do not come with linen or pillows. You will need to supply our own. Some depots carry pillows and blankets from previous customers. You can use these if necessary, however this service is provided as a gesture of goodwill only.</div></div>
+          <div class="grid-col grid-lastcol"><div class="grid-col_inner">
+          <iframe width="100%" height="242" src="https://www.youtube.com/embed/pm513kZRurU?rel=0" frameborder="0" allowfullscreen=""></iframe>
+          </div></div>
+          </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          <i class="more-less glyphicon glyphicon-plus"></i>
+                          About Our Campers & 4WD's (Specifications)
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                      <div class="panel-body">
+                        <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                          <div itemprop="text" class="grid-layout grid-layout2 clearafter">
+                          <div class="grid-col"><div class="grid-col_inner">
+                          <h3>Do any Wicked Campers have an MP3 connection?</h3>Most of our vehicles come with a cd player with aux input or bluetooth. You may have to supply your own cable or mp3 radio transmitter.
+                                                              <p>
+                          </p><h3>Baby Seats &amp; Anchor Points</h3>Unfortunately, we do not hire baby seats. Campervans only have 2 shoulder seatbelts and a waist belt in the middle of a 3-berth campervan (bench seat). Our vans do not have an anchor point for baby seats. If you wish to travel with a child seat, then the Mini Camper 3 &amp; our AWD / 4WD Vehicles are the only vehicles with anchor points.<p></p>
+                          <p>
+                          </p><h3>Which Vehicles are Automatic Transmission?</h3>Our Fleet is a mix of Automatic and Manual Vehicles. Most Categories will have Automatic Transmission vehicles, however availability can be limited and must be requested at time of booking. A $5 Per Day Auto Guarantee applies if you wish to reserve an Automatic Camper.
+                                                                  <ul>
+                          <li>
+                          <strong>Mini Campers:</strong>AUTO &amp; MANUAL Available</li>
+                          <li>
+                          <strong>Iconic Campers:</strong>MANUAL / AUTO Available</li>
+                          <li>
+                          <strong>Premium 2-Seaters:</strong>MANUAL / AUTO Available</li>
+                          <li>
+                          <strong>4WD &amp; AWD Vehicles:</strong>MANUAL &amp; AUTO Available</li>
+                          </ul>
+                          </div></div>
+                          <div class="grid-col grid-lastcol"><div class="grid-col_inner">
+                          <h3>How Big are the Campervans</h3>Campervans are approx. 4.6m long, 1.7m wide and 1.9m high, however this varies from model to model.
+                                                              <p>
+                          </p><h3>Do any campervans have roof racks or tow bars?</h3>No. We do not have roof racks or tow bars.
+                                                                  <p>
+                          </p><h3>Can I choose my campervan design?</h3>Customers are welcome to put in a request for the design on the camper which we will try our best to accommodate if available. However, as a lot of our hires are one way it is not guaranteed that your disred vehicle will be available at your pickup location. Customers are also welcome to request a 'tame' van if travelling with children etc.
+                                                                      <p>
+                          </p><h3>Does my Camper come with a Sat Nav?</h3>GPS devices are not included with our vehicles.<p></p>
+                          </div></div>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+          
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading4">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                          <i class="more-less glyphicon glyphicon-plus"></i>
+                          Fuel Type & Consumption
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+                      <div class="panel-body">
+                        <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                          <div itemprop="text" class="grid-layout grid-layout2 clearafter">
+                          <div class="grid-col"><div class="grid-col_inner">
+                          <h4>What is the approximate fuel consumption of Wicked Campers?</h4>
+                          <b>Mini Campers</b>are the cheapest to travel in. They will travel approximately 400-450kms per tank and cost around $45-$55 to fill.
+                                                              <p>
+                          <b>Iconic Campers</b>will travel approximately 350-400kms per tank – depending on speed and terrain. A tank of fuel will cost approximately $60 to fill.
+                                                                  </p><p>
+                          <b>Premium Campers</b>will travel approximately ~400kms per tank and cost around $60 to fill. 4x4 Vehicles are subject to road conditions. Offroad travel will greatly affect fuel usage.</p></div></div>
+                          <div class="grid-col grid-lastcol"><div class="grid-col_inner">
+                          <h4>What type of fuel do the campers use?</h4>The vast majority of our Campervans, 4WD's and Minicampers run on unleaded petrol. Some (very limited) 4x4 Campers run on Diesel.
+                                                              <p>
+                          </p><h4>Do the vehicles come with Fuel?</h4>No, you pickup empty and dropoff empty.</div></div>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading5">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                          <i class="more-less glyphicon glyphicon-plus"></i>
+                          Roadside Assistance
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+                      <div class="panel-body">
+                        <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                          <div itemprop="text">
+                          <h4>What happens if I break down or have an issue with the Vehicle?</h4>We have a Roadside Assistance Service available to Wicked Camper hirers. In the event of a breakdown, call: +61 417 740 308 for assistance and our operator will help. Please Note: Hirer will be liable for Roadside Assistance Call Out Fees in the event of human error (Lost Keys, Keys locked in vehicle, Flat Battery, Tyre Changes, No Fuel, etc).</div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading6">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                          <i class="more-less glyphicon glyphicon-plus"></i>
+                          How Do the Rooftop Tents Operate?
+                         </a>
+                      </h4>
+                    </div>
+                    <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
+                      <div class="panel-body">
+                        <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                          <div itemprop="text">
+                                                          <iframe width="100%" height="450" src="https://www.youtube.com/embed/ll35cVzo6r0?rel=0" frameborder="0" allowfullscreen=""></iframe>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                </div><!-- panel-group -->
+                <p></p>
+                <h1>Other Information...</h1>
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                      <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOnea" aria-expanded="true" aria-controls="collapseOnea">
+                          <i class="more-less glyphicon glyphicon-plus"></i>
+                          Prohibited Areas of Australia
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseOnea" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOnea">
+                      <div class="panel-body">
+                        <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                          <div itemprop="text">
+                                                          <p>
+                          <img src="../../assets/img/aou-2017.jpg" alt="Campervan Rental Australia">
+                          </p><p>
+                          </p></div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwoa">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwoa" aria-expanded="false" aria-controls="collapseTwoa">
+                          <i class="more-less glyphicon glyphicon-plus"></i>
+                          Collecting & Returning Your Campervan of 4WD
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseTwoa" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwoa">
+                      <div class="panel-body">
+                        <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                          <div itemprop="text" class="grid-layout grid-layout2 clearafter">
+                          <div class="grid-col"><div class="grid-col_inner">
+                          <h4>What do I need to bring when collecting my vehicle?</h4>Pillows &amp; Blankets, Licenses for ALL DRIVERS, All drivers will need to be present at pickup in order to sign the Rental Agreement
+                                                              <p>
+                          </p><h4>Do you have airport pickups available?</h4>Airport pickups are not available. Most depots can be accessed by public transport, however taxis can be a quicker and more convenient option.
+                                                                  <p>
+                          </p><h4>Can I extend my hire?</h4>Depending on availability, you can easily extend your hire by calling 1800 24 68 69 or by sending a quick email with your reservation number to: <span id="cloak532d23c1d988fb4e0c0d89fb9e9e4305"><a href="mailto:online@wickedcampers.com">online@wickedcampers.com</a></span></div></div>
+                          <div class="grid-col grid-lastcol"><div class="grid-col_inner">
+                          <h4>Can I drop my vehicle off late?</h4>Some of our depots have a late returns key drop box. Call 1800 24 68 69 if you need to do this. Always make sure to lock the vehicle before leaving it as you are liable for it until the depot is open the next day!
+                                                              <p>
+                          </p><h4>Can I pickup early?</h4>No – you can only collect your vehicle during opening hours.
+                                                                  <p>
+                          </p><h4>Do I have to clean my van before returning?</h4>Yes please! A $200 Cleaning Fee applies to all vehicles returned uncleaned!</div></div>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThreea" aria-expanded="false" aria-controls="collapseThreea">
+                          <i class="more-less glyphicon glyphicon-plus"></i>
+                          Camping in Australia & Where to Go?
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseThreea" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThreea">
+                      <div class="panel-body">
+                        <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                          <div itemprop="text">
+                          <h4>Can I park the camper anywhere when staying the night?</h4>In most places you’re allowed to park and camp for a night or two provided you’re not too messy and noisy. In city areas it’s a good idea to scout out caravan parks as some local councils fine backpackers for camping in the street (particularly Byron Bay). But as Australia is a large, sparse country, you’ll have no worries finding places to park and sleep for free! Just be sure not to be an asshole and leave your trash all over the place!
+                                                          <p></p>
+                          <h4>Do you have any suggestions for places to travel?</h4>Sure! Just look in our Trip Ideas section
+                                                          <a href="/trip-ideas">HERE</a>, there’s plenty of good ideas!</div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+          
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading4a">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4a" aria-expanded="false" aria-controls="collapse4a">
+                          <i class="more-less glyphicon glyphicon-plus"></i>
+                          Feedback &amp; Complaints
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse4a" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4a">
+                      <div class="panel-body">
+                        <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                          <div itemprop="text">
+                          <h4>Who Can I Contact to Lodge some Feedback?</h4>Here at Wicked Campers we have a team of trained monkeys whose job is to continually improve the way we do things. These monkeys are not only cute, they're also very focused on giving our customers the greatest campervan experience possible. But the monkeys need your help. Please
+                                                          <a href="/customer-feedback"> CLICK HERE</a> to fill in a form and these monkeys will get back to you ASAP!
+                                                          <p></p>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                 
+                 
+              
+                </div><!-- panel-group -->
+                <p>Wanna Hire a Campervan in Australia? Well look no further - we've got locations all around Australia and the World! Call our gorgeous Roadtrip Planners today (seriously - they're freakin smoking hot!):</p>
+                <p>In Australia Ph: 1800 24 68 69<br>In New Zealand Ph: 0800 24 68 70</p>
+              </div><!-- container -->
+              
+             
+            </div>
+            <div *ngIf="router.url === '/p/customer-feedback'">
+              <div class="container demo">
+                <div class="col-md-6 buntelan">
+                <p></p><iframe src="https://www.wickedcampers.com/feedback/formpage.html" seamless="seamless" scrolling="no" style="width:100%;height:465px;border:none;"></iframe>
+                </div>  
+                <div class="col-md-6">
+                  <h2>14 Wicked Campers Rental Locations in Australia
+                    Ph: 1800 24 68 69</h2>
+                  <img src="../../assets/images/australia-locations.jpg">
+                </div>
+              </div>
+                </div>
+            
+       
+      </div>
+      
+      <div id="vehicle-overview">
+        
+        <div id="divVehicleOverview">
+          <p [innerHTML]="details.content"></p>
+        </div>
+      </div>
+     
+
+    </div>
+   
+  </div>
+
+  
+  </div>
+
+  
+
+  
+  </div>
+ 
+</div>
+</div>
+</section>
+<div [innerHTML]="footer"></div>
+</ion-content>
+
+<ion-header no-border class="d-lg-none hidden-lg hidden-md">
+  <ion-toolbar>
+       <ion-buttons slot="start">
+           <ion-back-button color="light" defaultHref="/"></ion-back-button>
+       </ion-buttons>
+       <ion-title class="ion-text-capitalize">{{details?.title}}</ion-title>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content class="d-lg-none hidden-lg hidden-md">
+
+  <div *ngIf="details"> 
+    <div class="vehicle-details__header">
+      <div class="col-md-12 nopadding">
+        
+          <div class="vehicle-details__header-content white">
+            <div id="vehicle-overview">
+              <div class="headingbanner">
+               <img src="{{ details.custom_data }}">
+                </div>
+                
+                <div style="">
+                  <h1>{{details?.title}}</h1>
+                  </div>
+              <div id="divVehicleOverview"><p [innerHTML]="details.intro"></p></div>
+              
+            </div>
+            
+            <div id="vehicle-overview">
+              
+              <div *ngIf="router.url === '/p/faq'">
+                <div class="container demo">
+            
+                  <h1>Information About Our Vehicles...</h1>
+                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#mcollapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="more-less glyphicon glyphicon-plus"></i>
+                            Toll Road Tags
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="mcollapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                          <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <div itemprop="text" class="grid-layout grid-layout2 clearafter">
+                            <div class="grid-col"><div class="grid-col_inner">
+                            <h3>What is a Toll Road?</h3>There are 15 Toll Roads on Australia’s East Coast. Many are unavoidable, major arterial roads and all are a complete &amp; utter rip-off. Any vehicle traversing on these roads is required to pay a Toll Fee within 3 days. If the Toll Fee isn’t paid, the Toll Companies send Wicked Campers a letter of demand with an Additional Administration Fee of up to $30 (for each Toll infringement). Wicked Campers has until this point, been passing these fees on to the customer (sometimes we don’t receive notification for up to 3 months after the Infringement Date).
+                                                                <p>Wicked Camper’s competitors charge their customers $60-$80 per infringement as an additional administration fee if they do not pay their Toll Fees on time.
+                                                                    </p><p>
+                            </p><h3>Toll Roads Levy $35</h3>As of 10th April 2015, all Wicked Campers are registered with Toll Road companies around Australia.
+                                                                        <p>
+                            </p></div></div>
+                            <div class="grid-col grid-lastcol"><div class="grid-col_inner">
+                            <h3>What am I getting for $35?</h3>By paying the Wicked Campers Toll Roads Levy, you have Unlimited access to Toll Roads in Australia. You do not have to stress about paying them – we will pay them. Just enjoy your holiday knowing there will be no nasty surprises after your trip!
+                                                                <p>
+                            </p><h3>Do I Have to Pay the Toll Roads Levy?</h3>If you are travelling in or through Brisbane, Sydney or Melbourne, you must pay the Toll Roads Levy. The Levy is non-refundable.
+                                                                    <p>
+                            <b>Note:</b>Wicked Campers Toll Levy does NOT cover infringements received for illegal conduct (Speeding, DUI etc.) or Parking fines.</p>
+                            </div></div>
+                            </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="mheadingTwo">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#mcollapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <i class="more-less glyphicon glyphicon-plus"></i>
+                            Camping Equipment Included
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="mcollapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                          <h2>Wicked Campervans &amp; 4WD Hire Vehicles Include:</h2>All Wicked Campers (except Damn Cheap Classic Cars) include a good range of camping equipment so you can be completely self-sufficient on your roadtrip.
+                                        <div itemprop="text" class="grid-layout grid-layout5 clearafter">
+            <div align="center" class="grid-col"><div class="grid-col_inner">
+            <img src="../../assets/img/cutlery.jpg" style="width:100px;">
+            <h4>Cutlery &amp; Crockery</h4>
+            </div></div>
+            <div align="center" class="grid-col"><div class="grid-col_inner">
+            <img src="../../assets/img/gas-cooker.jpg" style="width:100px;">
+            <h4>Gas Stove</h4>
+            </div></div>
+            <div align="center" class="grid-col"><div class="grid-col_inner">
+            <img src="../../assets/img/ice-box.jpg" style="width:100px;">
+            <h4>Ice Cooler (Esky)</h4>
+            </div></div>
+            <div align="center" class="grid-col"><div class="grid-col_inner">
+            <img src="../../assets/img/pots.jpg" style="width:100px;">
+            <h4>Fry Pan &amp; Sauce Pan</h4>
+            </div></div>
+            <div align="center" class="grid-col grid-lastcol"><div class="grid-col_inner">
+            <img src="../../assets/img/mattress.jpg" style="width:100px;">
+            <h4>Mattress</h4>
+            </div></div>
+            </div>
+            <p></p>
+            <hr>
+            <div class="grid-layout grid-layout2 clearafter">
+            <div class="grid-col"><div class="grid-col_inner">
+            <h3>Optional Extras</h3>
+            <ul>
+            <li>Camping Table and Chairs (Optional $15 fixed fee)</li>
+            <li>Automatic Transmission Guarantee (Optional $5 per day)</li>
+            </ul>
+            <p>
+            </p><h3>Does the vehicle come with Linen?</h3>No – for hygeine puposes, our vehicles do not come with linen or pillows. You will need to supply our own. Some depots carry pillows and blankets from previous customers. You can use these if necessary, however this service is provided as a gesture of goodwill only.</div></div>
+            <div class="grid-col grid-lastcol"><div class="grid-col_inner">
+            <iframe width="100%" height="242" src="https://www.youtube.com/embed/pm513kZRurU?rel=0" frameborder="0" allowfullscreen=""></iframe>
+            </div></div>
+            </div>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="mheadingThree">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#mcollapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <i class="more-less glyphicon glyphicon-plus"></i>
+                            About Our Campers & 4WD's (Specifications)
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="mcollapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                          <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <div itemprop="text" class="grid-layout grid-layout2 clearafter">
+                            <div class="grid-col"><div class="grid-col_inner">
+                            <h3>Do any Wicked Campers have an MP3 connection?</h3>Most of our vehicles come with a cd player with aux input or bluetooth. You may have to supply your own cable or mp3 radio transmitter.
+                                                                <p>
+                            </p><h3>Baby Seats &amp; Anchor Points</h3>Unfortunately, we do not hire baby seats. Campervans only have 2 shoulder seatbelts and a waist belt in the middle of a 3-berth campervan (bench seat). Our vans do not have an anchor point for baby seats. If you wish to travel with a child seat, then the Mini Camper 3 &amp; our AWD / 4WD Vehicles are the only vehicles with anchor points.<p></p>
+                            <p>
+                            </p><h3>Which Vehicles are Automatic Transmission?</h3>Our Fleet is a mix of Automatic and Manual Vehicles. Most Categories will have Automatic Transmission vehicles, however availability can be limited and must be requested at time of booking. A $5 Per Day Auto Guarantee applies if you wish to reserve an Automatic Camper.
+                                                                    <ul>
+                            <li>
+                            <strong>Mini Campers:</strong>AUTO &amp; MANUAL Available</li>
+                            <li>
+                            <strong>Iconic Campers:</strong>MANUAL / AUTO Available</li>
+                            <li>
+                            <strong>Premium 2-Seaters:</strong>MANUAL / AUTO Available</li>
+                            <li>
+                            <strong>4WD &amp; AWD Vehicles:</strong>MANUAL &amp; AUTO Available</li>
+                            </ul>
+                            </div></div>
+                            <div class="grid-col grid-lastcol"><div class="grid-col_inner">
+                            <h3>How Big are the Campervans</h3>Campervans are approx. 4.6m long, 1.7m wide and 1.9m high, however this varies from model to model.
+                                                                <p>
+                            </p><h3>Do any campervans have roof racks or tow bars?</h3>No. We do not have roof racks or tow bars.
+                                                                    <p>
+                            </p><h3>Can I choose my campervan design?</h3>Customers are welcome to put in a request for the design on the camper which we will try our best to accommodate if available. However, as a lot of our hires are one way it is not guaranteed that your disred vehicle will be available at your pickup location. Customers are also welcome to request a 'tame' van if travelling with children etc.
+                                                                        <p>
+                            </p><h3>Does my Camper come with a Sat Nav?</h3>GPS devices are not included with our vehicles.<p></p>
+                            </div></div>
+                            </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+            
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="mheading4">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#mcollapse4" aria-expanded="false" aria-controls="collapse4">
+                            <i class="more-less glyphicon glyphicon-plus"></i>
+                            Fuel Type & Consumption
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="mcollapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+                        <div class="panel-body">
+                          <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <div itemprop="text" class="grid-layout grid-layout2 clearafter">
+                            <div class="grid-col"><div class="grid-col_inner">
+                            <h4>What is the approximate fuel consumption of Wicked Campers?</h4>
+                            <b>Mini Campers</b>are the cheapest to travel in. They will travel approximately 400-450kms per tank and cost around $45-$55 to fill.
+                                                                <p>
+                            <b>Iconic Campers</b>will travel approximately 350-400kms per tank – depending on speed and terrain. A tank of fuel will cost approximately $60 to fill.
+                                                                    </p><p>
+                            <b>Premium Campers</b>will travel approximately ~400kms per tank and cost around $60 to fill. 4x4 Vehicles are subject to road conditions. Offroad travel will greatly affect fuel usage.</p></div></div>
+                            <div class="grid-col grid-lastcol"><div class="grid-col_inner">
+                            <h4>What type of fuel do the campers use?</h4>The vast majority of our Campervans, 4WD's and Minicampers run on unleaded petrol. Some (very limited) 4x4 Campers run on Diesel.
+                                                                <p>
+                            </p><h4>Do the vehicles come with Fuel?</h4>No, you pickup empty and dropoff empty.</div></div>
+                            </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="mheading5">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#mcollapse5" aria-expanded="false" aria-controls="collapse5">
+                            <i class="more-less glyphicon glyphicon-plus"></i>
+                            Roadside Assistance
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="mcollapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+                        <div class="panel-body">
+                          <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <div itemprop="text">
+                            <h4>What happens if I break down or have an issue with the Vehicle?</h4>We have a Roadside Assistance Service available to Wicked Camper hirers. In the event of a breakdown, call: +61 417 740 308 for assistance and our operator will help. Please Note: Hirer will be liable for Roadside Assistance Call Out Fees in the event of human error (Lost Keys, Keys locked in vehicle, Flat Battery, Tyre Changes, No Fuel, etc).</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="mheading6">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                            <i class="more-less glyphicon glyphicon-plus"></i>
+                            How Do the Rooftop Tents Operate?
+                           </a>
+                        </h4>
+                      </div>
+                      <div id="mcollapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
+                        <div class="panel-body">
+                          <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <div itemprop="text">
+                                                            <iframe width="100%" height="450" src="https://www.youtube.com/embed/ll35cVzo6r0?rel=0" frameborder="0" allowfullscreen=""></iframe>
+                            </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                
+                  </div><!-- panel-group -->
+                  <p></p>
+                  <h1>Other Information...</h1>
+                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="mheadingOne">
+                        <h4 class="panel-title">
+                          <a role="button" data-toggle="collapse" data-parent="#maccordion" href="#mcollapseOnea" aria-expanded="true" aria-controls="collapseOnea">
+                            <i class="more-less glyphicon glyphicon-plus"></i>
+                            Prohibited Areas of Australia
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="mcollapseOnea" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOnea">
+                        <div class="panel-body">
+                          <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <div itemprop="text">
+                                                            <p>
+                            <img src="../../assets/img/aou-2017.jpg" alt="Campervan Rental Australia">
+                            </p><p>
+                            </p></div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="mheadingTwoa">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#mcollapseTwoa" aria-expanded="false" aria-controls="collapseTwoa">
+                            <i class="more-less glyphicon glyphicon-plus"></i>
+                            Collecting & Returning Your Campervan of 4WD
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="mcollapseTwoa" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwoa">
+                        <div class="panel-body">
+                          <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <div itemprop="text" class="grid-layout grid-layout2 clearafter">
+                            <div class="grid-col"><div class="grid-col_inner">
+                            <h4>What do I need to bring when collecting my vehicle?</h4>Pillows &amp; Blankets, Licenses for ALL DRIVERS, All drivers will need to be present at pickup in order to sign the Rental Agreement
+                                                                <p>
+                            </p><h4>Do you have airport pickups available?</h4>Airport pickups are not available. Most depots can be accessed by public transport, however taxis can be a quicker and more convenient option.
+                                                                    <p>
+                            </p><h4>Can I extend my hire?</h4>Depending on availability, you can easily extend your hire by calling 1800 24 68 69 or by sending a quick email with your reservation number to: <span id="cloak532d23c1d988fb4e0c0d89fb9e9e4305"><a href="mailto:online@wickedcampers.com">online@wickedcampers.com</a></span></div></div>
+                            <div class="grid-col grid-lastcol"><div class="grid-col_inner">
+                            <h4>Can I drop my vehicle off late?</h4>Some of our depots have a late returns key drop box. Call 1800 24 68 69 if you need to do this. Always make sure to lock the vehicle before leaving it as you are liable for it until the depot is open the next day!
+                                                                <p>
+                            </p><h4>Can I pickup early?</h4>No – you can only collect your vehicle during opening hours.
+                                                                    <p>
+                            </p><h4>Do I have to clean my van before returning?</h4>Yes please! A $200 Cleaning Fee applies to all vehicles returned uncleaned!</div></div>
+                            </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="mheadingThree">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#maccordion" href="#mcollapseThreea" aria-expanded="false" aria-controls="collapseThreea">
+                            <i class="more-less glyphicon glyphicon-plus"></i>
+                            Camping in Australia & Where to Go?
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="mcollapseThreea" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThreea">
+                        <div class="panel-body">
+                          <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <div itemprop="text">
+                            <h4>Can I park the camper anywhere when staying the night?</h4>In most places you’re allowed to park and camp for a night or two provided you’re not too messy and noisy. In city areas it’s a good idea to scout out caravan parks as some local councils fine backpackers for camping in the street (particularly Byron Bay). But as Australia is a large, sparse country, you’ll have no worries finding places to park and sleep for free! Just be sure not to be an asshole and leave your trash all over the place!
+                                                            <p></p>
+                            <h4>Do you have any suggestions for places to travel?</h4>Sure! Just look in our Trip Ideas section
+                                                            <a href="/trip-ideas">HERE</a>, there’s plenty of good ideas!</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+            
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="mheading4a">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#maccordion" href="#mcollapse4a" aria-expanded="false" aria-controls="collapse4a">
+                            <i class="more-less glyphicon glyphicon-plus"></i>
+                            Feedback &amp; Complaints
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="mcollapse4a" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4a">
+                        <div class="panel-body">
+                          <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <div itemprop="text">
+                            <h4>Who Can I Contact to Lodge some Feedback?</h4>Here at Wicked Campers we have a team of trained monkeys whose job is to continually improve the way we do things. These monkeys are not only cute, they're also very focused on giving our customers the greatest campervan experience possible. But the monkeys need your help. Please
+                                                            <a href="/p/customer-feedback"> CLICK HERE</a> to fill in a form and these monkeys will get back to you ASAP!
+                                                            <p></p>
+                            </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                   
+                   
+                
+                  </div><!-- panel-group -->
+                  <p>Wanna Hire a Campervan in Australia? Well look no further - we've got locations all around Australia and the World! Call our gorgeous Roadtrip Planners today (seriously - they're freakin smoking hot!):</p>
+                  <p>In Australia Ph: 1800 24 68 69<br>In New Zealand Ph: 0800 24 68 70</p>
+                </div><!-- container -->
+              </div> 
+              <div *ngIf="router.url === '/p/customer-feedback'">
+               
+                <p></p><iframe src="https://www.wickedcampers.com/feedback/formpage.html" seamless="seamless" scrolling="no" style="width:100%;height:465px;border:none;"></iframe>
+             
+              </div>
+             
+
+
+              <div id="divVehicleOverview"><p data-pm-slice="1 1 [&quot;table&quot;,null,&quot;tableRow&quot;,null,&quot;tableCell&quot;,null]"></p>
+                <p [innerHTML]="details.content"></p>
+              </div>
+              
+            </div>
+           
+            
+      
+          </div>
+          
+         
+        </div>
+      
+        
+        </div>
+  </div>
+  
+
+ </ion-content> 
+

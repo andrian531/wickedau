@@ -1,0 +1,7 @@
+{
+    "AudioToolbox.framework": 1,
+    "CoreLocation.framework": 1,
+    "WebKit.framework": 1,
+    "SystemConfiguration.framework": 2,
+    "CoreTelephony.framework": 1
+}

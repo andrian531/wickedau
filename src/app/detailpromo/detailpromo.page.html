@@ -1,0 +1,102 @@
+<ion-content class="hidden-xs">
+  <section id="homeBanner" class="section section--borderless">
+  <div class="promo-detail-page">
+  <div class="promo-banner-page placeholder-image">
+    <img src="{{details?.thumbs}}" class="tix-ui-fadeIn promo-banner-img">
+  </div>
+         <!--<div class="home">
+           <div class="bannerlocations">
+             
+              <div class="slick-slider">
+                <div class="slick-slide">
+                  <div class="cbBgPattern">
+                  <div class="desc-wrapper">
+                  <h1>Campervan Hire {{ details?.title }}</h1>
+                </div>
+              </div>
+             
+            </div>
+            </div>
+          </div>
+          </div>-->   
+          <div class="container">
+    <div class="promo-detail-content-container">
+        
+        <div class="promo-detail-container container">
+      <div class="promo-detail-content col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <div class="breadcrumb-page promo-detail-breadcrumb">
+          <div class="float-left"><span class="breadcrumb-item"><a class="breadcrumb-link" href="/home" target="_self">Home</a></span><span class="breadcrumb-item"><a class="breadcrumb-link" href="/promo" target="_self">Promo</a></span><span class="breadcrumb-item">{{details?.title}}</span></div>
+          <div class="float-right" style="margin-top: -23px;"><span class="share-text"></span>  <div class="addthis_inline_share_toolbox"></div>
+            
+              
+            
+          </div>
+          <div class="clear-both"></div>
+      </div>
+        <p [innerHTML]="details?.content"></p>
+    </div>
+   
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 promo-detail-other">
+      
+      <h2 class="promo-detail-other-title"><span>Other Promo</span></h2>
+      <ion-list lines="none" *ngIf="pokemon.length == 0">
+        <ion-item *ngFor="let i of [1,2,3]">
+          <ion-skeleton-text animated style="width: 100%;height: 363px;"></ion-skeleton-text>
+        </ion-item>
+      </ion-list>
+
+      <div *ngFor="let page of pages;" [routerLink]="['/promo/' + page.slug]" class="other-promo-container placeholder-image">
+        <a target="_blank" rel="noopener noreferrer"><img src="{{ page?.thumbs }}" class="tix-ui-fadeIn other-promo-img img-pointer" alt="{{page?.title}}"></a>
+          <span
+              class="other-promo-title">{{page.title}}</span>
+      </div>
+      
+      
+      <div class="see-more-promo-container"><a href="/promotion_list" class="see-more-promo-group"><span class="see-more-promo-text">See all</span><span class="see-more-promo-logo"><i class="fas fa-arrow-right"></i></span></a></div>
+  </div>
+  
+  </div> 
+</div>
+</div>
+  </div>
+  </section>
+  <div [innerHTML]="footer"></div>
+</ion-content>
+
+<ion-header no-border class="hidden-lg hidden-md">
+  <ion-toolbar>
+       <ion-buttons slot="start">
+           <ion-back-button color="light" defaultHref="/"></ion-back-button>
+       </ion-buttons>
+       <ion-title class="ion-text-capitalize">{{details?.title}}</ion-title>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content class="hidden-lg hidden-md">
+
+  <div *ngIf="details"> 
+    <div class="vehicle-details__header">
+      <div class="col-md-12 nopadding">
+        
+        <div class="headingbanner">
+          <p><img src="{{details?.thumbs}}"></p>
+          </div>
+          <!--<h1>{{details?.title}}</h1>-->
+          <div class="bungkus">
+            <p [innerHTML]="details?.content"></p>
+           
+           
+          
+          </div>
+         
+        </div>
+      
+        
+        </div>
+  </div>
+  
+  
+ </ion-content> 
+
+
+

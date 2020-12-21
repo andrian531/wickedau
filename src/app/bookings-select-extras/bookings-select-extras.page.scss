@@ -1,0 +1,293 @@
+.footer-book{
+    --background:white;
+    color:black;
+}
+.arrow{
+    font-size: 40px;
+    color: white;
+}
+.text-red{
+    color:red;
+}
+.text-grey{
+    color:grey;
+}
+.wadah-extras{
+    border: 1px solid #bf0000;
+    margin: 10px;
+    border-radius: 5px;
+}
+.wadah-title{
+    padding:10px;
+    border-bottom: 1px solid  #bf0000;
+}
+.wadah-desc{
+    border-top:1px solid grey;
+    padding:10px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+.title-extras{
+    font-size: 16px;
+    font-weight: 600;
+}
+.img-extras{
+    padding: 0px;
+}
+.name-extras{
+    font-size: 14px;
+}
+.desc-extras{
+    line-height: 1;
+}
+.extras-price{
+    font-size: 12px;
+    font-weight: 600;
+}
+.selected{
+    //background:#bf00002e;
+    -webkit-box-shadow: 3px 4px 6px 0 rgb(255 5 5 / 45%);
+    -moz-box-shadow: 3px 4px 6px 0 rgb(255 5 5 / 45%);
+    box-shadow: 3px 4px 6px 0 rgb(255 5 5 / 45%);
+}
+.extras-selected {
+    color: red;
+    bottom: -5px;
+    position: absolute;
+    right: -5px;
+    padding: 4px 10px;
+    border-top: 1px solid red;
+    border-left: 1px solid red;
+    font-size: 9px;
+    line-height: 1;
+    border-radius: 5px 0px 0px 0px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.list-spec{
+    list-style: none;
+    padding-left: 10px;
+}
+.yes:before {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: 600;
+    text-decoration: inherit;
+    color: #000;
+    margin-right: 5px;
+}
+.btn-quote{
+    background-color: #000;
+    color:white;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+.btn-book{
+    background-color: #bf0000;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.detail-box{
+    color: black;
+    margin-top: 10px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+    padding: 10px;
+}
+.vehicle-info{
+    background-color: #dfdfdf;
+    margin:5px;
+    padding: 10px;
+    margin-bottom: 0px;
+}
+.ds-h2-extras{
+    margin: 15px 0px !important;
+    border-bottom: 1px solid #dfdfdf;
+    padding: 0 10px;
+    font-size: 21px;
+    font-weight: 600;
+}
+.ds-txt-extras{
+    padding: 5px 15px;
+}
+.ds-wadah-extras{
+    border: 1px solid #dfdfdf;
+    padding: 5px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+.ds-title-extras{
+    border-bottom: 1px solid #dfdfdf;
+    padding: 8px 0px;
+}
+.pad-0{
+    padding:0px
+}
+.ds-selected{
+    background-color: #f5f5f5;
+    border: 1px solid #9e9a9a;
+}
+.ds-extras-selected {
+    color: #9e9a9a;
+    bottom: 0px;
+    position: absolute;
+    right: 0px;
+    padding: 4px 10px;
+    border-top: 1px solid #9e9a9a;
+    border-left: 1px solid #9e9a9a;
+    font-size: 9px;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.ds-title-subextras{
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 10px;
+}
+.ds-img-extras{
+    max-width: 55px;
+}
+.total-big{
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+.btn-big{
+    background: #d20000;
+    color: white;
+    font-size: 17px;
+    font-weight: 800;
+    border-radius: 8px;
+    margin:5px;
+    padding:10px;
+}
+.input-xtras{
+    margin-bottom: 10px;
+}
+.total-extras{
+    border-top:1px solid #dfdfdf;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+.title-form{
+    border-bottom: 1px solid #dfdfdf;
+    margin-bottom: 10px;
+}
+.input-form{
+    padding: 0px;
+    margin-bottom: 10px;
+}
+.inputm {
+    padding: 0 20px;
+    font-size: 17px;
+    min-height: 45px;
+    border-radius: 0px;
+}
+
+.inputm::-webkit-input-placeholder {
+    color: #cdcdcd;
+    padding: 5px 15px;
+} 
+ion-item {
+    --border-color: #ced4da;
+    --border-width: 1px;
+}
+.select-label{
+    font-weight: 100;
+    color: #ced4da;
+}
+.is-invalid{
+    --border-color: red ;
+}
+.aggtext{
+    font-size: 95%;
+    margin:10px -10px;
+}
+
+  .containeragg {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .containeragg input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 21px;
+    width: 21px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .containeragg:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .containeragg input:checked ~ .checkmark {
+    background-color: #bf0000;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .containeragg input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .containeragg .checkmark:after {
+    left: 8px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+.dsctext{
+    font-size: 70%;
+    border-top: 1px solid #dfdfdf;
+    padding: 10px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+input,select,option,textarea{
+    font-size: 14px;
+}
+.bold{
+    font-weight: bold;
+    font-size: 120%;
+}

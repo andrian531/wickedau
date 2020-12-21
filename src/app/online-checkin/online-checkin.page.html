@@ -1,0 +1,99 @@
+<ion-content class="hidden-xs">
+  <section id="homeBanner" class="section section--borderless">
+    <div class="wck-homepage">
+      
+    <div class="container">
+      <div class="row">
+        <div class="container">
+          <div class="col-md-12">
+            <ul class="breadcrumb">
+                
+            </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-bottom:20px;margin-top:0px">
+        <div class="row">
+            <div class="col-xs-3">
+                <div class="card card-no-shadow sidebar-card">
+                    <div class="check-order-wrapper">
+                        <form autocomplete="off"><label class="check-order-title">Check Order</label>
+                            <div class="input-wrapper">
+                                <div class="input v3 hasLabel"><input type="text" name="CheckOrderEmail" value="" placeholder="Email Address"></div>
+                            </div>
+                            <div class="input-wrapper">
+                                <div class="input v3 hasLabel"><input type="number" name="CheckOrderOrderId" value="" placeholder="Order ID" min="1" max="6"></div>
+                            </div>
+                            <button class="check-order-button">Check My Order</button>
+                        </form>
+                    </div>
+                
+                </div>
+            </div>
+            <div class="col-xs-9">
+                <div class="desktop-layout">
+                    <div class="empty-state-background">
+                        <div class="empty-state-wrapper"><img src="../../assets/images/fd8652d2.svg" alt="empty-state-img" class="state-img">
+                            <p class="title">The easiest way to check your order</p>
+                            <p class="caption noData">Input your email address and Order ID in the check order form.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+  <div [innerHTML]="footer"></div>
+</ion-content>
+<ion-header no-border class="hidden-lg hidden-md">
+    <ion-toolbar>
+         <ion-buttons slot="start">
+         <ion-back-button color="light" defaultHref="/"></ion-back-button>
+         </ion-buttons>
+         <ion-title class="ion-text-capitalize">My Order</ion-title>
+     </ion-toolbar>
+ </ion-header>
+
+      <ion-content class="hidden-lg hidden-md">
+      <!--<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="Pull to refresh"
+            refreshingSpinner="circles"
+            refreshingText="Refreshing...">
+          </ion-refresher-content>
+      </ion-refresher>-->
+      <div class="tix-whats-menu">
+      <img src="../../assets/img/newcekin.jpg" class="image-top">
+      </div>
+      <div>
+       <div class="sekeleton">  
+        <div class="ion-padding custom-skeleton">
+          <ion-col>
+           <ion-skeleton-text animated style="width: 25%"></ion-skeleton-text>
+           <ion-skeleton-text animated style="width: 100%;height: 40px;"></ion-skeleton-text>
+          </ion-col> 
+      
+          <ion-col>
+           <ion-skeleton-text animated style="width: 25%"></ion-skeleton-text>
+           <ion-skeleton-text animated style="width: 100%;height: 40px;"></ion-skeleton-text>
+          </ion-col>
+      
+          <ion-col>
+           <ion-skeleton-text animated style="width: 25%"></ion-skeleton-text>
+           <ion-skeleton-text animated style="width: 100%;height: 40px;"></ion-skeleton-text>
+          </ion-col> 
+      
+           <ion-col>
+           <ion-skeleton-text animated style="width: 100%;height: 40px;"></ion-skeleton-text>
+          </ion-col> 
+        </div>
+       </div>
+       <iframe src="https://www.wickedcampers.com/app-book/au/checkinlogin" id="myIframe" border="0" scrolling="no" onerror="this.setAttribute('srcdoc','<p>You need to be online to view this content.</p>');" onload="if(navigator.onLine===false) eval(this.getAttribute('onerror'));">iframes not supported in your browser.</iframe>
+       </div>
+      </ion-content>
+      
+
+

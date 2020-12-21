@@ -1,0 +1,207 @@
+<ion-content class="hidden-xs">
+  <div class="landing-desktop hidden-xs pad-top-booking">
+    <div class="hero-section"></div>
+    <div class="container" *ngIf="dataloaded==0">
+      <div class="row" >
+        <div class="colxs-12 center loader"></div>
+        <div class="col-xs-12 text-center" style="margin-top: 300px; margin-bottom:20px;font-weight: bold;">Just a moment...<br><br>Loading available campervan from wicked campers</div>
+      </div>
+    </div>
+    <div class="container" *ngIf="dataloaded==1">
+      
+      <div class="col-xs-12" style="padding-right:0px;">
+        <div class="col-xs-9 pull-right" style="padding-left:0px;padding-right:0px;">
+          <div class="col-xs-3 pull-right" style="padding-right:0px;">
+            <select  #sort
+        (change)='changesort(sort.value)' class="form-control " id="exampleFormControlSelect1">
+              <option>Sort</option>
+              <option value="categoryfriendlydescription,asc">Name Ascending</option>
+              <option value="categoryfriendlydescription,dsc">Name Descending</option>
+              <option value="totalrateafterdiscount,asc">Price Ascending</option>
+              <option value="totalrateafterdiscount,dsc">Price Descending</option>
+            </select>
+          </div>
+          <div class="col-xs-9" style="padding-left:0px;margin-left:-10px;">
+            Showing {{carcount}} result
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-3" style="margin-bottom: 30px;">
+        <div class="filter-box">
+          <h3>Filter by</h3>
+          <div class="filter-title color-grey">Total Price</div>
+          <ion-range min="0" max="{{maxpay}}" id="dual-range" dual-knobs pin color="danger" [(ngModel)]="rangeValues" (click)="filterprice()" >
+            <ion-label slot="start" class="color-grey">0</ion-label>
+            <ion-label slot="end" class="color-grey">{{maxpay}}</ion-label>
+          </ion-range>
+            <p class="text-center color-grey">{{rangeValues.lower+'-'+rangeValues.upper}}</p>
+            <div class="filter-title color-grey" style="margin-bottom:10px;">Category</div>
+            <div class="row">
+              <div class="col-xs-12" *ngFor="let cat of vcat">
+                <input type="checkbox" name="group" id="group{{cat.id}}"  title="Main List" (change)="filtercat(cat.id);"/>
+                <label for="group{{cat.id}}" class="label-cf color-grey">{{cat.title}}</label>
+              </div>
+            </div>
+            <div class="filter-title color-grey" style="margin-bottom:10px;">Passenger Capability</div>
+            <div class="row">
+              <div class="col-xs-12" >
+                <input type="checkbox" id="seat2"  title="Main List" (change)="filterseat(2);"/>
+                <label for="seat2" class="label-cf color-grey">2 Passenger</label>
+              </div>
+              <div class="col-xs-12" >
+                <input type="checkbox" id="seat3"  title="Main List" (change)="filterseat(3);"/>
+                <label for="seat3" class="label-cf color-grey">3 Passenger</label>
+              </div>
+              <div class="col-xs-12" >
+                <input type="checkbox" id="seat5"  title="Main List" (change)="filterseat(5);"/>
+                <label for="seat5" class="label-cf color-grey">5 Passenger</label>
+              </div>
+              <div class="col-xs-12" >
+                <input type="checkbox" id="seat6"  title="Main List" (change)="filterseat(12);"/>
+                <label for="seat6" class="label-cf color-grey">> 5 Passenger</label>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-xs-9">
+        <div class="row" *ngIf="vehicle.length==0">
+          <div class="col-xs-12 text-center" style="padding-top: 150px;">
+            no vehicles available please change your filter
+          </div>
+        </div>
+        <div class="row" *ngFor="let field of vehicle">
+          <div class="col-xs-12 wadahx">
+            <div class="col-xs-4" style="padding:10px;">
+              <img src="{{field.thumbnail}}"/>
+            </div>
+            <div class="col-xs-8">
+              <div class="col-sm-12 col-lg-8">
+                <div class="titlex">{{field.categoryfriendlydescription}}</div>
+                <p>{{field.desc}}</p>
+                <div class="row"  style="margin-left: 0px;">
+                  <div *ngFor="let sp of field.spec" class="col-xs-6 spec" style="margin-bottom:2px;">
+                    <i class="fa fa-check" aria-hidden="true" ></i> {{sp.value}}
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-lg-4">
+                <div class="col-sm-6 col-lg-12 pad-0" style="margin-bottom:10px;">
+                  <div class="col-xs-12 pad-0" *ngIf="field.avgrate == field.discounteddailyrate">
+                    <span class="pr-mini">Daily Rate:</span>
+                  </div> 
+                  <div class="col-xs-12 pad-0" *ngIf="field.avgrate != field.discounteddailyrate">
+                    <span class="pr-red">{{field.currency}} {{field.avgrate  | currency}}/day</span>
+                  </div>
+                  <div class="col-xs-12 pr-normal pad-0">
+                    {{field.currency}} {{field.discounteddailyrate| currency}}/<span class="pr-mini">day</span>
+                  </div>
+                  <div class="col-xs-12 pad-0" *ngIf="field.avgrate != field.discounteddailyrate">
+                    <span class="pr-mini">({{field.discountname}})</span>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-lg-12 pad-0">
+                  <div class="col-xs-12 pad-0"><span class="pr-mini">Initial Estimate:</span></div>
+                  <div class="col-xs-12 pr-normal pad-0">{{field.currency}} {{field.totalrateafterdiscount | currency}}</div>
+                  <div class="col-xs-12 bookx pad-0" (click)="booknow(field.vehiclecategorytypeid,field.vehiclecategoryid)">
+                    Book Now 
+                    <i class="fa fa-chevron-right pull-right" aria-hidden="true" style="padding:3px;"></i>
+                  </div>
+                </div>
+                
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hidden-xs" [innerHTML]="footer"></div>
+</ion-content>
+
+
+
+<ion-header no-border class="hidden-lg hidden-md hidden-sm" *ngIf="vehdiv">
+  <ion-toolbar>
+       <ion-buttons slot="start">
+       <ion-back-button color="light" defaultHref="/"></ion-back-button>
+       </ion-buttons>
+       <ion-title class="text-center">Select a Vehicles</ion-title>
+   </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="hidden-lg hidden-md hidden-sm" *ngIf="vehdiv">
+    <div *ngIf="vehicle.length == 0">
+      <div class="country-wrap">
+        <!--<div class="mountain-1"></div>
+        <div class="mountain-2"></div>-->
+        
+        <div class="sun">Just a moment...<br><br>Loading available campervan from wicked campers</div>
+        <div class="holder">
+        <div class="car"></div>
+        <div class="wheels"></div>
+        <div class="wind-holder">
+          <div class="wind"></div>
+        </div>
+        <div class="tree tree1"></div>
+        <div class="tree tree2"></div>
+        <div class="tree tree3"></div>
+        <div class="hill hill1"></div>
+        <div class="hill hill2"></div>
+      </div>
+      </div>
+    </div>
+    <ion-grid class="wadah" *ngFor="let field of vehicle">
+      <ion-row class="product">
+          <ion-col size="7" class="pr-title">{{field.categoryfriendlydescription}}</ion-col>
+          <ion-col size="5">
+            <div class="tombol" style="margin-top:-10px;" (click)="booknow(field.vehiclecategorytypeid,field.vehiclecategoryid)">
+              Book <ion-icon name="caret-forward-outline" class="btn-book"></ion-icon>
+            </div>
+          </ion-col>
+      </ion-row>
+      <ion-row style="margin: 10px 0px;">
+          <ion-col size="7"><img src="{{field.thumbnail}}" (click)="openSlide(field.vehiclecategoryid)"></ion-col>
+          <ion-col size="5" style="padding:0px !important;">
+            <ion-row>
+              <ion-col *ngFor="let sp of field.spec" size="12" class="specm" style="margin-bottom:2px;">
+                <i class="fa fa-check" aria-hidden="true" ></i> {{sp.value}}
+              </ion-col>
+            </ion-row>
+          </ion-col>
+      </ion-row>
+      <ion-row class="pr-bawah">
+          <ion-col size="6">
+              <div class="col-xs-12" *ngIf="field.avgrate == field.discounteddailyrate" style="height: 5vw;"></div>
+              <div class="col-xs-12" *ngIf="field.avgrate != field.discounteddailyrate"><span class="pr-red">{{field.currency}} {{field.avgrate  | currency}}/day</span></div>
+              <div class="col-xs-12 pr-normal">{{field.currency}} {{field.discounteddailyrate| currency}}/<span class="pr-mini">day</span></div>
+              <div class="col-xs-12" *ngIf="field.avgrate != field.discounteddailyrate"><span class="pr-mini">({{field.discountname}})</span></div>
+          </ion-col>
+          <ion-col size="6">
+              <div class="col-xs-12"><span class="pr-mini">Initial Estimate:</span></div>
+              <div class="col-xs-12 pr-normal">{{field.currency}} {{field.totalrateafterdiscount | currency}}</div>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+    
+
+</ion-content>
+<!--<ion-footer class="hidden-lg hidden-md hidden-sm ion-no-border">
+  <ion-toolbar>
+    <ion-title>Footer - No Border</ion-title>
+  </ion-toolbar>
+</ion-footer>-->
+
+<!--slide vehicle-->
+<ion-content class="hidden-lg hidden-md hidden-sm" *ngIf="slidediv">
+  <div class="col-xs-12 pull-left" (click)="closeSlide()" style="top:10px;">X</div>
+  
+    <ion-slides pager="true" [options]="slideOpts" style="margin-top:50%;">
+      <ion-slide *ngFor="let s of imgslide">
+        <img src="{{s}}" class="img100"/>
+      </ion-slide>
+    </ion-slides>
+
+</ion-content>
+<!--end of slide vehicle-->

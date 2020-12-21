@@ -1,0 +1,61 @@
+<ion-header no-border class="hidden-lg">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title text-center class="ion-text-capitalize" >More</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="hidden-lg">
+ 
+        <div class="tixpoint">
+          <div class="tixcard">
+              <div class="head">Help & Feedback</div>
+              <div class="tix-list-menu">
+              <ul>
+                <li class="cs" >
+                  <a routerLink="/contact-us" routerDirection="forward">Contact us</a>
+                </li>
+                <li class="fed">
+                  <a routerLink="/p/customer-feedback" routerDirection="forward">Send Feedback</a>
+                </li>
+                
+              </ul>
+            </div>
+            <div class="head">About</div>
+              <div class="tix-list-menu">
+              <ul>
+                <li class="about">
+                  <a href="/p/about-us">About Us</a>
+                </li>
+                <li class="pp">
+                  <a href="/p/wicked-rental-policies">Privacy Policy</a>
+                </li>
+                <li class="faq">
+                  <a href="/p/faq">FAQ</a>
+                </li>
+              </ul>
+            </div>
+            <div class="head">Buy</div>
+            <div class="tix-list-menu">
+              <ul>
+                <li class="pay">
+                  <a routerLink="/menu/buy" routerDirection="forward">Buy From Wicked</a>
+                </li>
+                
+              </ul>
+
+            </div>
+           
+          </div>
+        </div>
+	
+	
+ 
+  <!--<ion-infinite-scroll (ionInfinite)="loadPokemon(true, $event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more Campervan...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>-->
+ 
+</ion-content>

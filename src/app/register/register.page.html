@@ -1,0 +1,115 @@
+<ion-content class="hidden-xs">
+  <section id="homeBanner" class="section section--borderless">
+    <div class="wck-homepage">
+      
+    <div class="container">
+      <div class="row">
+        <div class="container">
+          <div class="col-md-12">
+            <ul class="breadcrumb">
+                
+            </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+            <div class="panel panel-default">
+                <h1 class="panel-heading m-t-0 red-gradient">Register</h1>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="registerForm" role="form" method="POST" action="https://www.lemonilo.com/register"><input type="hidden" name="_token" value="tUOPuJ6b080NmpEXNCn76gRvJf0j1U5dnAbJifi9">
+                        <div class="form-group"><label for="name" class="col-xs-4 control-label">Full Name</label>
+                            <div class="col-xs-6"><input id="name" type="text" class="form-control" name="name" value="" placeholder="Full Name" autofocus=""></div>
+                        </div>
+                        <div class="form-group"><label for="email" class="col-xs-4 control-label">E-Mail Address</label>
+                            <div class="col-xs-6"><input id="email" type="email" class="form-control" name="email" value="" placeholder="E-Mail"></div>
+                        </div>
+                        <div class="form-group"><label for="password" class="col-xs-4 control-label">Password</label>
+                            <div class="col-xs-6"><input id="password" type="password" class="form-control" name="password" placeholder="Password"></div>
+                        </div>
+                        <div class="form-group"><label for="password-confirm" class="col-xs-4 control-label">Confirm Password</label>
+                            <div class="col-xs-6"><input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6 col-xs-offset-4"><button type="submit" id="btn-submit" class="btn btn-primary"> Register </button></div>
+                        </div>
+                    </form>
+                    <div class="fb-login ">
+                        <div class="hr-label-container"><span class="hr-label"> or </span></div>
+                        <div class="text-center"><a href="#" class="btn btn-large fb-login-btn" onclick="checkLoginState(event)"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 216" color="#FFFFFF"><path fill="#FFFFFF" d=" M204.1 0H11.9C5.3 0 0 5.3 0 11.9v192.2c0 6.6 5.3 11.9 11.9 11.9h103.5v-83.6H87.2V99.8h28.1v-24c0-27.9 17-43.1 41.9-43.1 11.9 0 22.2.9 25.2 1.3v29.2h-17.3c-13.5 0-16.2 6.4-16.2 15.9v20.8h32.3l-4.2 32.6h-28V216h55c6.6 0 11.9-5.3 11.9-11.9V11.9C216 5.3 210.7 0 204.1 0z"></path></svg> Continue with Facebook </span><i class="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i></a></div>
+                    </div>
+                    <div id="fb-root" class=" fb_reset">
+                        <div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
+                            <div></div>
+                        </div>
+                    </div>
+                    <script>
+                        var permsNeeded = ["email"];
+    
+                        function checkLoginState(e) {
+                            e.preventDefault();
+                            if (!$(".fb-login-btn").is(".loading")) {
+                                $(".fb-login-btn").addClass("loading");
+                                FB.login(function(response) {
+                                    if (response.status == "connected") {
+                                        var data = {
+                                            accessToken: response.authResponse.accessToken,
+                                            userID: response.authResponse.userID
+                                        };
+                                        if ($("#fb_redirect_to").length > 0) {
+                                            data.redirectTo = $("#fb_redirect_to").val();
+                                        }
+                                        $.ajax({
+                                            url: "/facebook",
+                                            type: "POST",
+                                            headers: {
+                                                "X-CSRF-TOKEN": $("[name=_token]").val()
+                                            },
+                                            dataType: "json",
+                                            data: data,
+                                            success: function(data) {
+                                                if (data.success) {
+                                                    location.href = data.redirectTo;
+                                                } else {
+                                                    location.reload();
+                                                }
+                                            }
+                                        });
+                                    } else {
+                                        location.reload();
+                                    }
+                                }, {
+                                    scope: permsNeeded.join(','),
+                                    return_scopes: true,
+                                    auth_type: 'rerequest'
+                                });
+                            }
+                        }
+                        window.fbAsyncInit = function() {
+                            FB.init({
+                                appId: '256077721482894',
+                                cookie: true,
+                                xfbml: true,
+                                version: 'v3.2'
+                            });
+                        };
+                        (function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=256077721482894&autoLogAppEvents=1';
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+</section>
+  <div [innerHTML]="footer"></div>
+</ion-content>

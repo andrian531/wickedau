@@ -1,0 +1,79 @@
+<ion-header no-border class="white d-sm-block d-none hidden-xs bayangan" *ngIf="showmenu"> 
+
+  <div class="header__city mobile-hide no-banner">
+<!--<div class="site-header__inner site-header__banner" style="text-align:center;">  
+  <div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';"><i class="fas fa-times-circle"></i></span> 
+    <a href="https://www.wickedcampers.com.au/images/stories/Wicked-Campers-2020_EBook.pdf" style="color:white;">
+      <i class="fas fa-exclamation-circle"></i>
+     Current COVID-19 Information
+   </a>
+  </div>      
+  </div>-->
+    
+    <div class="container"  >
+      <div class="d-flex">
+        <div class="mr-auto">
+          <a class="header__city__link" href="/">Australia</a><a class="header__city__link" href="https://www.wickedcampers.co.nz">New Zealand</a><a class="header__city__link" href="https://www.wickedcampers.co.uk">Europe</a><a class="header__city__link" href="https://www.wickedcampers.ca">North America</a><a class="header__city__link" href="https://www.wickedsouthamerica.com">South America</a><a class="header__city__link" href="https://www.wickedafrica.com">Africa</a><a class="header__city__link" href="https://www.wicked-campers.co.jp">Japan</a>
+        </div>
+        <div class="ml-auto">
+        <a class="header__city__link_left reg" href="https://bookings.wickedcampers.com.au/checkin/">Check-In</a>
+        <a class="header__city__link_right reg-book" href="https://bookings.wickedcampers.com.au/">Book</a>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    <div class="container">
+    <div class="d-flex justify-content-between bd-highlight">
+      <div class="p-2 bd-highlight">
+        <div class="logo" routerDirection="root" [routerLink]="'/'" lines="none">
+          
+            <picture>
+              <source srcset="../../assets/images/logo.webp" type="image/webp">
+              <source srcset="../../assets/images/logo.png" type="image/jpeg"> 
+              <img data-src="image.jpg" alt="campervan hire Australia">
+            </picture>
+          
+         </div>
+      </div>
+      <div class="p-2 bd-highlight">
+        <nav>
+          <a id="resp-menu" class="responsive-menu" href="#"><i class="fa fa-reorder"></i> Menu</a>    
+             <ul class="menu">
+            <li auto-hide="true" *ngFor="let p of pokemon; let i = index" class="hassubs podsx">
+              <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i" class="bold">
+            
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+              <ul class="sub-menu">
+                <li auto-hide="true" *ngFor="let xx of p.sub;" class="subs podsx">
+                  <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[xx.url]" lines="none" detail="false" [class.selected]="" class="bold">
+                  {{ xx.title }}
+                  </ion-item>
+                  
+                  <ul *ngIf="xx.sub != '[]'" class="pods">
+                   
+                    <li auto-hide="true" *ngFor="let aa of xx.sub;">
+                      <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[aa.url]" lines="none" detail="false" [class.selected]="selectedIndex == i" class="bold">
+                      {{aa.title}}
+                    </ion-item>
+                  </li>
+                  </ul>
+                  
+                </li>
+              </ul>
+          </li>
+            </ul>
+            </nav>
+      </div>
+      <div class="p-2 hidden-lg"></div>
+      <div class="p-2 bd-highlight hidden-md hidden-sm">
+        <div class="red-text font-weight-bold phone-number"><i class="fas fa-user-headset mr-2" aria-hidden="true"></i>1800 24 68 69</div>
+      </div>
+    </div>
+  </div>
+</ion-header>
+<ion-router-outlet></ion-router-outlet>
+
+

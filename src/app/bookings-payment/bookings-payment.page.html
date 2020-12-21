@@ -1,0 +1,168 @@
+<ion-content class="hidden-xs">
+  <div class="landing-desktop hidden-xs  pad-top-booking">
+    <div class="hero-section"></div>
+    <div class="container">
+      <div class="row" *ngIf="dataload == false">
+        <div class="colxs-12 center loader"></div>
+        <div class="col-xs-12 text-center text-loader">Just a moment...</div>
+      </div>
+      <div class="col-xs-4">
+        <div class="detail-box " style="padding-bottom: 20px;" *ngIf="dataload">
+          <img src="{{thumbnail}}"/>
+          <h2><b>Booking Details...</b></h2>
+          <div class="row">
+            <!--daily rate-->
+            <div class="col-xs-12">
+              <br><b>Daily Rate:</b>
+            </div>
+            <div class="col-xs-6">
+              {{bookinfo.numberofdays}} Days @ {{bookinfo.currencyname}} {{rateinfo.dailyrateafterdiscount | currency}} 
+            </div>
+            <div class="col-xs-6 text-right">
+              {{bookinfo.currencyname}} {{rateinfo.ratesubtotal | currency}}
+            </div>
+            <div class="col-xs-12" *ngIf="rateinfo.dailyratebeforediscount != rateinfo.dailyrateafterdiscount">
+              <small class="text-red">{{rateinfo.discountdescription}}</small>
+            </div>
+          </div>
+          <!--extrafee-->
+          <div class="row">
+            <div class="col-xs-12">
+              <br><b>Extras Fee:</b>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              {{bookinfo.kmcharges_description}} 
+            </div>
+            <div class="col-xs-6 text-right">
+              {{bookinfo.currencyname}} {{bookinfo.kmcharges_totalfordailyrate | currency}}
+            </div>
+          </div>
+          <div class="row" *ngFor="let item of extrasfee">
+            <div class="col-xs-6">
+              {{item.name}} 
+            </div>
+            <div class="col-xs-6 text-right">
+              {{bookinfo.currencyname}} {{item.totalfeeamount | currency}}
+            </div>
+          </div>
+          <!--total-->
+          <div class="row">
+            <div class="col-xs-12 pull-left" style="top:10px;margin:10px;border-bottom: 1px solid;padding: 5px;"></div>
+            <div class="col-xs-6">
+              <b class="big-text">Total :</b>
+            </div>
+            <div class="col-xs-6 text-right">
+              <b class="big-text">{{bookinfo.currencyname}} {{bookinfo.totalcost | currency}}</b><br>
+              <small><b>(<span *ngIf="bookinfo.isgstinclusive">inc</span> {{bookinfo.taxname1}} {{bookinfo.currencyname}} {{bookinfo.gst | currency}})</b></small>
+            </div>
+            <div class="col-xs-12">
+              <b>Payment :</b>
+            </div>
+            <div class="col-xs-6">
+              <b class="big-text">Balance :</b>
+            </div>
+            <div class="col-xs-6 text-right">
+              <b class="big-text">{{bookinfo.currencyname}} {{bookinfo.balancedue | currency}}</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-8" *ngIf="dataload" >
+        <div class="container" >
+          <div class="col-xs-12 detail-box">
+            <div class="alert alert-warning" role="alert" *ngIf="warning!=''">
+              {{warning}}
+            </div>
+            <div *ngIf="payexpresurl">
+              <iframe class="iframe-pay" [src]="payexpresurl" style="width:100%;min-height: 600px;"></iframe>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>
+
+
+<!--mobile-->
+<ion-header no-border class="hidden-lg hidden-md hidden-sm">
+  <ion-toolbar>
+       <ion-title class="text-center">Pay Your Bookings</ion-title>
+   </ion-toolbar>
+</ion-header>
+<ion-content class="hidden-lg hidden-md">
+  <div class="col-xs-12">
+    
+    <details class="detail-box ">
+      <summary class="title-mob"><b>Booking Details...</b></summary>
+        <img src="{{thumbnail}}"/>
+        <div class="row">
+          <!--daily rate-->
+          <div class="col-xs-12">
+            <br><b>Daily Rate:</b>
+          </div>
+          <div class="col-xs-6">
+            {{bookinfo.numberofdays}} Days @ {{bookinfo.currencyname}} {{rateinfo.dailyrateafterdiscount | currency}} 
+          </div>
+          <div class="col-xs-6 text-right">
+            {{bookinfo.currencyname}} {{rateinfo.ratesubtotal | currency}}
+          </div>
+          <div class="col-xs-12" *ngIf="rateinfo.dailyratebeforediscount != rateinfo.dailyrateafterdiscount">
+            <small class="text-red">{{rateinfo.discountdescription}}</small>
+          </div>
+        </div>
+        <!--extrafee-->
+        <div class="row">
+          <div class="col-xs-12">
+            <br><b>Extras Fee:</b>
+          </div>
+        </div>
+        <div class="row" *ngFor="let item of extrasfee">
+          <div class="col-xs-6">
+            {{item.name}} 
+          </div>
+          <div class="col-xs-6 text-right">
+            {{bookinfo.currencyname}} {{item.totalfeeamount | currency}}
+          </div>
+        </div>
+        <!--total-->
+        <div class="row">
+          <div class="col-xs-12 pull-left" style="top:10px;margin:10px;border-bottom: 1px solid;padding: 5px;"></div>
+          <div class="col-xs-6">
+            <b class="big-text">Total :</b>
+          </div>
+          <div class="col-xs-6 text-right">
+            <b class="big-text">{{bookinfo.currencyname}} {{bookinfo.totalcost | currency}}</b><br>
+            <small><b>(<span *ngIf="bookinfo.isgstinclusive">inc</span> {{bookinfo.taxname1}} {{bookinfo.currencyname}} {{bookinfo.gst | currency}})</b></small>
+          </div>
+          <div class="col-xs-12">
+            <b>Payment :</b>
+          </div>
+          <div class="col-xs-6">
+            <b class="big-text">Balance :</b>
+          </div>
+          <div class="col-xs-6 text-right">
+            <b class="big-text">{{bookinfo.currencyname}} {{bookinfo.balancedue | currency}}</b>
+          </div>
+        </div>
+    </details>
+  </div>
+  <div class="container" >
+    <img src="https://bookings.wickedcampers.com.au/images/paymentexpreslogo.png" style="margin-top:15px;margin-bottom: -10px;">
+    <div class="col-xs-12 detail-box">
+      <div class="alert alert-warning" role="alert" *ngIf="warning!=''">
+        {{warning}}
+      </div>
+      <div *ngIf="payexpresurl">
+        <iframe class="iframe-pay" [src]="payexpresurl" ></iframe>
+      </div>
+    </div>
+
+  </div>
+</ion-content>
+

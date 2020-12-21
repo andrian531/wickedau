@@ -1,0 +1,287 @@
+<ion-content class="hidden-xs">
+    <section id="homeBanner" class="section section--borderless">
+        <div id="myDIV" style="display:none">
+            <div class="container">
+            <div class="tutupnya" onclick="myFunction()"><i class="fas fa-times-circle fa-2x"></i></div>
+            </div>
+            <div class="form_wrapper">
+              <div class="form_container">
+                <iframe ng-onload="myLoadEvent()" src="https://bookings.wickedcampers.com.au/bookingminicomnew" loading="lazy" seamless="seamless" scrolling="no" style="width:100%;height:205px;border:none;"></iframe>
+            </div>
+            </div>
+        </div>
+      <div class="wck-homepage">
+      <div class="container">
+    <div *ngIf="details">
+        
+        <div class="row">
+            <div class="container">
+              <div class="col-md-12">
+                <ul class="breadcrumb">
+                    
+                </ul>
+                </div>
+            </div>
+        </div>
+        
+  <div class="vehicle-details__header">
+  <div class="col-md-5 nopadding">
+  
+      <div class="vehicle-details__header-content">
+  
+        
+        <div class="vehicleTitleContainer">
+          <h1 class="vehicle-title">{{ details.title }}</h1>
+          <h2 class="vehicle-subtitle"></h2>
+        </div>
+  
+        
+        <div id="vehicle-overview">
+          
+          <div id="divVehicleOverview"><p data-pm-slice="1 1 [&quot;table&quot;,null,&quot;tableRow&quot;,null,&quot;tableCell&quot;,null]">{{ details.intro }}</p></div>
+          <a class="cta-btn cta-btn--green-fill cta-btn--medium openBookingModal" style="bottom: -60px;font-weight: bold;font-size: 15px;" href="{{bookurl}}">Get a Quote</a>
+        </div>
+        
+        
+       
+  
+      </div>
+    </div>
+  
+    <div class="col-md-7 nopadding">
+  <div class="tix-detail-header">  
+      <div>
+      <div style="flex-direction: row; transition: transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s; direction: ltr; display: flex; transform: translate(0%, 0px);">
+          <ion-slides #mySlider (ionSlidesDidLoad)="(mySlider)"  pager="true" mode="md" [options]="slideOpts1">
+                  
+              <ion-slide *ngFor="let slides of details.slides">
+                  <div style="width:100%;-webkit-flex-shrink:0;flex-shrink:0;overflow:auto" aria-hidden="true">
+                     
+                      <div class="slider-item  cursor-pointer">          
+                  <img src="{{slides.url}}">
+              </div>
+              </div>
+              </ion-slide>
+             
+              
+          </ion-slides>
+          <div class="swiper-button-next" (click)="swipeNext()"><i class="fas fa-chevron-circle-right"></i></div>
+          <div class="swiper-button-prev" (click)="swipePrev()"><i class="fas fa-chevron-circle-left"></i></div>
+      </div>
+      </div>
+      
+      
+      </div>
+  
+      </div>
+      
+    </div>
+  
+  
+      
+          <div class="col-md-9 tix-hotel-detail">
+                
+              <div class="tix-tabs">
+  
+                  <div class="tix-tabs-active-content">
+                  
+                      <div class="tab-inactive">
+                          <div class="hotel-description">
+                              <div class="segment-title ">Description</div>
+                              <div class="desc-text">
+                                  <p>{{ details.description }}</p>
+                              </div>
+  
+                          </div>
+                        
+
+                         
+                          <div class="review-summary tix-summary-card">
+                              <div class="segment-title">Campervan Specifications</div>
+                              <ion-item class="rapih" *ngFor="let loc of spec;">
+                                  <div class="heading"><img src="{{loc.class}}"/><b>{{ loc.value }}</b></div>
+                              </ion-item>
+  
+                          </div>
+                          <div class="hotel-description">
+                              <div class="segment-title ">License Requirements</div>
+                              <div class="desc-text">
+                                  <p>{{ details.license }}</p>
+                              </div>
+  
+                          </div>
+                      </div>
+  
+                      <div class="tab-inactive">
+                          <div style="position:relative">
+  
+                              <div style="background:white">
+  
+                                  <div class="segment-title ">Available on Depot </div>
+  
+                                  <ion-item class="rapih" *ngFor="let loc of availoc;" >
+                                      <div class="tix-list-body">
+                                          <div class="poi-list-item">
+                                              <div class="poi-wrap">
+                                                  <div class="poi-marker">
+                                                      <img src="../../assets/img/bfbe895a.svg" alt="marker image">
+                                                      <span class="poi-marker-label">{{ loc.number }}</span>
+                                                  </div>
+                                                  <div class="poi-info">
+                                                      <div class="poi-info-name">{{ loc.title }}</div>
+                                                      <div class="poi-info-address"></div>
+                                                  </div>
+                                              </div>
+                                              <div class="poi-distance" >
+  
+                                                  <a href ="/locations/{{ loc.slug }}">Detail addres</a>
+                                                </div>
+                                          </div>
+                                      </div>
+  
+                                  </ion-item>
+                                  <div class="turunbgd"></div>
+  
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+         
+  
+      </div>
+      <div class="col-md-3">
+        <img src="../../assets/images/campervan-hire-van.jpg">
+     </div>
+    
+     
+     
+    </div>
+  </div>
+  </div>
+  </section>
+  <div [innerHTML]="footer"></div>
+  </ion-content>
+  
+  <ion-header no-border class="hidden-lg hidden-md">
+      <ion-toolbar>
+           <ion-buttons slot="start">
+               <ion-back-button color="light" defaultHref="/"></ion-back-button>
+           </ion-buttons>
+           <ion-title class="ion-text-capitalize">{{ details?.title }}</ion-title>
+       </ion-toolbar>
+   </ion-header>
+  
+   <ion-content class="hidden-lg hidden-md">
+      <div *ngIf="details">
+          <!--<div class="tix-detail-header">
+        <div class="slider-item cursor-pointer">
+          <img [src]="slides">
+  
+          </div>
+          </div>-->
+          <div class="tix-hotel-detail">
+              <div>
+                  <div class="tix-detail-header">
+                      <div>
+  
+                          <div style="flex-direction: row; transition: transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s; direction: ltr; display: flex; transform: translate(0%, 0px);">
+                              <ion-slides pager="true" [options]="slideOpts1">
+                                  <ion-slide *ngFor="let slides of details.images">
+  
+                                      <div style="width:100%;-webkit-flex-shrink:0;flex-shrink:0;overflow:auto" aria-hidden="true" data-swipeable="true">
+                                          <div class="slider-item cursor-pointer swiper-slide">
+  
+                                              <img [src]="slides">
+  
+                                          </div>
+                                      </div>
+                                  </ion-slide>
+                              </ion-slides> 
+                             
+                        
+                          </div>
+                 
+                      </div>
+                      
+  
+                  </div>
+                  <div class="tix-tabs">
+  
+                      <div class="tix-tabs-active-content">
+                          <!--<div class="detail__price-info-wrap">
+      <div class="detail__evetn-attr">
+  
+          <div class="detail__body__price-info__attr"><span class="detail__body__price-info__attr--imgVoucherTag"><img src="https://www.wickedcampers.com.au/templates/jsn_megazine_pro/favicon.ico" alt="Voucher Instan"></span><span>{{ details?.title }}</span></div>
+  
+      </div>
+      </div>-->
+                          <!--<div class="hotel-name">
+                  <h1><ion-title class="ion-text-capitalize" >{{ details?.title }}</ion-title></h1>
+          </div>-->
+                          <div class="tab-inactive">
+                              <div class="hotel-description">
+                                  <div class="segment-title">Description</div>
+                                     
+                                  <div class="desc-text">
+                                      <p>{{ details.description }}</p>
+                                  </div>
+                                  <div class="sticky-footer"><div class="room-price"></div><div><a class="button default block" href="{{bookurl}}">Get Quote</a></div></div>
+                                   
+                              </div>
+                              <div class="review-summary tix-summary-card">
+                                  <div class="segment-title">Campervan Specifications</div>
+                                  <ion-item class="rapih" *ngFor="let loc of spec;">
+                                      <div class="heading"><img src="{{ loc.class }}"> <b>{{ loc.value }}</b></div>
+                                  </ion-item>
+  
+                              </div>
+                              <div class="hotel-description">
+                                  <div class="segment-title ">License Requirements</div>
+                                  <div class="desc-text" >
+                                      <p *ngFor="let lic of details.license;">{{ lic }}</p>
+                                  </div>
+  
+                              </div>
+                          </div>
+  
+                          <div class="tab-inactive md">
+                              <div style="position:relative">
+  
+                                  <div style="background:white">
+  
+                                      <div class="segment-title ">Available on Depot </div>
+  
+                                      <ion-item class="rapih " detail="false" mode='md' *ngFor="let loc of availoc;" [routerLink]="['/locations/' + loc.slug]">
+                                          <div class="tix-list-body">
+                                              <div class="poi-list-item">
+                                                  <div class="poi-wrap">
+                                                      <div class="poi-marker">
+                                                          <img src="../../assets/img/bfbe895a.svg" alt="marker image">
+                                                          <span class="poi-marker-label">{{ loc.number }}</span>
+                                                      </div>
+                                                      <div class="poi-info">
+                                                          <div class="poi-info-name">{{ loc.title }}</div>
+                                                          <div class="poi-info-address"></div>
+                                                      </div>
+                                                  </div>
+                                                  <div class="poi-distance">Detail addres</div>
+                                              </div>
+                                          </div>
+  
+                                      </ion-item>
+                                      
+                                      <div class="turunbgd"></div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+  
+   </ion-content>
+  
+  

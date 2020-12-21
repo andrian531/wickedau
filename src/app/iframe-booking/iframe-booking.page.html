@@ -1,0 +1,116 @@
+<form #step1form="ngForm" (ngSubmit)="step1form.form.valid &&gotostep2()" target="_parent">
+  <div class="product-form">
+      <div>
+      <div class="form-style">			
+          <div class="switcher" (click)="swaploc()"><i class="fas fa-exchange-alt"></i></div> 
+          <div class="part-component part-depart">
+              <div class="title">Pickup Location</div>
+              <div class="content">
+                  <div class="icon"><i class="fal fa-map-marker-alt"></i></div>
+                  <div class="user-area">
+                      <div class="station-list-area">
+                           <select name="pickuplocation" [(ngModel)]="step1.pickuploc" #pickuploc ="ngModel" class="form-Pickup-Location"  style="width: 100%;">
+                              <option *ngFor="let field of booklocation" value="{{field.id}}">{{field.location}}</option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="part-component part-return">
+              <div class="title">Return Location</div>
+              <div class="content">
+                  <div class="icon"><i class="fal fa-map-marker-alt"></i></div>
+                  <div class="user-area">
+                      <div class="station-list-area">
+                              <select name="dropofflocation" class="form-Dropoff-Location" [(ngModel)]="step1.dropoffloc" #dropoffloc="ngModel" required autocomplete="off" style="width: 100%;">
+                                  <option  *ngFor="let field of booklocation" value="{{field.id}}" >{{field.location}}</option>
+                              </select>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="part-component part-from-date">
+              <div class="title">Pickup Date</div>
+              <div class="content">
+                  <div class="icon"><i class="fal fa-calendar-day" (click)="open()"></i></div>
+                  <div class="user-area">
+                      
+                      <div class="wrapper-datepicker datepicker-depart">
+                          
+                          
+                              <input matInput [matDatepicker]="picker" (click)="picker.open()" [ngClass]="{ 'ds-invalid': step1form.submitted && pickupdate.invalid }" name="pickupdate" [(ngModel)]="step1.pickupdate"  placeholder="Select date" #pickupdate="ngModel" class="form-Pickup-Date" id="txtPickup" autocomplete="off" style="width: 100%; border: none;" required [min]="minDate">
+                              
+                              <mat-datepicker #picker></mat-datepicker>
+                          
+                          <!--<input [ngClass]="{ 'ds-invalid': step1form.submitted && pickupdate.invalid }" type="text" name="pickupdate" [(ngModel)]="step1.pickupdate"  placeholder="Select date" #pickupdate="ngModel" class="form-Pickup-Date" id="txtPickup" autocomplete="off" style="width: 100%; border: none;" required [min]="minDate" [dateTimeChange]="" [selectMode]="'rangeFrom'"[owlDateTimeTrigger]="dt3" [owlDateTime]="dt3">
+                          <owl-date-time [pickerType]="'calendar'"  #dt3></owl-date-time>-->
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="part-component part-from-time">
+              <div class="title">Pickup Time</div>
+              <div class="content">
+                  <div class="icon"><i class="fal fa-clock"></i></div>
+                  <div class="user-area">
+                      <div class="wrapper-datepicker datepicker-depart">
+                          <input id="txtPickupTime" [ngClass]="{ 'ds-invalid': step1form.submitted && pickuptime.invalid }" type="text" step='1800' name="pickuptime" placeholder="Pickup-Time..." class="form-Pickup-Time" id="txtPickupTime" autocomplete="off" onchange="LocUpdForm()" style="width: 100%; border: none;" [(ngModel)]="step1.pickuptime" #pickuptime="ngModel" required required [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [min]="mindateDS" [max]="maxdateDS" >
+                          <owl-date-time [startAt]="mindateDS"
+                           [stepMinute]="'30'" [pickerType]="'timer'" #dt2 ></owl-date-time>
+                      </div>
+                  </div>
+              </div>
+          </div>
+                        
+          <div class="part-component part-to-date">
+              <div class="title">Return Date</div>
+              <div class="content">
+                  <div class="icon"><i class="fal fa-calendar-day"></i></div>
+                  <div class="user-area">
+                      <div class="wrapper-datepicker datepicker-return">
+                          <input matInput [matDatepicker]="pickerx" (click)="pickerx.open()" [ngClass]="{ 'ds-invalid': (step1form.submitted && pickupdate.invalid) || (step1form.submitted && step1.dropoffdate<=step1.pickupdate) }" name="returndate" [(ngModel)]="step1.dropoffdate"  placeholder="Select date" #pickupdate="ngModel" class="form-Pickup-Date" id="txtReturn" autocomplete="off" style="width: 100%; border: none;" required [min]="minDate">
+                              
+                              <mat-datepicker #pickerx></mat-datepicker>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="part-component part-to-time">
+              <div class="title">Return Time</div>
+              <div class="content">
+                  <div class="icon"><i class="fal fa-clock"></i></div>
+                  <div class="user-area">
+                      <div class="wrapper-datepicker datepicker-return">
+                          <input id="txtReturnTime" [ngClass]="{ 'ds-invalid': step1form.submitted && dropofftime.invalid }"  type="text" name="dropofftime" placeholder="Return-Time" class="form-Dropoff-Time" id="txtReturnTime" autocomplete="off" style="width: 100%; border: none;" [(ngModel)]="step1.dropofftime" #dropofftime="ngModel" required [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [min]="mindateDS" [max]="maxdateDS">
+                          <owl-date-time [startAt]="mindateDS" [pickerType]="'timer'" #dt></owl-date-time>
+                      </div>
+                  </div>
+              </div> 
+          </div>
+          <div class="part-component part-passenger">
+              <div class="title">Promo Code (optional)</div>
+              <div class="content">
+                  <div class="icon"><i class="far fa-tags"></i></div>
+                  <div class="user-area">
+                      <div class="wrapper-datepicker datepicker-return">
+                          <input type="text" name="form-Promo-Code" placeholder="Voucher " class="form-Promo-Code" id="txtPromoCode" autocomplete="off" style="width: 100%;border: none;" [(ngModel)]="step1.voucher">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+      </div>
+      <div *ngIf="step1form.submitted && step1form.form.invalid" class="form-invalid">
+          Please fill required field
+      </div>
+      <div *ngIf="step1form.submitted && step1.dropoffdate<=step1.pickupdate" class="form-invalid">
+          Return date must be after Pickup date
+      </div>
+      <div class="product-form-container product-form-button-group">
+          <button class="product-form-search-btn red-gradient" type="submit"><i class="fas fa-search"></i> Get Quote</button>
+      </div>
+      </div>
+  </div>
+</form>

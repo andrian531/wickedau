@@ -1,0 +1,234 @@
+<ion-content class="hidden-xs">
+  <section id="homeBanner" class="section section--borderless">
+    <div class="wck-homepage">
+        <!--Í<div class="placeholder" data-large="https://www.wickedcampers.com/images/mini-slide-23.jpg" style="height: 400px;margin-top: 0px;">
+          <img src="https://cdn-images-1.medium.com/freeze/max/27/1*sg-uLNm73whmdOgKlrQdZA.jpeg?q=20" data-image="" class="img-small loaded">
+        
+          <div class="cbBgPattern cbBgTint">
+                <div class="desc-wrapper">
+                    <p>Wicked Campers Locations</p>
+                </div>
+            </div>
+        <img src="https://static.tiket.photos/image/upload/v1591757367/banner/2020/06/10/d2ca922e-c68b-4d09-b134-b1b0443e5536-1591757365351-895e1a8e3ad825779b5214e84a74b235.jpg" class="loaded">
+      </div>-->
+      <div class="home">
+      <div class="bannercampervans">
+        <div class="slick-slider">
+          <div class="slick-slide">
+            <div class="cbBgPattern">
+            <div class="desc-wrapper">
+            <h1>Campervan hire</h1>
+          </div>
+        </div>
+       
+      </div>
+      </div>
+    </div>
+   <div class="container">
+   
+  </div>
+  </div>   
+
+  <div id="product-details" class="landing">
+ 
+      <div id="search-page" class="search-page">
+        <div class="container">
+       
+            <div class="col-md-12 left-section">
+              <section class="wrapper">
+                <div class="container-fostrap">
+                   
+                    <div class="content">
+                        <div class="container">
+                          <div class="home-car">
+                            <div class="form-car ">
+                              <div class="row-recent-view row">
+                                  <div class="vertical-middle title-container col-xs-12">
+                                    <div class="promo-inbox-title-box"><div class="promo-inbox-title-text"><div class="title-content"><h1>Wicked Campers Australia</h1>
+                                      <p>This year Wicked Campers notched up our 150,000th Australian hire and these babies have well and truly become iconic on Aussie roads! We're constantly looking to re-shape the roadtrip experience, and our current range of vehicles offer something for everyone and anyone! Whether you wanna get freaky and hire a campervan with a stage, or just keep it tame with a plain white and fresh minicamper - the choice is there!</p></div></div></div>
+                                  </div>
+                                  
+                              </div>
+                            
+                          
+                          </div>
+                          </div>
+                          
+                          <div>
+                            <ion-list lines="none" *ngIf="pokemon.length == 0">
+                              <ion-item *ngFor="let i of [1,2,3]">
+                                <ion-skeleton-text animated style="width: 33.333333%;height: 363px;margin-right: 5px;"></ion-skeleton-text>
+                                <ion-skeleton-text animated style="width: 33.333333%;height: 363px;margin-right: 5px;"></ion-skeleton-text>
+                                <ion-skeleton-text animated style="width: 33.333333%;height: 363px;"></ion-skeleton-text>
+                            </ion-item>
+                              </ion-list>
+                          </div>
+                           
+                                <div class="card-deck mb-3 text-center">
+                                  
+                                  
+                                  <div *ngFor="let poke of campervan;" [routerLink]="poke.slug" class="col-xs-4 card box-shadow">
+                                    <div class="card-header">
+                                      <h4 class="my-0 font-weight-bold">{{ poke.name }}</h4>
+                                    </div>
+                                    <div class="card-body d-flex flex-column">
+                                      <img class="card-img-top" src="{{ poke.thumbs }}">
+                                      <ion-spinner paused></ion-spinner>
+
+                                      <div class="card-body d-flex flex-column card-text">
+                                        {{ poke.intro }}
+                                      </div>
+                                      <button type="button" class="mt-auto btn btn-lg btn-block btn-outline-danger">More Details</button>
+                                    </div>
+                                  </div>
+                                  
+                                  
+                                </div>
+                        
+                            
+                          
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+                
+       
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+  <div [innerHTML]="footer"></div>
+  </section>
+  </ion-content>
+
+  <ion-header no-border class="hidden-lg hidden-md">
+    <ion-toolbar>
+         <ion-buttons slot="start">
+         <ion-back-button color="light" defaultHref="/"></ion-back-button>
+         </ion-buttons>
+         <ion-title class="ion-text-capitalize">Campervans</ion-title>
+     </ion-toolbar>
+ </ion-header>
+ <!--<ion-item class="filt hidden-lg">
+    <ion-label class="filter">Filter</ion-label>
+    <ion-select [(ngModel)]="type" (ionChange)="searchChanged($event)">
+      <ion-select-option value="">All</ion-select-option>
+      <ion-select-option value="movie">Australia</ion-select-option>
+      <ion-select-option value="series">New Zealand</ion-select-option>
+      <ion-select-option value="episode">UK/Europe</ion-select-option>
+	  <ion-select-option value="episode">Africa</ion-select-option>
+	  <ion-select-option value="episode">North America</ion-select-option>
+	  <ion-select-option value="episode">South America</ion-select-option>
+	  <ion-select-option value="episode">Japan</ion-select-option>
+    </ion-select>
+  </ion-item>-->
+
+
+
+<!-- Custom Refresher Content -->
+
+<ion-content class="hidden-lg hidden-md">
+
+  <ion-list lines="none" *ngIf="pokemon.length == 0">
+    <ion-item *ngFor="let i of [1,2,3,4,5,6,7,8,9]">
+      <ion-skeleton-text animated style="width: 100%;height: 135px;"></ion-skeleton-text>
+    </ion-item>
+  </ion-list>
+  
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+		<div class="listing">		
+		<div class="filter-search-wrapper">		
+		<div class="search-result">
+	
+			<div id="app">
+			<ion-list lines="none">
+			<!--
+			<div class="tix-card-hotel-wrap" *ngFor="let poke of pokemon;" [routerLink]="poke.url">
+			<div class="tix-card-hotel-main">
+			<div class="tix-card-hotel-image-wrap"><img class="tix-card-hotel-image" src="{{ poke.thumbs }}" alt="Main Image"></div>
+				<div class="tix-card-hotel-description tix-pb-0">
+					<div>
+						<div class="tix-card-hotel-name">{{ poke.name }}</div>
+						<div class="tix-card-hotel-stars"><i class="tixicon-star-full"></i><i class="tixicon-star-full"></i><i class="tixicon-star-full"></i><i class="tixicon-star-full"></i><i class="tixicon-star-full"></i></div>
+						<div class="tix-card-hotel-location"><i class="tixicon-location"></i>
+							<div class="location-name">{{ poke.country }}</div>
+						</div>
+						
+					</div>
+					<div class="tix-card-hotel-price">
+						<div>
+							<div class="price-from">&nbsp;</div>
+							<div class="price-to"><span class="price-per"></span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tix-card-hotel-deal"><div class="deal-label"><img src="{{ poke.specs }}" alt="" style="right; margin-bottom: 0px;"></div></div>
+
+            </div>-->
+            <div class="hotel-card-list hide-scrollbar" id="hotel-card-list">
+            <div class="hotel-card" *ngFor="let poke of pokemon;" [routerLink]="poke.slug">
+                    <div class="image-wrap">
+                        <img
+                            alt="Main Image"
+                            loading="lazy"
+                            src="{{ poke.thumbs }}"
+                        />
+                    </div>
+                    <div class="data-wrap">
+                      <div>
+                          <div class="title ellipsis">{{ poke.name }}</div>
+                          <div class="star-location">
+                              <div class="star-wrap"><i class="tix tixicon tixicon-star-full"></i><i class="tix tixicon tixicon-star-full"></i><i class="tix tixicon tixicon-star-full"></i></div>
+                              
+                          </div>
+                          <div class="rating">
+                          
+                             
+                              <div class="tripadvisor-rating"><img src="{{poke.specs}}" width="auto" /></div>
+                          </div>
+                          <div class="info-list">
+                              <div class="info-item">
+                                 {{poke.intro}}
+                              </div>
+                             
+                          </div>
+                      </div>
+                      
+                  </div>
+            </div>
+            </div>
+			
+	
+			</ion-list>
+
+			</div>
+		</div>
+		</div>
+		</div>
+   
+	
+	
+	
+	
+
+ 
+  <!--<ion-infinite-scroll (ionInfinite)="loadPokemon(true, $event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more Campervan...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>-->
+ 
+</ion-content>

@@ -1,0 +1,262 @@
+<ion-content class="hidden-xs d-none d-sm-block">
+  <section id="homeBanner" class="section section--borderless">
+    <div class="wck-homepage">
+        <div class="home">
+            <div class="bannerlocationsin">
+              <div class="slick-slider">
+                <div class="slick-slide">
+                  <div class="cbBgPattern">
+                  <div class="desc-wrapper">
+                  <h1>{{ details?.title }}</h1>
+                </div>
+              </div>
+             
+            </div>
+            </div>
+          </div>
+          </div>   
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="/locations">Locations</a></li>
+            <li><a href="/locations/{{details?.slug}}">{{details?.title}}</a></li>
+        </ul>
+        <div class="row">
+      <div class="col-md-9">
+        <div class="heading">
+            
+          </div>
+          <div class="bungkus">
+            <h2 class="heading-title">{{ details?.slug }} campervan rental location</h2>
+                     
+                        <p>{{details?.introx}}</p>
+                        
+                        <ul id="xx">
+                        <div class="branch" *ngFor="let loc of spec;">
+                          <div class="row">
+                            <div class="col-md-3" style="">{{loc.title}}</div>
+                            <div class="col-md-9"> {{ loc.value}} </div>
+                          </div>
+                        </div>
+                         <!--<div class="branch alamat">
+                          <div class="col-md-3" style="margin-left: -15px;"></div>
+                          <div class="col-md-9">{{ details?.address }}<br><br>  <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(details?.iframe)" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe></div>
+                          </div>-->
+                         
+                          
+                        </ul>
+                        
+
+                        <div class="branchx">
+                          <div class="row">
+                          <div class="col-md-3"></div>                          
+                        <div class="col-md-9" style="margin-bottom: 50px;">
+                          <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(details?.iframe)" width="100%" height="auto" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                        </div>
+                      </div>
+                         </div> 
+                       <div class="kataloc">
+                         
+                         <p [innerHTML]="details?.intro_detail"></p>
+
+
+                       
+                         <h2 class="heading-title">Frequenty Asked Question {{ details?.title }}</h2>
+                        
+                        <div class="pad">
+                        
+                             <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                               <h3 itemprop="name">How old do you have to {{ details?.title }}?</h3>
+                               <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                 <div itemprop="text">
+                                   You need to be at least 18 years old to be able to hire a campervan in Australia. Yes you can hire a Wicked Camper just using a valid drivers license from your country. An International License is not required.
+                                 </div>
+                               </div>
+                             </div>
+                             <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                               <h3 itemprop="name">Can I choose my campervan hire design? </h3>
+                               <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                 <div itemprop="text">
+                                   Customers are welcome to put in a request for the design on the camper which we will try our best to accommodate if available. However as a lot of our hires are one way it is not guaranteed. Customers are also welcome to request a 'tame' van if travelling with children etc.
+                               </div>
+                             </div>
+                           </div>
+                           <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                             <h3 itemprop="name">What is the cheapest campervan hire in Australia? </h3>
+                             <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                               <div itemprop="text">
+                                 On average, one can hire a 2-berth campervan for $50 for a day. The price depends on the season and availability.
+                               </div>
+                             </div>
+                           </div>
+                           <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                             <h3 itemprop="name">Do you have any suggestions for places to travel?</h3>
+                             <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                               <div itemprop="text">
+                                 Sure! Just look in our Trip Ideas section <a href="/relocations">HERE</a>, there’s plenty of good ideas!
+                               </div>
+                             </div>
+                           </div>
+                          
+                        </div>
+                        </div>
+
+                     
+                         
+                        
+                          
+     
+          </div>
+
+         
+     
+       
+    
+    </div>
+   
+    <div class="col-md-3">
+        <img src="../../assets/images/campervan-hire-van.jpg">
+    </div>
+  </div>
+  
+  </div>
+  </div>
+  </section>
+  <div [innerHTML]="footer"></div>
+</ion-content>
+
+<ion-header no-border class="d-lg-none hidden-lg hidden-md">
+  <ion-toolbar>
+       <ion-buttons slot="start">
+           <ion-back-button color="light" defaultHref="/"></ion-back-button>
+       </ion-buttons>
+       <ion-title class="ion-text-capitalize">{{details?.title}}</ion-title>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content class="hidden-lg d-lg-none hidden-md">
+
+
+  <div class="listing">		
+		<div class="filter-search-wrapper">		
+		<div class="search-result">
+	
+			<div id="app">
+        <div id="product-detail">
+          <div class="map-wrapper">
+           
+            <div class="map level-undefined">
+              <p>
+                <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(details?.iframe)" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+               
+            </div>
+            <div class="address-info">
+                
+              <a href="{{direction}}" target="blank" rel="noopener noreferrer" class="address-info_directions">
+                  <div class="icon icon-direction"></div>
+                    Get Directions
+                </a>
+            </div>
+        </div>
+          <div class="pd__overview">
+            <a class="anchor" id="Deskripsi"></a>
+              <h1 class="section__head pd__title">{{ details?.title }}</h1>
+              <span class="pd__category">{{ details?.introx }}</span>
+          </div>
+          
+          <section class="section-container">
+              <div class="text-box level-undefined">
+                  <div class="branch" *ngFor="let loc of spec;">
+                    <div class="col-xs-5" style="margin-left: -15px;">{{loc.title}}</div>
+                    <div class="col-xs-7"> {{ loc.value}}</div>
+
+                </div>
+                  
+              </div>
+              <div class="text-box level-undefined">
+                  <a class="anchor" id="Deskripsi"></a>
+                  <h2 class="section__head">Descriptions</h2>
+                  <div class="content front">
+                    
+                    <p [innerHTML]="details?.intro_detail"></p>
+                     
+                     
+                  </div>
+              </div>
+              <!--<div class="inline-list-with-checkmark level-undefined">
+                  <a class="anchor" id="Tiket_Sudah_Termasuk"></a>
+                  <h2 class="section__head">Tiket Sudah Termasuk</h2>
+                  <div class="content">
+                      <ul>
+                          <li>Sepeda</li>
+                          <li>Helm</li>
+                          <li>Air Mineral</li>
+                          <li>Camilan (Buah Lokal)</li>
+                          <li>Makan Siang di Green Kubu Café</li>
+                          <li>Jas Hujan</li>
+                          <li>Antar-Jemput Hotel (hanya untuk paket dengan transport)</li>
+                          <li>Pemandu</li>
+                          <li>Asuransi</li>
+                      </ul>
+                  </div>
+              </div>-->
+              <hr>
+              <h3 class="faq-title">FAQ</h3>
+
+              <div itemscope itemtype="https://schema.org/FAQPage">
+                  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 itemprop="name">How old do you have to {{ details?.title }}?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                      <div itemprop="text">
+                        You need to be at least 18 years old to be able to hire a campervan in Australia. Yes you can hire a Wicked Camper just using a valid drivers license from your country. An International License is not required.
+                      </div>
+                    </div>
+                  </div>
+                  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 itemprop="name">Can I choose my campervan hire design? </h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                      <div itemprop="text">
+                        Customers are welcome to put in a request for the design on the camper which we will try our best to accommodate if available. However as a lot of our hires are one way it is not guaranteed. Customers are also welcome to request a 'tame' van if travelling with children etc.
+                    </div>
+                  </div>
+                </div>
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                  <h3 itemprop="name">What is the cheapest campervan hire in Australia? </h3>
+                  <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text">
+                      On average, one can hire a 2-berth campervan for $50 for a day. The price depends on the season and availability.
+                    </div>
+                  </div>
+                </div>
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                  <h3 itemprop="name">Do you have any suggestions for places to travel?</h3>
+                  <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text">
+                      Sure! Just look in our Trip Ideas section <a href="/relocations">HERE</a>, there’s plenty of good ideas!
+                    </div>
+                  </div>
+                </div>
+               </div>
+          </section>
+          <!--<section class="section-container">
+              <div class="text-box level-undefined">
+                  <a class="anchor" id="Panduan_Ke_Lokasi"></a>
+                  <h2 class="section__head">Panduan Ke Lokasi</h2>
+                  <div class="content front">
+                      <p>
+                          Greenbike Adventure menghadirkan paket dengan transport yang berarti akan disediakan layanan antar-jemput gratis ke dan dari hotelmu. Jika kamu memilih paket ini, kamu bisa menghubungi pihak Greenbike Adventure untuk
+                          mengoordinasikan waktu dan lokasi penjemputan.
+                      </p>
+                      <p>Jika kamu memilih paket tanpa transport, kamu juga bisa menghubungi pihak Greenbike Adventure untuk memastikan <em>meeting point</em>-nya.</p>
+                  </div>
+              </div>
+          </section>-->
+         </div>
+      
+
+        </div>
+        </div>
+        </div>
+        </div>
+
+ </ion-content> 

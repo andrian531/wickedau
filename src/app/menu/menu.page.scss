@@ -1,0 +1,210 @@
+ol, ul {
+    list-style: none;
+}
+a {
+    outline: 0;
+    text-decoration: none;
+    color: inherit;
+}
+.tixpoint .tixcard {
+    background-color: #f7f7f7;
+    min-height: 340px;
+    text-align: center;
+}
+.tixpoint .tixcard .box-login-tix {
+    background-color: #fff;
+    min-height: 125px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
+}
+.tixpoint .tixcard .box-login-tix .header-member-tix {
+    font-family: "SamsungSans-Medium",Arial;
+    font-size: 16px;
+    color: #222;
+    padding-top: 16px;
+    padding-bottom: 8px;
+}
+
+.tix-benefit-menu ul, .tix-howto-menu ul, .tix-redeem-menu ul, .tix-whats-menu ul, .tixpoint, .tixpoint .tix-list-menu ul {
+    background-color: #f7f7f7;
+	padding: 0px;
+}
+.tixpoint .tix-list-menu ul>li {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    cursor: pointer;
+    text-align: left;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-tap-highlight-color: rgba(245,210,0,.5);
+}
+.tixpoint .tix-list-menu ul>li>a {
+    height: 100%;
+    display: block;
+    padding: 0 50px;
+}
+
+.tixpoint .tixcard {
+    background-color: #ffffff;
+    min-height: 340px;
+    text-align: center;
+}
+.tixpoint .tix-list-menu ul>li:after {
+    content: url(../../assets/img/next.svg);
+    font-family: "microservices";
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    line-height: 50px;
+    width: 12px;
+    color: #ff7200;
+}
+.tixpoint .tixcard .box-login-tix {
+    background-color: #fff;
+    min-height: 125px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
+}
+.tixpoint .tixcard .box-login-tix .header-member-tix {
+    font-family: "SamsungSans-Medium",Arial;
+    font-size: 16px;
+    color: #222;
+    padding-top: 16px;
+    padding-bottom: 8px;
+}
+.tixpoint .tixcard .box-login-tix>p {
+    font-size: 14px;
+    color: #888;
+    padding-bottom: 16px;
+}
+.tix-howto-menu ul>li .table-tix .table-header .table-row, .tixpoint .tixcard .box-login-tix .button-row {
+    clear: both;
+}
+.tixpoint .tixcard .box-login-tix .button-row .btn-primary, .tixpoint .tixcard .box-login-tix .button-row .btn-secondary {
+    width: 100%;
+    font-size: 13px;
+    padding: 7px 12px;
+    font-family: "SamsungSans-Medium",Arial;
+    text-transform: uppercase;
+}
+.head {
+	text-align: left;
+    padding: 10px 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 20px;
+    border-bottom: solid 1px #222428;
+}
+.cs:before {
+    content: url(../../assets/img/headphones.svg);
+    font-style: normal;
+    font-weight: normal;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 7px;
+    left: 15px !important;
+	 width: 24px;
+    color: #ff7200;
+}
+.fed:before {
+    content: url(../../assets/img/feedback.svg);
+    font-style: normal;
+    font-weight: normal;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 7px;
+    left: 15px !important;
+	 width: 24px;
+    color: #ff7200;
+}
+.pp:before {
+    content: url(../../assets/img/padlock.svg);
+    font-style: normal;
+    font-weight: normal;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 7px;
+    left: 15px !important;
+	width: 24px;
+    color: #ff7200;
+}
+.about:before {
+    content: url(../../assets/img/about.svg);
+    font-style: normal;
+    font-weight: normal;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 7px;
+    left: 15px !important;
+	width: 24px;
+    color: #ff7200;
+}
+.pay:before {
+    content: url(../../assets/img/buy.svg);
+    font-style: normal;
+    font-weight: normal;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 7px;
+    left: 15px !important;
+	width: 24px;
+    color: #ff7200;
+}
+.moneyback:before {
+    content: url(../../assets/img/money-back.svg);
+    font-style: normal;
+    font-weight: normal;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 7px;
+    left: 15px !important;
+	width: 24px;
+    color: #ff7200;
+}
+.carsale:before {
+    content: url(../../assets/img/car.svg);
+    font-style: normal;
+    font-weight: normal;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 7px;
+    left: 15px !important;
+	width: 24px;
+    color: #ff7200;
+}
+.campersale:before {
+    content: url(../../assets/img/sale.svg);
+    font-style: normal;
+    font-weight: normal;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 7px;
+    left: 15px !important;
+	width: 24px;
+    color: #ff7200;
+}
+.faq:before {
+    content: url(../../assets/img/question.svg);
+    font-style: normal;
+    font-weight: normal;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 7px;
+    left: 15px !important;
+	width: 24px;
+    color: #ff7200;
+}

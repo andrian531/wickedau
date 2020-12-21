@@ -1,0 +1,790 @@
+<ion-content class="hidden-xs">
+  <div class="landing-desktop hidden-xs pad-top-booking">
+    <div class="hero-section"></div>
+    <div class="container" *ngIf="liabilitylist.length == 0">
+      <div class="row" >
+        <div class="colxs-12 center loader"></div>
+        <div class="col-xs-12 text-center" style="margin-top: 30%; margin-bottom:20px;font-weight: bold;">Just a moment...<br><br>Loading fees for your selected vehicle</div>
+      </div>
+    </div>
+    <div class="container" *ngIf="liabilitylist.length > 0">
+      <div class="col-xs-4">
+        <div class="detail-box " style="padding-bottom: 0px;">
+          <img class="animate__animated animate__backInLeft" src="{{thumbnail}}"/>
+          <h2><b>Booking Details...</b></h2>
+          <div class="row">
+            <!--daily rate-->
+            <div class="col-xs-6">
+              {{carinfo.numberofdays}} Days @ {{pickupinfo.currencyname}} {{carinfo.discounteddailyrate | currency}} 
+            </div>
+            <div class="col-xs-6 text-right">
+              {{pickupinfo.currencyname}} {{carinfo.totalrateafterdiscount | currency}}
+            </div>
+            <div class="col-xs-12" *ngIf="carinfo.avgrate != carinfo.discounteddailyrate">
+              <small class="text-red">Total discount {{pickupinfo.currencyname}} {{carinfo.totaldiscountamount | currency}} already included in rental rate</small>
+            </div>
+
+            <!--insurance-->
+            <div class="col-xs-12">
+              <br><b>Damage Cover:</b>
+            </div>
+            <div class="col-xs-6">
+              {{selectedinsurance.name}}
+            </div>
+            <div class="col-xs-6 text-right">
+              {{pickupinfo.currencyname}} {{selectedinsurance.total | currency}}
+            </div>
+            <!--kms-->
+            <div class="col-xs-12">
+              <br>
+              <b>Kms Charges:</b>
+            </div>
+            <div class="col-xs-6">
+              {{selectedkms.name}}
+            </div>
+            <div class="col-xs-6 text-right">
+              {{pickupinfo.currencyname}} {{selectedkms.total | currency}}
+            </div>
+
+            <!--optfee-->
+            <div class="col-xs-12" *ngIf="totaloptionalfee.length>0">
+               <br>
+              <b>Optional fee:</b>
+            </div>
+            <div class="col-xs-12" *ngFor="let item of totaloptionalfee" >
+              <div class="col-xs-6" style="left: -15px;">
+              {{item.name}}
+              </div>
+              <div class="col-xs-6 text-right" style="right: -15px;">
+                {{pickupinfo.currencyname}} {{item.total | currency}}
+              </div>
+            </div>
+
+
+            <!--mandatory-->
+            <div class="col-xs-12">
+              <br>
+              <b>Mandatory fee:</b>
+            </div>
+            <div class="col-xs-12" *ngFor="let item of totalmandatory" >
+              <div class="col-xs-6" style="left: -15px;">
+                {{item.name}}
+              </div>
+              <div class="col-xs-6 text-right" style="right: -15px;">
+                {{pickupinfo.currencyname}} {{item.total | currency}}
+              </div>
+            </div>
+            <!--total-->
+            <div class="col-xs-12 pull-left" style="top:10px;margin:10px;border-bottom: 1px solid;padding: 5px;"></div>
+            <div class="col-xs-6">
+              <b>Total :</b>
+            </div>
+            <div class="col-xs-6 text-right">
+              <b>{{pickupinfo.currencyname}} {{total | currency}}</b><br>
+              <small><b>(<span *ngIf="taxinclusive">inc</span> GST {{pickupinfo.currencyname}} {{gst | currency}})</b></small>
+            </div>
+
+            <!--bookinfo-->
+            <div class="col-xs-12 vehicle-info">
+              <b>Vehicle type:</b><br>
+              {{carinfo.categoryfriendlydescription}}<br>
+
+              <br><b>Vehicle Availability:</b><br>
+              {{carinfo.availablemessage}}<br>
+
+              <br><b>Pickup:</b><br>
+              <span>{{pickupinfo.location}}</span><br>
+              <span>{{pickupinfo.dayofweekname}},{{pickupinfo.locdate}} {{pickupinfo.loctime}}</span><br>
+    
+    
+              <br><b>Dropoff:</b><br>
+              <span>{{dropinfo.location}}</span><br>
+              <span>{{dropinfo.dayofweekname}},{{dropinfo.locdate}} {{dropinfo.loctime}}</span>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-8" style="margin-bottom: 15px;" *ngIf="divfeeds">
+        <!--Insurance-->
+        <div class="col-xs-12 detail-box">
+          <h2 class="ds-h2-extras">Select Your Damage Cover</h2>
+          <p class="ds-txt-extras">You must select one of the options below to continue with your booking. All options refer to van/damage only. Rooftop tents are not covered.</p>
+          <div class="col-xs-12 ds-wadah-extras" *ngFor="let item of liabilitylist" [ngClass]="{ 'ds-selected': item.selected}" (click)="selectinsu(item.id)">
+            <div class="col-xs-2" style="padding:5px;">
+              <img src="{{item.imgname}}">
+            </div>
+            <div class="col-xs-10 pad-0">
+              <div class="col-xs-12 ds-title-extras">
+                <div class="col-xs-8" >{{item.name}}</div>
+                <div class="col-xs-4 text-right extras-price">
+                  {{pickupinfo.currencyname}} {{item.fees | currency}} 
+                  <span *ngIf="item.type=='Daily'">/Day</span>
+                </div>
+              </div>
+              <div class="col-xs-12" style="padding-top:5px;">
+                <p>{{item.feedescription}}</p>
+                <div class="col-xs-6" *ngFor="let ii of item.spec" class="{{ii.check}}">{{ii.text}}</div>
+              </div>
+            </div>
+            <div *ngIf="item.selected" class="ds-extras-selected">selected</div>
+          </div>
+        </div>
+
+        <!--extras-->
+        <div class="col-xs-12 detail-box">
+          <h2 class="ds-h2-extras">Select Your Extras</h2>
+          <div class="sub-extras" *ngFor="let catopt of feegroup">
+            <h3 class="ds-title-subextras">{{catopt}}</h3>
+            <div class="col-xs-12 ds-wadah-extras" *ngFor="let item of optionalfeegroup[catopt]"  [ngClass]="{ 'ds-selected': item.selected}" (click)="togleExtras(item.id)">
+              <div class="col-xs-2" style="padding:5px;">
+                <img class="ds-img-extras" src="{{item.imgname}}">
+              </div>
+              <div class="col-xs-10 pad-0">
+                <div class="col-xs-12 ds-title-extras">
+                  <div class="col-xs-8" [ngClass]="{ 'bold': item.id=='4364'}">{{item.name}}</div>
+                  <div class="col-xs-4 text-right extras-price">
+                    {{pickupinfo.currencyname}} {{item.fees | currency}} 
+                    <span *ngIf="item.type=='Daily'">/Day</span>
+                  </div>
+                </div>
+                <div class="col-xs-12" style="padding-top:5px;">
+                  <p>{{item.feedescription}}</p>
+                </div>
+              </div>
+              <div *ngIf="item.selected" class="ds-extras-selected">selected</div>
+            </div>
+          </div>
+        </div>
+        <!--kms-->
+        <div class="col-xs-12 detail-box" *ngIf="kmslist.length>0">
+          <h2 class="ds-h2-extras">Kms Inclusions and Charges</h2>
+            <div class="col-xs-12 ds-wadah-extras" *ngFor="let item of kmslist"  [ngClass]="{ 'ds-selected': item.selected==1}" (click)="selectkms(item.id)">
+              <div class="col-xs-2" style="padding:5px;">
+                <img class="ds-img-extras" src="{{item.imgname}}">
+              </div>
+              <div class="col-xs-10 pad-0">
+                <div class="col-xs-12">
+                  <span>{{item.description}}</span><br>
+                  <b>{{pickupinfo.currencyname}} {{item.totalamount | currency}}</b> 
+                    
+                </div>
+              </div>
+              <div *ngIf="item.selected==1" class="ds-extras-selected">selected</div>
+            </div>
+        </div>
+        <div class="col-xs-12 detail-box" style="padding:15px;">
+          <div class="col-xs-6 total-big">
+            <div class="col-xs-4">Total:</div>
+            <div class="col-xs-8 text-right">{{pickupinfo.currencyname}} {{total |currency}}</div>
+          </div>
+          <div class="col-xs-6 pad-0">
+            <button class="btn col-xs-5 btn-big" onclick="qtds()">Email Quote</button>
+            <button class="btn col-xs-6 btn-big" onclick="bkds()">Book Now</button>
+          </div>
+        </div>
+        
+      </div>
+      <!--quote-->
+      <div class="col-xs-12 detail-box hidden" style="margin-bottom:15px;" id="quoteds" >
+        <h2 class="ds-h2-extras">Your Details</h2>
+        <form #quoteform="ngForm" (ngSubmit)="quoteform.valid && quote()">
+          <div class="col-xs-6 input-xtras">
+            <div class="col-xs-6">
+            <label>First Name :</label>
+            </div>
+            <div class="col-xs-6">
+            <input type="text" class="form form-control"  [ngClass]="{ 'ds-invalid': quoteform.submitted && quotefirstname.invalid }" type="text" name="pickupdate" [(ngModel)]="formquote.firstname" #quotefirstname="ngModel" required>
+            </div>
+          </div>
+          <div class="col-xs-6 input-xtras">
+            <div class="col-xs-6">
+              <label>Last Name :</label>
+            </div> 
+            <div class="col-xs-6">
+              <input type="text" class="form form-control" [ngClass]="{ 'ds-invalid': quoteform.submitted && quotelastname.invalid }" type="text" name="pickupdate" [(ngModel)]="formquote.lastname" #quotelastname="ngModel" required>
+            </div>
+          </div>
+
+          <div class="col-xs-6 input-xtras">
+            <div class="col-xs-6">
+            <label>Email :</label>
+            </div>
+            <div class="col-xs-6">
+            <input type="text" class="form form-control" [ngClass]="{ 'ds-invalid': quoteform.submitted && quoteemail.invalid }" type="text" name="pickupdate" [(ngModel)]="formquote.email" #quoteemail="ngModel"  required>
+            </div>
+          </div>
+          <div class="col-xs-6 input-xtras">
+            <div class="col-xs-6">
+              <label>Phone :</label>
+            </div>
+            <div class="col-xs-6">
+              <input type="text" class="form form-control" [ngClass]="{ 'ds-invalid': quoteform.submitted && quotephone.invalid }" type="text" name="pickupdate" [(ngModel)]="formquote.phone" #quotephone="ngModel"  required>
+            </div>
+          </div>
+          <div class="col-xs-12 total-extras">
+            <div class="col-xs-6 pull-right">
+              <button class="btn-big pull-right" type="submit" >Email Quote</button>
+            </div>
+            
+          </div>
+        </form>
+      </div>
+      <!--book form-->
+      <div class="col-xs-12 detail-box hidden" style="padding:15px;margin-bottom:15px;" id="bookds">
+        
+        <form #bookform="ngForm" (ngSubmit)="bookform.form.valid && bookdsfr()">
+          <div class="col-xs-12">
+            <h2 class="ds-h2-extras">Your Details</h2>
+          </div>
+          <div class="col-xs-6 input-xtras">
+            <div class="col-xs-6">
+            <label>First Name :</label>
+            </div>
+            <div class="col-xs-6">
+            <input type="text" class="form form-control"  [ngClass]="{ 'ds-invalid': (bookform.submitted && bookfirstname.invalid) || (validatords==false && bookfirstname.invalid) }" type="text" name="pickupdate" [(ngModel)]="csdata.firstname" #bookfirstname="ngModel" required>
+            </div>
+          </div>
+          <div class="col-xs-6 input-xtras">
+            <div class="col-xs-6">
+              <label>Last Name :</label>
+            </div> 
+            <div class="col-xs-6">
+              <input type="text" class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && booklastname.invalid) || (validatords==false && booklastname.invalid) }" type="text" name="pickupdate" [(ngModel)]="csdata.lastname" #booklastname="ngModel" required>
+            </div>
+          </div>
+
+          <div class="col-xs-6 input-xtras">
+            <div class="col-xs-6">
+            <label>Email :</label>
+            </div>
+            <div class="col-xs-6">
+            <input type="text" class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && bookemail.invalid ) || (validatords==false && bookemail.invalid)}" type="text" name="pickupdate" [(ngModel)]="csdata.email" #bookemail="ngModel"  required>
+            </div>
+          </div>
+          <div class="col-xs-6 input-xtras">
+            <div class="col-xs-6">
+              <label>Phone :</label>
+            </div>
+            <div class="col-xs-6">
+              <input type="text" class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && bookphone.invalid )|| (validatords==false && bookphone.invalid )}" type="text" name="pickupdate" [(ngModel)]="csdata.phone" #bookphone="ngModel"  required>
+            </div>
+          </div>
+          <div class="col-xs-6 input-xtras">
+            <div class="col-xs-6">
+              <label>DOB :</label>
+            </div>
+            <div class="col-xs-6">
+              <input type="text" class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && bookdob.invalid)|| (validatords==false && bookdob.invalid) }" type="text" name="pickupdate" [(ngModel)]="csdata.dateofbirth" #bookdob="ngModel"  [matDatepicker]="picker" (click)="picker.open()" readonly required>
+              <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+            </div>
+          </div>
+
+          <div class="col-xs-12">
+            <h2 class="ds-h2-extras">Address</h2>
+          </div>
+
+          <div class="col-xs-6">
+            <div class="col-xs-6 input-xtras">
+              <label>Country :</label>
+            </div> 
+            <div class="col-xs-6 input-xtras">
+              <select class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && bookcountry.invalid)|| (validatords==false && bookcountry.invalid) }" name="country" [(ngModel)]="csdata.countryid" #bookcountry="ngModel" required>
+                <option *ngFor="let i of countryds" value="{{i.id}}">{{i.country}}</option>
+              </select>
+            </div>
+
+            <div class="col-xs-6 input-xtras">
+              <label>State :</label>
+            </div> 
+            <div class="col-xs-6 input-xtras">
+              <input type="text" class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && bookstate.invalid)|| (validatords==false && bookstate.invalid) }" type="text" name="state" [(ngModel)]="csdata.state" #bookstate="ngModel" required>
+            </div>
+
+            <div class="col-xs-6 input-xtras">
+              <label>City :</label>
+            </div> 
+            <div class="col-xs-6 input-xtras">
+              <input type="text" class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && bookcity.invalid)|| (validatords==false && bookcity.invalid) }" type="text" name="city" [(ngModel)]="csdata.city" #bookcity="ngModel" required>
+            </div>
+          </div>
+          
+          <div class="col-xs-6">
+            <div class="col-xs-6 input-xtras">
+              <label>Postcode/ZIP:</label>
+            </div> 
+            <div class="col-xs-6 input-xtras">
+              <input type="text" class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && bookpostcode.invalid)|| (validatords==false && bookpostcode.invalid) }" type="text" name="postcode" [(ngModel)]="csdata.postcode" #bookpostcode="ngModel" required>
+            </div>
+            
+            <div class="col-xs-6 input-xtras">
+              <label>Address :</label>
+            </div> 
+            <div class="col-xs-6 input-xtras">
+              <textarea type="text" class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && bookaddress.invalid )|| (validatords==false && bookaddress.invalid)}"  name="address" [(ngModel)]="csdata.address" #bookaddress="ngModel" rows="3" required></textarea>
+            </div>
+          </div>
+
+          <div class="col-xs-12">
+            <h2 class="ds-h2-extras">Travelling Details</h2>
+          </div>
+          <div class="col-xs-6">
+            <div class="col-xs-6 input-xtras">
+              <label>Area of use :</label>
+            </div> 
+            <div class="col-xs-6 input-xtras">
+              <select class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && datafr.areaofuseid==0)|| (validatords==false && datafr.areaofuseid==0) }" name="area" [(ngModel)]="datafr.areaofuseid" #bookarea="ngModel" required>
+                <option *ngFor="let i of areaofuselist" value="{{i.id}}">{{i.areaofuse}}</option>
+              </select>
+            </div>
+
+            <div class="col-xs-6 input-xtras">
+              <label>Travellers No :</label>
+            </div> 
+            <div class="col-xs-6 input-xtras">
+              <select class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && datafr.numbertravelling==0 )|| (validatords==false && datafr.numbertravelling==0)}" name="notravel" [(ngModel)]="datafr.numbertravelling" #booknotravel="ngModel" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6+</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="col-xs-6">
+            <div class="col-xs-6 input-xtras">
+              <label>Area of Use Details :</label><br>
+              <i>e.g: Brisbane to Sydney via Byron Bay and Coffs Harbour.</i>
+            </div> 
+            <div class="col-xs-6 input-xtras">
+              <textarea type="text" class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && bookareadetail.invalid)|| (validatords==false && bookareadetail.invalid) }"  name="areadetail" [(ngModel)]="remark.areadetail" #bookareadetail="ngModel" rows="3" maxlength="75" required></textarea>
+            </div>
+          </div>
+
+          <div class="col-xs-12">
+            <h2 class="ds-h2-extras">Comments/Requests</h2>
+          </div>
+
+          <div class="col-xs-12">
+            <div class="col-xs-3 input-xtras">
+              <label>Comments/Requests:</label>
+            </div> 
+            <div class="col-xs-9 input-xtras">
+              <textarea type="text" class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && bookcomment.invalid)|| (validatords==false && bookcomment.invalid) }"  name="comment" [(ngModel)]="remark.comment" #bookcomment="ngModel" rows="3" maxlength="125" required></textarea>
+            </div>
+          </div>
+        
+          <div class="col-xs-12" style="margin:25px;">
+            <label *ngFor="let entry of aggrementlist" class="containeragg aggtext">
+              <div [innerHTML]="entry.value"></div>
+              <input type="checkbox" name="aggre{{entry.id}}" [(ngModel)]="aggrementcontrolds[entry.id]" #aggds="ngModel" id="agg{{entry.id}}" [required]="true">
+              <span class="checkmark" [ngClass]="{ 'ds-invalid': (bookform.submitted && aggds.invalid)|| (validatords==false ) }"></span>
+            </label>
+          </div>
+          <p class="col-xs-12 dsctext" [innerHTML]="discalimer"></p>
+          <div class="col-xs-12 total-extras">
+            <div class="col-xs-6 total-big">
+              <div class="text-left">{{pickupinfo.currencyname}} {{total |currency}}</div>
+            </div>
+            <div class="col-xs-6 pad-0 pull-right">
+              <button class="btn col-xs-6 btn-big pull-right" type="submit">Pay Full</button>
+            </div>
+          </div>
+        </form>
+        <div class="col-xs-12" *ngIf="deposit">
+          <div class="col-xs-6 total-big">
+            <div class="text-left">{{pickupinfo.currencyname}} {{depositval|currency}}</div>
+          </div>
+          <div class="col-xs-6 pad-0 pull-right">
+            <button class="btn col-xs-6 btn-big pull-right" (click)="bookdsfr('deposit')">Deposit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hidden-xs" [innerHTML]="footer"></div>
+</ion-content>
+
+
+
+
+<!--mobile-->
+<ion-header no-border class="hidden-lg hidden-md hidden-sm" *ngIf="extrasdiv">
+  <ion-toolbar>
+       <ion-buttons slot="start">
+       <ion-back-button color="light" defaultHref="/bookings-select-vehicles"></ion-back-button>
+       </ion-buttons>
+       <ion-title class="text-center">Select an Extras</ion-title>
+   </ion-toolbar>
+</ion-header>
+<!--extras list-->
+<ion-content class="hidden-lg hidden-md hidden-sm" *ngIf="extrasdiv">
+  <div *ngIf="liabilitylist.length == 0">
+    <div class="country-wrap">
+      <!--<div class="mountain-1"></div>
+      <div class="mountain-2"></div>-->
+      
+      <div class="sun">Just a moment...<br><br>Loading fees for your selected vehicle</div>
+      <div class="holder">
+      <div class="car"></div>
+      <div class="wheels"></div>
+      <div class="wind-holder">
+        <div class="wind"></div>
+      </div>
+      <div class="tree tree1"></div>
+      <div class="tree tree2"></div>
+      <div class="tree tree3"></div>
+      <div class="hill hill1"></div>
+      <div class="hill hill2"></div>
+    </div>
+    </div>
+  </div>
+  <div class="row" class="wadah-extras" *ngIf="liabilitylist.length > 0" >
+    <div class="col-xs-12" class="wadah-title">
+      <div class="title-extras">Select Your Damage Cover</div>
+      <small class="text-grey">required</small>
+    </div>  
+    <p style="padding:10px;">You must select one of the options below to continue with your booking. All options refer to van/damage only. Rooftop tents are not covered.</p>
+    <div class="col-xs-12 " *ngFor="let item of liabilitylist" class="wadah-extras" [ngClass]="{ 'selected': item.selected}" (click)="selectinsu(item.id)">
+      <div class="row" style="margin:0px;padding:5px;">
+      
+      <div class="col-xs-2" style="padding:5px;">
+        <img src="{{item.imgname}}">
+      </div>
+      <div class="col-xs-10">
+        <span class="name-extras">{{item.name}}</span><br>
+        <div class="extras-price">
+          {{pickupinfo.currencyname}} {{item.fees | currency}} 
+          <span *ngIf="item.type=='Daily'">/Day</span>
+          
+        </div>
+      </div>
+      <div class="col-xs-12 wadah-desc">
+        <p>{{item.feedescription}}</p>
+        <ul class="list-spec">
+          <li *ngFor="let ii of item.spec" class="{{ii.check}}">{{ii.text}}</li>
+        </ul>
+        <div *ngIf="item.selected" class="extras-selected">selected</div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngFor="let catopt of feegroup" class="wadah-extras">
+    <div class="col-xs-12" class="wadah-title">
+      <div class="title-extras">{{catopt}}</div>
+      <small class="text-grey">Optional</small>
+    </div>  
+    <div class="col-xs-12 " *ngFor="let item of optionalfeegroup[catopt]" class="wadah-extras" [ngClass]="{ 'selected': item.selected}" (click)="togleExtras(item.id)">
+      <div class="row" style="margin:0px;padding:5px;">
+      
+      <div class="col-xs-2 img-extras">
+        <img src="{{item.imgname}}">
+      </div>
+      <div class="col-xs-10">
+        <span class="name-extras" [ngClass]="{ 'bold': item.id=='4364'}">{{item.name}}</span><br>
+        <p class="desc-extras"><small>{{item.feedescription}}</small></p>
+        <div class="extras-price">
+          {{pickupinfo.currencyname}} {{item.fees | currency}} 
+          <span *ngIf="item.type=='Daily'">/Day</span>
+          
+        </div>
+        <div *ngIf="item.selected" class="extras-selected">selected</div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row"  class="wadah-extras" *ngIf="kmslist.length>0">
+    <div class="col-xs-12" class="wadah-title">
+      <div class="title-extras">Kms Inclusions & Charges</div>
+      <small class="text-grey">required</small>
+    </div>  
+    <div class="col-xs-12 " *ngFor="let item of kmslist" class="wadah-extras" [ngClass]="{ 'selected': item.selected==1}" (click)="selectkms(item.id)">
+      <div class="row" style="margin:0px;padding:5px;">
+      
+      <div class="col-xs-2 img-extras">
+        <img src="https://bookings.wickedcampers.com/images/extras/{{item.id}}.png">
+      </div>
+      <div class="col-xs-10">
+        <span class="name-extras">{{item.description}}</span><br>
+        <p class="desc-extras"><small>{{item.feedescription}}</small></p>
+        <div class="extras-price">
+          {{pickupinfo.currencyname}} {{item.totalamount| currency}} 
+          
+        </div>
+        <div *ngIf="item.selected==1" class="extras-selected">selected</div>
+      </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="hidden-lg hidden-md hidden-sm" *ngIf="extrasdiv">
+  <ion-toolbar class="footer-book">
+    <ion-row>
+      <ion-col size="6" (click)="openinfo()" style="padding-left:10px;">
+        <b>{{pickupinfo.currencyname}} {{total | currency}}</b><br>
+        <small><b>(<span *ngIf="taxinclusive">inc</span> GST {{pickupinfo.currencyname}} {{gst | currency}})</b></small>
+      </ion-col>
+      <ion-col size="3">
+          <button class="btn btn-quote col-xs-12" (click)="openform(1)" > Quote </button>
+      </ion-col>
+      <ion-col size="3">
+        <button class="btn btn-book col-xs-12" (click)="openform(2)"> Book </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
+<!--end of extras list-->
+<!--form-->
+<ion-header no-border class="hidden-lg hidden-md" *ngIf="formdiv">
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="2">
+        <ion-icon  name="arrow-back-outline" class="arrow" (click)="closeform()"></ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        <ion-title  class="text-center">Bookings Detail</ion-title>
+      </ion-col>
+    </ion-row>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content class="hidden-lg hidden-md hidden-sm" *ngIf="formdiv">
+  <form #mobileformquote="ngForm" (ngSubmit)="mobileformquote.valid && quotem()" id="mobileformquote" *ngIf="quotediv">
+    <div class="row detail-box" style="margin: 10px;">
+      <div class="col-xs-12 title-form">
+        <h3>Your Information</h3>
+      </div>
+      <div class="col-xs-12 input-form">
+        <input type="text" class="form form-control inputm"  [ngClass]="{ 'ds-invalid': mobileformquote.submitted && qmformfirstname.invalid }" type="text" name="firstname" [(ngModel)]="mform.firstname" #qmformfirstname="ngModel" placeholder="First Name" required> 
+      </div>
+      <div class="col-xs-12 input-form">
+        <input type="text" class="form form-control inputm"  [ngClass]="{ 'ds-invalid':mobileformquote.submitted && qmformlastname.invalid  }" type="text" name="lastname" [(ngModel)]="mform.lastname" #qmformlastname="ngModel" placeholder="Last Name" required>
+      </div>
+      <div class="col-xs-12 input-form">
+        <input type="text" class="form form-control inputm"  [ngClass]="{ 'ds-invalid': mobileformquote.submitted && qmformemail.invalid }" type="text"  name="email" [(ngModel)]="mform.email" #qmformemail="ngModel" placeholder="Email" required>
+      </div>
+      <div class="col-xs-12 input-form">
+        <input type="text" class="form form-control inputm"  [ngClass]="{ 'ds-invalid': mobileformquote.submitted && qmformphone.invalid}" type="text" name="phone" [(ngModel)]="mform.phone" #qmformphone="ngModel" placeholder="Phone" required>
+      </div>
+    </div>
+  </form>
+  <form #mobileform="ngForm" (ngSubmit)="mobileform.valid && nextm()" id="mobileform" *ngIf="bookdiv">
+    <div class="row detail-box" style="margin: 10px;">
+      <div class="col-xs-12 title-form">
+        <h3>Your Information</h3>
+      </div>
+      <div class="col-xs-12 input-form">
+        <input type="text" class="form form-control inputm"  [ngClass]="{ 'ds-invalid': (mobileform.submitted && mformfirstname.invalid) || (mformfirstname.invalid && validatorm==false) }" type="text" name="firstname" [(ngModel)]="mform.firstname" #mformfirstname="ngModel" placeholder="First Name" required> 
+      </div>
+      <div class="col-xs-12 input-form">
+        <input type="text" class="form form-control inputm"  [ngClass]="{ 'ds-invalid':( mobileform.submitted && mformlastname.invalid) || (validatorm==false && mformlastname.invalid)  }" type="text" name="lastname" [(ngModel)]="mform.lastname" #mformlastname="ngModel" placeholder="Last Name" required>
+      </div>
+      <div class="col-xs-12 input-form">
+        <input type="text" class="form form-control inputm"  [ngClass]="{ 'ds-invalid': (mobileform.submitted && mformemail.invalid) || (validatorm==false && mformemail.invalid) }" type="text"  name="email" [(ngModel)]="mform.email" #mformemail="ngModel" placeholder="Email" required>
+      </div>
+      <div class="col-xs-12 input-form">
+        <input type="text" class="form form-control inputm"  [ngClass]="{ 'ds-invalid': (mobileform.submitted && mformphone.invalid) || (validatorm==false && mformphone.invalid) }" type="text" name="phone" [(ngModel)]="mform.phone" #mformphone="ngModel" placeholder="Phone" required>
+      </div>
+      <div class="col-xs-12 input-form">
+        <ion-item [ngClass]="{ 'is-invalid': (mobileform.submitted && mformnotravel.invalid) || (validatorm==false && datafr.numbertravelling==0)}">
+          <ion-select class="select-st" interface="action-sheet"  type="text" name="notravel" [(ngModel)]="datafr.numbertravelling" #mformnotravel="ngModel" placeholder="No. of People Travelling:.." required>
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+            <ion-select-option value="6">6+</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </div>
+    <div class="row detail-box" style="margin: 10px;" *ngIf="bookdiv">
+      <div class="col-xs-12 title-form">
+        <h3>Your Adventure</h3>
+        <p>Please tell us where you will be travelling in your vehicle</p>
+      </div>
+      <div class="col-xs-12 input-form">
+        <ion-item [ngClass]="{ 'is-invalid': (mobileform.submitted && mformarea.invalid) || (validatorm==false && datafr.areaofuseid==0)}">
+          <ion-select class="select-st" interface="action-sheet"  type="text" name="notravel" [(ngModel)]="datafr.areaofuseid" #mformarea="ngModel" placeholder="Area of use..." [interfaceOptions]="Optsetting" required>
+            <ion-select-option *ngFor="let item of areaofuselist" value="{{item.id}}">{{item.areaofuse}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      <div class="col-xs-12 input-form">
+        <textarea [ngClass]="{ 'is-invalid': (mobileform.submitted && mformareadetail.invalid) || (validatorm==false && mformareadetail.invalid)}" [(ngModel)]="remark.areadetail" #mformareadetail="ngModel" class="form form-control inputm" placeholder="Area of use details" rows="4" name="marreadetail" [required]="true"></textarea>
+      </div>
+    </div>
+    <div class="row detail-box" style="margin: 10px;" *ngIf="bookdiv">
+      <div class="col-xs-12 title-form">
+        <h3>Additional Comments</h3>
+        <p>Please specify here if you have any special requirements</p>
+      </div>
+      
+      <div class="col-xs-12 input-form">
+        <textarea class="form form-control inputm" placeholder="Write Special Requirements or any questions you may have here..." rows="4" [ngClass]="{ 'is-invalid': (mobileform.submitted && mformcomment.invalid) || (validatorm==false && mformcomment.invalid)}" [(ngModel)]="remark.comment" #mformcomment="ngModel" class="form form-control inputm" rows="4" name="comment" required></textarea>
+      </div>
+      <div class="col-xs-12">
+        <label *ngFor="let entry of aggrementlist" class="containeragg aggtext">
+          <div [innerHTML]="entry.value"></div>
+          <input type="checkbox" name="aggre{{entry.id}}" [(ngModel)]="aggrementcontrol[entry.id]" #agg="ngModel" id="agg{{entry.id}}" [required]="true">
+          <span class="checkmark" [ngClass]="{ 'ds-invalid': (mobileform.submitted && agg.invalid) || (validatorm==false && agg.invalid)}"></span>
+        </label>
+      </div>
+      <div class="col-xs-12 text-red" *ngIf="mobileform.submitted && mobileform.invalid">Please fill or check required field</div>
+      <p class="col-xs-12 dsctext" [innerHTML]="discalimer"></p>
+    </div>
+  </form>
+</ion-content>
+
+<ion-footer class="hidden-lg hidden-md hidden-sm" *ngIf="formdiv">
+  <ion-toolbar class="footer-book">
+    <ion-row>
+      <ion-col size="6" (click)="openinfo()" style="padding-left:10px;">
+        <b>{{pickupinfo.currencyname}} {{total | currency}}</b><br>
+        <small><b>(<span *ngIf="taxinclusive">inc</span> GST {{pickupinfo.currencyname}} {{gst | currency}})</b></small>
+      </ion-col>
+      <ion-col size="6" *ngIf="quotediv">
+          <button class="btn btn-quote col-xs-12" type="submit" form="mobileformquote">Save Quote</button>
+      </ion-col>
+      <ion-col size="6" *ngIf="bookdiv && deposit==0">
+        <button class="btn btn-book col-xs-12" type="submit" form="mobileform">Book Now</button>
+      </ion-col>
+
+      <ion-col size="3" *ngIf="bookdiv && deposit==1">
+        <button name="act" class="btn btn-quote col-xs-12"  (click)="nextm('deposit')">Deposit</button>
+      </ion-col>  
+
+
+      <ion-col size="3" *ngIf="bookdiv && deposit==1">
+        <button name="act" class="btn btn-book col-xs-12" type="submit" form="mobileform">Pay Full</button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
+
+<!--end of form-->
+<!--info-->
+<ion-header class="hidden-lg hidden-md hidden-sm" *ngIf="infodiv">
+  <ion-toolbar>
+    <ion-toolbar>
+      <ion-row>
+        <ion-col size="2">
+          <ion-icon  name="arrow-back-outline" class="arrow" (click)="closeinfo()"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          <ion-title  class="text-center">Order Summary</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="hidden-lg hidden-md hidden-sm" *ngIf="infodiv">
+  <div class="row" style="margin:10px;">
+    <div class="col-xs-12 pull-left" style="top:10px;margin:10px;border-bottom: 1px solid;padding: 5px;">
+      <b>{{carinfo.categoryfriendlydescription}}</b><br>
+      <small>{{carinfo.availablemessage}}</small>
+    </div>
+    <div class="col-xs-12" style="margin-bottom:10px;">
+      <img src="{{thumbnail}}"/>
+    </div>
+    <div class="col-xs-6">
+      <b>Pickup</b><br>
+      <span>{{pickupinfo.location}}</span><br>
+      <span>{{pickupinfo.dayofweekname}},{{pickupinfo.locdate}}</span><br>
+      <span>{{pickupinfo.loctime}}</span>
+    </div>
+    <div class="col-xs-6 text-right">
+      <b>Dropoff</b><br>
+      <span>{{dropinfo.location}}</span><br>
+      <span>{{dropinfo.dayofweekname}},{{dropinfo.locdate}}</span><br>
+      <span>{{dropinfo.loctime}}</span>
+    </div>
+    <div class="col-xs-12">
+      <br>
+      <b>Fees</b><br>
+      <b>Daily Rate:</b>
+    </div>
+    <!--daily rate-->
+    <div class="col-xs-6">
+      {{carinfo.numberofdays}} Days @ {{pickupinfo.currencyname}} {{carinfo.discounteddailyrate | currency}} 
+    </div>
+    <div class="col-xs-6 text-right">
+      {{pickupinfo.currencyname}} {{carinfo.totalrateafterdiscount | currency}}
+    </div>
+    <div class="col-xs-12" *ngIf="carinfo.avgrate != carinfo.discounteddailyrate">
+      <small class="text-red">Total discount {{pickupinfo.currencyname}} {{carinfo.totaldiscountamount | currency}} already included in rental rate</small>
+    </div>
+
+    <!--insurance-->
+    <div class="col-xs-12">
+      <br>
+      <b>Damage Cover:</b>
+      
+    </div>
+    <div class="col-xs-6">
+      {{selectedinsurance.name}}
+    </div>
+    <div class="col-xs-6 text-right">
+      {{pickupinfo.currencyname}} {{selectedinsurance.total | currency}}
+    </div>
+    <!--kms-->
+    <div class="col-xs-12">
+      <br>
+      <b>Kms Charges:</b>
+      
+    </div>
+    <div class="col-xs-6">
+      {{selectedkms.name}}
+    </div>
+    <div class="col-xs-6 text-right">
+      {{pickupinfo.currencyname}} {{selectedkms.total | currency}}
+    </div>
+
+    <!--optfee-->
+    <div class="col-xs-12" *ngIf="totaloptionalfee.length>0">
+      <br>
+      <b>Optional fee:</b>
+      
+    </div>
+    <div class="col-xs-12" *ngFor="let item of totaloptionalfee" >
+      <div class="col-xs-6" style="left: -15px;">
+        {{item.name}}
+      </div>
+      <div class="col-xs-6 text-right" style="right: -15px;">
+        {{pickupinfo.currencyname}} {{item.total | currency}}
+      </div>
+    </div>
+
+
+    <!--mandatory-->
+    <div class="col-xs-12">
+      <br>
+      <b>Mandatory fee:</b>
+    </div>
+    <div class="col-xs-12" *ngFor="let item of totalmandatory" >
+      <div class="col-xs-6" style="left: -15px;">
+        {{item.name}}
+      </div>
+      <div class="col-xs-6 text-right" style="right: -15px;">
+        {{pickupinfo.currencyname}} {{item.total | currency}}
+      </div>
+    </div>
+    <!--total-->
+    <div class="col-xs-12 pull-left" style="top:10px;margin:10px;border-bottom: 1px solid;padding: 5px;"></div>
+    <div class="col-xs-6">
+      <b>Total :</b>
+    </div>
+    <div class="col-xs-6 text-right">
+      <b>{{pickupinfo.currencyname}} {{total | currency}}</b><br>
+      <small><b>(<span *ngIf="taxinclusive">inc</span> GST {{pickupinfo.currencyname}} {{gst | currency}})</b></small>
+    </div>
+  </div>
+</ion-content>
+<!--end of info -->

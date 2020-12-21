@@ -1,0 +1,177 @@
+<ion-content class="hidden-xs">
+  <section id="homeBanner" class="section section--borderless">
+    <div class="wck-homepage">
+      <div class="home">
+        <div class="bannerlocations">
+          <div class="slick-slider">
+            <div class="slick-slide">
+              <div class="cbBgPattern">
+              <div class="desc-wrapper">
+              <h1>Campervan Tasmania</h1>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>   
+    <div class="container">
+      <div class="row">
+        <div class="container">
+          <div class="col-md-12">
+            <ul class="breadcrumb">
+                
+            </ul>
+            </div>
+        </div>
+    </div>
+  
+    <div class="col-md-12">
+     
+      <div class="locintro">
+        <h3>Start your campervan roadtrip from Tasmania</h3>
+        <p>Fancy getting out and about during your visit to Australia and exploring World Heritage listed national parks, rainforests and beaches? How about travelling around in style and comfort, in the latest model camper van which are cheaper than any motorhomes hire? Just pick up or drop off your <strong>campervan rental</strong> from our depot in <strong>Hobart</strong>. Tasmania is the world’s most mountainous island dude! Embracing alpine mountains and moorlands, craggy peaks and bluffs, limestone caves and fast-flowing rivers, deep valleys and gorges, glacial lakes, forested hills, gale-swept peninsulas and long sweeps of sandy beaches. Its a fantastic travel destination even if you are a first timer. </p>
+        <p>Take off on an adventure and head for the open road in one of our well furnished, clean, comfortable <strong>campervans</strong>. Our <strong>Hobart campervans</strong> come fully equipped with everything you need to make your holiday a wonderful experience at a cheap price. The pure freedom of self-drive gives you the independence to tour wherever you like at your leisure. Trust me man, it wouldnt get any better than this. The roads are in good condition and the sceneries are awesome. Its offers diversity from long white beaches, sand dunes, coastal heaths and dense rainforest, to rugged mountains and alpine moors covered in snow during winter months. The state has many lakes, lush green pastures, orchards, convict ruins and fine examples of colonial freestone architecture. Sounds good?! Get a quote today on your campervan in Tasmania and start packing for your next adventure! </p>
+        <p>Experience the unique untouched coast of the west. Coral Bay, Exmouth, Ningaloo Reef, Kalbarri and Karijini National Parks and more on a Wicked <strong>campervan</strong>. Take off on an adventure and head for the open road in one of our well furnished, clean, comfortable <strong>campervans</strong>. Our <strong>campervans, 4wd and car rental</strong> come fully equipped with everything you need to make your holiday a wonderful experience at a cheap price. The pure freedom of self-drive gives you the independence to tour wherever you like at your leisure.</p>
+
+        </div>
+  
+        <div class="card-deck mb-3 text-center">
+                                  
+          <div *ngFor="let poke of catloct;" [routerLink]="[ poke.slug ]" class="col-xs-4 card box-shadow">
+            <div class="product-card">
+              <div class="photo">
+                <img src="{{ poke.thumbnail }}" />
+                
+              </div>
+            </div>  
+            <div class="card-header">
+              <h4 class="my-0 font-weight-bold">{{ poke.title }}</h4>
+              <div class="loc-date">{{ poke.address }}</div>
+            </div>
+            <div class="card-body d-flex flex-column">
+            
+              <div class="card-body d-flex flex-column card-text">
+              
+              
+              <div class="opening-hours">
+                Opening Hours :
+                Monday to Friday:9am to 4pm
+                Saturdays:9am to 12pm
+                Sundays:Closed
+              </div>
+              </div>
+              
+            </div>
+          </div>
+
+        </div>
+        <!--<div class="col-xs-4">
+          <div class="product-card">
+            <div class="photo">
+              <img src="{{ poke.thumbnail }}" />
+            </div>
+            <div class="body">
+              <h2 class="product-name">{{ poke.title }}</h2>
+              <div class="loc-date">{{ poke.address }}</div>
+             
+              <div class="footer"><div class="price-info"><span class="amount">Opening Hours :</span></div></div>
+              <div class="opening-hours">Monday to Friday:9am to 4pm
+                Saturdays:9am to 12pm
+                Sundays:Closed
+              </div>
+
+        </div>
+        </div>
+      </div>-->
+      
+    
+      </div>
+   
+   
+    
+  
+  </div>
+  </div>
+  </section>
+  <div [innerHTML]="footer"></div>
+</ion-content>
+
+
+<ion-header no-border class="hidden-lg hidden-md">
+  <ion-toolbar>
+       <ion-buttons slot="start">
+           <ion-back-button color="light" defaultHref="/"></ion-back-button>
+       </ion-buttons>
+       <ion-title class="ion-text-capitalize">Locations</ion-title>
+   </ion-toolbar>
+</ion-header>
+<!---<ion-item class="filt hidden-lg">
+  <ion-label class="filter">Filter</ion-label>
+  <ion-select [(ngModel)]="type" (ionChange)="searchChanged($event)">
+    <ion-select-option value="">All</ion-select-option>
+    <ion-select-option value="movie">New South Wales</ion-select-option>
+    <ion-select-option value="series">Queensland</ion-select-option>
+    <ion-select-option value="episode">Victoria</ion-select-option>
+  <ion-select-option value="episode">Northern Territory</ion-select-option>
+  <ion-select-option value="episode">South Australia</ion-select-option>
+  <ion-select-option value="episode">Western Australia</ion-select-option>
+  <ion-select-option value="episode">Tasmania</ion-select-option>
+  </ion-select>
+</ion-item>-->
+
+<ion-content class="hidden-lg hidden-md">
+  <ion-list lines="none" *ngIf="pokemon.length == 0">
+    <ion-item *ngFor="let i of [1,2,3,4,5,6,7,8,9]">
+      <ion-skeleton-text animated style="width: 100%;height: 135px;"></ion-skeleton-text>
+    </ion-item>
+  </ion-list>
+  
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="listing">		
+		<div class="filter-search-wrapper">		
+		<div class="search-result">
+	
+			<div id="app">
+
+    <div class="search-page__content">
+      <div class="subcategory-container"><div class="white-background"></div></div>
+      <div class="infinite-scroll-component__outerdiv">
+          <div class="infinite-scroll-component" style="height: auto; overflow: auto; -webkit-overflow-scrolling: touch;">
+              
+              
+              <div *ngFor="let poke of pokemon;" [routerLink]="['' + poke.slug ]" class="product-card">
+                  <a href="/to-do/tiket-attraction-open-trip-bromo-sunrise" class="pc__link">
+                      <div class="image-ratio image-ratio--product">
+                          <img
+                              alt="Campervan Hire Locations"
+                              src="{{ poke.thumbnail }}"
+                          />
+                      </div>
+                      <div class="pc__content">
+                          <div class="pc__top">
+                              <span class="pc__city">{{ poke.title }}</span>
+                              <p class="pc__title">{{ poke.address }}</p>
+                          </div>
+                          
+                      </div>
+                  </a>
+              </div>
+          
+            
+          </div>
+      </div>
+    
+  </div>
+  </div>
+  </div>
+  </div>
+
+  </div>
+</ion-content>

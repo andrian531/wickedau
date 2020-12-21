@@ -1,0 +1,91 @@
+<ion-content class="hidden-xs d-none d-sm-block">
+  <section id="homeBanner" class="section section--borderless">
+    <div class="wck-homepage">
+        <div class="home">
+            <!--<div class="bannerlocations">
+             
+              <div class="slick-slider">
+                <div class="slick-slide">
+                  <div class="cbBgPattern">
+                  <div class="desc-wrapper">
+                  <h1>Campervan Hire {{ details?.title }}</h1>
+                </div>
+              </div>
+             
+            </div>
+            </div>
+          </div>-->
+          </div>   
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="/specials">Specials</a></li>
+            <li><a href="/specials/{{details?.slug}}">{{details?.title}}</a></li>
+        </ul>
+        <div class="row">
+      <div class="col-md-9">
+        
+        <div class="headingbanner">
+          <!--<h1>{{details?.title}}</h1>-->
+          <p><img src="{{details?.thumbsfull}}"></p>
+          </div>
+          <div class="bungkus">
+           
+            <p [innerHTML]="details?.content"></p>
+           
+           
+          
+          </div>
+     
+       
+    
+    </div>
+   
+    <div class="col-md-3">
+        <img src="../../assets/images/campervan-hire-van.jpg">
+    </div>
+  </div>
+  
+  </div>
+  </div>
+  </section>
+  <div [innerHTML]="footer"></div>
+</ion-content>
+
+<ion-header no-border class="d-lg-none hidden-lg hidden-md">
+  <ion-toolbar>
+       <ion-buttons slot="start">
+           <ion-back-button color="light" defaultHref="/"></ion-back-button>
+       </ion-buttons>
+       <ion-title class="ion-text-capitalize">{{details?.title}}</ion-title>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content class="d-lg-none hidden-lg hidden-md">
+
+  <div *ngIf="details"> 
+    <div class="vehicle-details__header">
+      <div class="col-md-12 nopadding">
+        
+        <div class="headingbanner">
+          <p><img src="{{details?.thumbsfull}}"></p>
+          </div>
+          <!--<h1>{{details?.title}}</h1>-->
+          <div class="bungkus">
+            <p [innerHTML]="details?.content"></p>
+           
+           
+          
+          </div>
+         
+        </div>
+      
+        
+        </div>
+  </div>
+  
+
+ </ion-content> 
+
+
+

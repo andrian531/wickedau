@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="369" height="190" viewBox="0 0 369 190">
+    <defs>
+        <linearGradient id="b" x1="93.175%" x2="10.421%" y1="45.833%" y2="48.242%">
+            <stop offset="0%" stop-color="#F994A7"/>
+            <stop offset="100%" stop-color="#FB6482"/>
+        </linearGradient>
+        <rect id="a" width="369" height="190" rx="8"/>
+        <linearGradient id="c" x1="60.417%" x2="60.417%" y1="7.651%" y2="47.164%">
+            <stop offset="0%" stop-color="#FFF"/>
+            <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="e" x1="50%" x2="50%" y1="75.529%" y2="8.152%">
+            <stop offset="0%" stop-color="#FA7B94"/>
+            <stop offset="100%" stop-color="#FFB8C6"/>
+        </linearGradient>
+        <linearGradient id="f" x1="50%" x2="50%" y1="83.677%" y2="8.152%">
+            <stop offset="0%" stop-color="#FA7B94" stop-opacity=".599"/>
+            <stop offset="100%" stop-color="#FFB8C6" stop-opacity=".492"/>
+        </linearGradient>
+        <linearGradient id="g" x1="50%" x2="50%" y1="75.529%" y2="8.152%">
+            <stop offset="0%" stop-color="#FA7B94"/>
+            <stop offset="100%" stop-color="#FFB8C6"/>
+        </linearGradient>
+        <linearGradient id="h" x1="50%" x2="50%" y1="75.529%" y2="8.152%">
+            <stop offset="0%" stop-color="#FA7B94"/>
+            <stop offset="100%" stop-color="#FFB8C6"/>
+        </linearGradient>
+        <linearGradient id="i" x1="50%" x2="50%" y1="75.529%" y2="8.152%">
+            <stop offset="0%" stop-color="#FA7B94"/>
+            <stop offset="100%" stop-color="#FFB8C6"/>
+        </linearGradient>
+        <linearGradient id="j" x1="49.315%" x2="50%" y1="139.308%" y2="8.152%">
+            <stop offset="0%" stop-color="#FA7B94"/>
+            <stop offset="100%" stop-color="#FFB8C6"/>
+        </linearGradient>
+        <linearGradient id="k" x1="50%" x2="50%" y1="71.872%" y2="8.152%">
+            <stop offset="0%" stop-color="#FA7B94"/>
+            <stop offset="100%" stop-color="#FFB8C6"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <mask id="d" fill="#fff">
+            <use xlink:href="#a"/>
+        </mask>
+        <use fill="url(#b)" xlink:href="#a"/>
+        <path fill="url(#c)" d="M293.593 296.043c62.353 0 112.9-50.44 112.9-112.66S379.039 58.92 274.406 73.897c-65.242 9.34-81.942 61.998-147.779 76.318C48.592 167.19-9.582 96.467-9.582 124.212c0 13.378 12.527 66.94 29.128 82.095 60.611 55.328 225.1 89.736 274.047 89.736z" mask="url(#d)" opacity=".1"/>
+        <g fill-rule="nonzero" mask="url(#d)">
+            <path fill="url(#e)" d="M143.17 102.94V51.299h7.093V39.606h15.105L165.34 51.3h5.12l.695 51.64" opacity=".57" transform="translate(203.736 89.91)"/>
+            <path fill="url(#f)" d="M0 111.162V63.825h7.092V53.107h15.105l-.027 10.718h5.12l.695 47.337" opacity=".57" transform="translate(203.736 89.91)"/>
+            <path fill="url(#g)" d="M93.017 99.94V38.259h7.092V24.293h15.105l-.028 13.965.028 61.117" opacity=".57" transform="translate(203.736 89.91)"/>
+            <path fill="url(#h)" d="M69.416 101.773V60.826h5.871v-4.794h12.505l-.023 4.794h4.239l.328 37.551" opacity=".57" transform="translate(203.736 89.91)"/>
+            <path fill="url(#i)" d="M42.777 33.61V.95h27.166v9.469h11.62l-.687 86.706-37.787 2.343" opacity=".417" transform="translate(203.736 89.91)"/>
+            <path fill="#FA8FA3" d="M248.075 112.763h13.265v80.926h-13.265z"/>
+            <path fill="url(#j)" d="M32.51 103.609h-5.289V22.683h17.63v80.926h-5.289v-73.89H37.8v73.89h-3.526v-73.89H32.51v73.89z" opacity=".882" transform="translate(203.736 89.91)"/>
+            <path fill="#FA8FA3" d="M333.641 103.082h13.265v86.204h-13.265z"/>
+            <path fill="url(#k)" d="M111.847 13.886h17.63v121.39h-17.63V13.885zm10.578 12.315v58.056h1.763V26.2h-1.763zm-5.29 0v58.056h1.764V26.2h-1.763z" opacity=".882" transform="translate(203.736 89.91)"/>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,176 @@
+<ion-content class="hidden-xs">
+  <section id="homeBanner" class="section section--borderless">
+    <div class="wck-homepage">
+      <div class="home">
+        <div class="bannerlocations">
+          <div class="slick-slider">
+            <div class="slick-slide">
+              <div class="cbBgPattern">
+              <div class="desc-wrapper">
+              <h1>Campervan Victoria</h1>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>   
+    <div class="container">
+      <div class="row">
+        <div class="container">
+          <div class="col-md-12">
+            <ul class="breadcrumb">
+                
+            </ul>
+            </div>
+        </div>
+    </div>
+  
+    <div class="col-md-12">
+     
+      <div class="locintro">
+        <h3>Start your roadtrip from Victoria</h3>
+        <p>Starting or ending your roadtrip in Australia in <strong>Victoria</strong>? Well just pickup or dropoff your <strong>campervan</strong> in our <strong>Melbourne</strong> depot. Our friendly and sexy staff in Melbourne can assist you on your travel in and out of Victoria. If you are starting your <strong>campervan holiday</strong> from <strong>Melbourne</strong>, you should experience the fancy and vibrant that this city has got to offer. From shopping, public art, food and wine and cafes are the best to experience in the country. From Melbourne you could head to Phillip Island and experience penguins, scenery, family fun, outdoor pursuits, and life by the water.</p>
+        <p>Victoria has classy roads that connects the state's cities and towns as well as interstate locations. <strong>Getting around Victoria</strong> region is best on a <strong>campervan</strong>. Take a 2 hour drive from the <strong>Melbourne</strong> and you are in <strong>The Great Ocean Road</strong>. Here, you can start your journey from Torquay along the Surf Coast to Apollo Bay, through the forested Otway region, Shipwreck Coast and through to Twelve Apostles. Sounds fancy doesnt it?!</p>
+        <p>For a great start to your holiday book a Wicked <strong>campervan</strong>! Here you will find quality, safety, cheap, and perfect <strong>campervan offers</strong>. Take advantage of special rates we offer as well as special offers at Wicked. Unbeatable price on our <strong>campervans rental</strong> options and total freedom to go anywhere you want. Unbeatable experience with many roadtrip options and wide variety of vans.</p>
+        </div>
+  
+        <div class="card-deck mb-3 text-center">
+                                  
+          <div *ngFor="let poke of catlocv;" [routerLink]="[ poke.slug ]" class="col-xs-4 card box-shadow">
+            <div class="product-card">
+              <div class="photo">
+                <img src="{{ poke.thumbnail }}" />
+                
+              </div>
+            </div>  
+            <div class="card-header">
+              <h4 class="my-0 font-weight-bold">{{ poke.title }}</h4>
+              <div class="loc-date">{{ poke.address }}</div>
+            </div>
+            <div class="card-body d-flex flex-column">
+            
+              <div class="card-body d-flex flex-column card-text">
+              
+              
+              <div class="opening-hours">
+                Opening Hours :
+                Monday to Friday:9am to 4pm
+                Saturdays:9am to 12pm
+                Sundays:Closed
+              </div>
+              </div>
+              
+            </div>
+          </div>
+
+        </div>
+        <!--<div class="col-xs-4">
+          <div class="product-card">
+            <div class="photo">
+              <img src="{{ poke.thumbnail }}" />
+            </div>
+            <div class="body">
+              <h2 class="product-name">{{ poke.title }}</h2>
+              <div class="loc-date">{{ poke.address }}</div>
+             
+              <div class="footer"><div class="price-info"><span class="amount">Opening Hours :</span></div></div>
+              <div class="opening-hours">Monday to Friday:9am to 4pm
+                Saturdays:9am to 12pm
+                Sundays:Closed
+              </div>
+
+        </div>
+        </div>
+      </div>-->
+      
+    
+      </div>
+   
+   
+    
+  
+  </div>
+  </div>
+  </section>
+  <div [innerHTML]="footer"></div>
+</ion-content>
+
+
+<ion-header no-border class="hidden-lg hidden-md">
+  <ion-toolbar>
+       <ion-buttons slot="start">
+           <ion-back-button color="light" defaultHref="/"></ion-back-button>
+       </ion-buttons>
+       <ion-title class="ion-text-capitalize">Locations</ion-title>
+   </ion-toolbar>
+</ion-header>
+<!---<ion-item class="filt hidden-lg">
+  <ion-label class="filter">Filter</ion-label>
+  <ion-select [(ngModel)]="type" (ionChange)="searchChanged($event)">
+    <ion-select-option value="">All</ion-select-option>
+    <ion-select-option value="movie">New South Wales</ion-select-option>
+    <ion-select-option value="series">Queensland</ion-select-option>
+    <ion-select-option value="episode">Victoria</ion-select-option>
+  <ion-select-option value="episode">Northern Territory</ion-select-option>
+  <ion-select-option value="episode">South Australia</ion-select-option>
+  <ion-select-option value="episode">Western Australia</ion-select-option>
+  <ion-select-option value="episode">Tasmania</ion-select-option>
+  </ion-select>
+</ion-item>-->
+
+<ion-content class="hidden-lg hidden-md">
+  <ion-list lines="none" *ngIf="pokemon.length == 0">
+    <ion-item *ngFor="let i of [1,2,3,4,5,6,7,8,9]">
+      <ion-skeleton-text animated style="width: 100%;height: 135px;"></ion-skeleton-text>
+    </ion-item>
+  </ion-list>
+  
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="listing">		
+		<div class="filter-search-wrapper">		
+		<div class="search-result">
+	
+			<div id="app">
+
+    <div class="search-page__content">
+      <div class="subcategory-container"><div class="white-background"></div></div>
+      <div class="infinite-scroll-component__outerdiv">
+          <div class="infinite-scroll-component" style="height: auto; overflow: auto; -webkit-overflow-scrolling: touch;">
+              
+              
+              <div *ngFor="let poke of pokemon;" [routerLink]="['' + poke.slug ]" class="product-card">
+                  <a href="/to-do/tiket-attraction-open-trip-bromo-sunrise" class="pc__link">
+                      <div class="image-ratio image-ratio--product">
+                          <img
+                              alt="Campervan Hire Locations"
+                              src="{{ poke.thumbnail }}"
+                          />
+                      </div>
+                      <div class="pc__content">
+                          <div class="pc__top">
+                              <span class="pc__city">{{ poke.title }}</span>
+                              <p class="pc__title">{{ poke.address }}</p>
+                          </div>
+                          
+                      </div>
+                  </a>
+              </div>
+          
+            
+          </div>
+      </div>
+    
+  </div>
+  </div>
+  </div>
+  </div>
+
+  </div>
+</ion-content>

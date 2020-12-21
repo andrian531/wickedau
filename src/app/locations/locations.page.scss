@@ -1,0 +1,361 @@
+.cbBgTint {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-position: center;
+    overflow: hidden;
+    position: absolute;
+}
+.cbBgPattern {
+    background: url(https://www.wickedcampers.com/images/pattern-inspirational.png);
+}
+.desc-wrapper {
+    -webkit-animation: feature-text-anim .75s ease-in-out;
+    animation: feature-text-anim .75s ease-in-out;
+    z-index: 100;
+    position: relative;
+    width: 100%;
+    max-width: 956px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 60px;
+    text-align: center;
+    text-rendering: optimizeLegibility;
+}
+.desc-wrapper p {
+    font-family: Finger Paint;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 80px;
+    letter-spacing: 0;
+    text-transform: none;
+    line-height: 1.1em;
+    color: #fff;
+    text-shadow: 2px 2px #101010;
+    font-display: swap;
+}
+
+
+.placeholder {
+    background-color: #f6f6f6;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .placeholder img {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: opacity 1s linear;
+   
+  }
+  
+  .placeholder img.loaded {
+    opacity: 1;
+  }
+  
+  .img-small {
+    filter: blur(50px);
+    /* this is needed so Safari keeps sharp edges */
+    transform: scale(1);
+  }
+
+.product-card {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0;
+    flex: 0 0;
+    margin-bottom: 20px;
+}
+.product-card {
+  vertical-align: text-top;
+  position: relative;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1 1;
+  border-radius: 4px;
+  background: #fff;
+  margin-bottom: 20px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 2px 0 rgba(73,84,110,.15);
+  box-shadow: 0 0 2px 0 rgba(73,84,110,.15);
+  border: .5px solid #f5f6fa;
+  cursor: pointer;
+}
+.product-card .photo {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 186px;
+  background-color: grey;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 4px;
+  vertical-align: top;
+  background-position: 50%;
+}
+.product-card .photo>img {
+  width: 100%;
+}
+.product-card .body {
+  position: relative;
+  display: block;
+  right: 0;
+  top: -30px;
+  width: 100%;
+  height: 190px;
+  text-align: left;
+  font-size: 12px;
+  border-radius: 5px;
+  background: #fff;
+  z-index: 1;
+  padding: 12px 16px;
+}
+
+.product-card .body .product-name {
+  position: relative;
+  margin: 3px 0 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.57;
+  max-height: 3.5em;
+  color: #35405a;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.product-card .body .loc-date {
+  color: #35405a;
+  margin: 8px 0;
+  font-size: 12px;
+  display: block;
+  text-transform: capitalize;
+  height: 33px;
+}
+.product-card .body .footer {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  left: 16px;
+  bottom: 50px;
+  padding-top: 8px;
+  width: calc(100% - 32px);
+}
+.product-card .body .price-info {
+  display: inline-block;
+}
+.product-card .body .price-info .amount {
+  width: 136px;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #35405a;
+  float: left;
+}
+.product-card .body .footer .date {
+  color: #8a93a7;
+  font-size: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+}
+.product-card .body .footer .date .ticket-available-now {
+  color: #00a474;
+}
+.item-counter {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  text-align: center;
+}
+.product-card .tiket-label {
+  color: #14ac33;
+  margin-right: 12px;
+  padding-left: 20px;
+  position: relative;
+  display: inline-block;
+  margin-top: 5px;
+}
+.opening-hours {
+  width: 70%;
+  position: absolute;
+  margin-top: 55px;
+}
+
+@media screen and (max-width: 800px) {
+      .search-page__content {
+        padding: 4px;
+        position: relative;
+       
+    }
+      .subcategory-container {
+        position: relative;
+        margin-top: 4px;
+        white-space: nowrap;
+        overflow: auto;
+    }
+    .subcategory-container .white-background {
+      position: absolute;
+      height: 12px;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      background: #f5f6fa;
+  }
+  .product-card {
+    width: 100%;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0 2px 8px 0 rgba(53,64,90,.1);
+    box-shadow: 0 2px 8px 0 rgba(53,64,90,.1);
+    background-color: #fff;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    }
+      .product-card .pc__link {
+        text-decoration: none;
+      }
+      .image-ratio--product {
+        display: block;
+        position: relative;
+        background-color: #f5f6fa;
+        overflow: hidden;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+      .image-ratio--product img {
+        left: 0;
+        top: 0;
+        height: 100%;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        width: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+    .product-card .pc__content, .product-card .pc__content .pc__top .pc__title {
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: normal;
+      -webkit-box-orient: vertical;
+    }
+    .product-card .pc__content .pc__top .pc__title {
+      color: #35405a;
+      margin: 0;
+      max-width: 85%;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.57;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+  }
+  .product-card .pc__content .pc__top .availability-date, .product-card .pc__content .pc__top .pc__city {
+    font-size: 10px;
+    font-weight: 400;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.6;
+    letter-spacing: normal;
+    color: #58627a;
+  }
+  .product-card .pc__info, .product-card .pc__info .pc__infoLeft {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .product-card .pc__info .pc__infoLeft {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+  }
+  .image-ratio {
+    display: block;
+    position: relative;
+    background-color: #f5f6fa;
+    overflow: hidden;
+  }
+  .product-card .pc__content {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    padding: 12px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    top: -78px;
+    background: #ffffffb8;
+    }
+    .product-card .pc__info .pc__price {
+      font-size: 14px;
+      font-weight: 600;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 22px;
+      letter-spacing: normal;
+      color: #35405a;
+    }
+    .product-card .pc__content .price__strikethrough {
+      display: block;
+      font-size: 10px;
+      line-height: 16px;
+      font-weight: 400;
+      color: #8a93a7;
+      text-decoration: line-through;
+    }
+    .product-card .pc__info {
+      font-weight: 600;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      color: #0064d2;
+      -webkit-box-align: end;
+      -ms-flex-align: end;
+      align-items: flex-end;
+      margin-top: 12px;
+  }
+    .opening-hours {
+      width: 70%;
+      position: absolute;
+      margin-top: 100px;
+    }
+    .search-result {
+      background-color: #f5f6fa;
+    }
+    .image-ratio>img{
+      height: 280px;
+    }
+      
+}

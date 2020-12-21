@@ -1,0 +1,320 @@
+<ion-content class="hidden-xs">
+  <section id="homeBanner" class="section section--borderless">
+    <div class="wck-homepage">
+    <div class="container">
+  <div *ngIf="details">
+    <div class="row">
+        <div class="container">
+          <div class="col-md-12">
+            <ul class="breadcrumb">
+                
+            </ul>
+            </div>
+        </div>
+    </div>
+
+<div class="vehicle-details__header">
+<div class="col-md-5 nopadding">
+
+    <div class="vehicle-details__header-content">
+
+      
+      <div class="vehicleTitleContainer">
+        <h1 class="vehicle-title">{{ details.title }}</h1>
+        <h2 class="vehicle-subtitle"></h2>
+      </div>
+
+      
+      <div id="vehicle-overview">
+        
+        <div id="divVehicleOverview"><p data-pm-slice="1 1 [&quot;table&quot;,null,&quot;tableRow&quot;,null,&quot;tableCell&quot;,null]">{{ details.intro }}</p></div>
+      </div>
+      
+      <br>
+      <p><a _ngcontent-cdf-c161="" class="cta-btn cta-btn--green-fill cta-btn--medium openBookingModal" style="position: absolute;bottom: 10px;">Get a Quote</a></p>
+
+    </div>
+  </div>
+
+  <div class="col-md-7 nopadding">
+<div class="tix-detail-header">  
+    <div>
+    <div style="flex-direction: row; transition: transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s; direction: ltr; display: flex; transform: translate(0%, 0px);">
+        <ion-slides #mySlider (ionSlidesDidLoad)="(mySlider)"  pager="true" mode="md" [options]="slideOpts1">
+                
+            <ion-slide *ngFor="let slides of details.slides">
+                <div style="width:100%;-webkit-flex-shrink:0;flex-shrink:0;overflow:auto" aria-hidden="true">
+                   
+                    <div class="slider-item  cursor-pointer">          
+                <img src="{{slides.url}}">
+            </div>
+            </div>
+            </ion-slide>
+           
+            
+        </ion-slides>
+        <div class="swiper-button-next" (click)="swipeNext()"><i class="fas fa-chevron-circle-right"></i></div>
+        <div class="swiper-button-prev" (click)="swipePrev()"><i class="fas fa-chevron-circle-left"></i></div>
+    </div>
+    </div>
+    
+    
+    </div>
+
+    </div>
+    
+  </div>
+
+   
+        <div class="col-md-9 tix-hotel-detail">
+              
+            <div class="tix-tabs">
+
+                <div class="tix-tabs-active-content">
+                
+                    <div class="tab-inactive">
+                        <div class="hotel-description">
+                            <div class="segment-title ">Description</div>
+                            <div class="desc-text">
+                                <p>{{ details.content }}</p>
+                            </div>
+
+                        </div>
+                        
+                        <div class="hotel-description">
+                            <div class="segment-title ">Package Includes</div>
+                            <div class="desc-text">
+                                <p>{{ details.intro }}</p>
+                               
+                                 <div class="accordion indicator-plus-before round-indicator" id="accordionH" aria-multiselectable="true">
+                                  <div class="card m-b-0">
+                                    <div class="card-header collapsed" role="tab" id="headingOneH" href="#collapseOneH" data-toggle="collapse" data-parent="#accordionH" aria-expanded="false" aria-controls="collapseOneH">
+                                      <a class="card-title">7 Days / 6 Nights Darwin to Alice Springs Package Details: </a>
+                                    </div>
+                                    <div class="collapse" id="collapseOneH" role="tabpanel" aria-labelledby="headingOneH">
+                                      <div class="card-body">
+                                        Blue! No, Red!
+                                      </div>
+                                    </div>
+                                    <div class="card-header collapsed" role="tab" id="headingTwoH" href="#collapseTwoH" data-toggle="collapse" data-parent="#accordionH" aria-expanded="false" aria-controls="collapseTwoH">
+                                      <a class="card-title">7 Days / 6 Nights Alice Springs to Darwin Package Details: </a>
+                                    </div>
+                                    <div class="collapse" id="collapseTwoH" role="tabpanel" aria-labelledby="headingTwoH">
+                                      <div class="card-body">
+                                        <img src="https://image.ibb.co/iMh9FF/XtHQKml.gif" alt="Who your daddy is?">
+                                      </div>
+                                    </div>
+                                    
+                                    
+                                  </div>
+                                </div>	
+                         
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                   
+                </div>
+            </div>
+       
+            
+    </div>
+    <div class="col-xs-3">
+      <!--<form action="reservation.php" method="post">
+        <div class="elem-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="visitor_name" placeholder="John Doe" pattern=[A-Z\sa-z]{3,20} required>
+        </div>
+        <div class="elem-group">
+          <label for="email">Your E-mail</label>
+          <input type="email" id="email" name="visitor_email" placeholder="john.doe@email.com" required>
+        </div>
+        <div class="elem-group">
+          <label for="phone">Your Phone</label>
+          <input type="tel" id="phone" name="visitor_phone" placeholder="498-348-3872" pattern=(\d{3})-?\s?(\d{3})-?\s?(\d{4}) required>
+        </div>
+        <hr>
+        <div class="elem-group inlined">
+          <label for="adult">Adults</label>
+          <input type="number" id="adult" name="total_adults" placeholder="2" min="1" required>
+        </div>
+        <div class="elem-group inlined">
+          <label for="child">Children</label>
+          <input type="number" id="child" name="total_children" placeholder="2" min="0" required>
+        </div>
+        <div class="elem-group inlined">
+          <label for="checkin-date">Check-in Date</label>
+          <input type="date" id="checkin-date" name="checkin" required>
+        </div>
+        <div class="elem-group inlined">
+          <label for="checkout-date">Check-out Date</label>
+          <input type="date" id="checkout-date" name="checkout" required>
+        </div>
+        <div class="elem-group">
+          <label for="room-selection">Select Room Preference</label>
+          <select id="room-selection" name="room_preference" required>
+              <option value="">Choose a Room from the List</option>
+              <option value="connecting">Connecting</option>
+              <option value="adjoining">Adjoining</option>
+              <option value="adjacent">Adjacent</option>
+          </select>
+        </div>
+        <hr>
+        <div class="elem-group">
+          <label for="message">Anything Else?</label>
+          <textarea id="message" name="visitor_message" placeholder="Tell us anything else that might be important." required></textarea>
+        </div>
+        <br><br>
+        <button type="submit"><p><a _ngcontent-cdf-c161="" class="cta-btn cta-btn--green-fill cta-btn--medium openBookingModal" style="position: absolute;bottom: 10px;"> Book The Rooms</a></p></button>
+      </form>-->
+      
+        <img src="https://www.wickedcampers.com.au/images/campervan-hire-van.jpg">
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+          
+  
+</div>
+    
+   
+   
+  </div>
+</div>
+</div>
+</section>
+<div [innerHTML]="footer"></div>
+</ion-content>
+
+<ion-header no-border class="hidden-lg hidden-md">
+    <ion-toolbar>
+         <ion-buttons slot="start">
+             <ion-back-button color="light" defaultHref="/"></ion-back-button>
+         </ion-buttons>
+         <ion-title class="ion-text-capitalize">{{ details?.title }}</ion-title>
+     </ion-toolbar>
+ </ion-header>
+
+ <ion-content class="hidden-lg hidden-md">
+    <div *ngIf="details">
+        <!--<div class="tix-detail-header">
+      <div class="slider-item cursor-pointer">
+        <img [src]="slides">
+
+        </div>
+        </div>-->
+        <div class="tix-hotel-detail">
+            <div>
+                <div class="tix-detail-header">
+                    <div>
+
+                        <div style="flex-direction: row; transition: transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s; direction: ltr; display: flex; transform: translate(0%, 0px);">
+                            <ion-slides pager="true" [options]="slideOpts1">
+                                <ion-slide *ngFor="let slides of details.images">
+
+                                    <div style="width:100%;-webkit-flex-shrink:0;flex-shrink:0;overflow:auto" aria-hidden="true" data-swipeable="true">
+                                        <div class="slider-item cursor-pointer swiper-slide">
+
+                                            <img [src]="slides">
+
+                                        </div>
+                                    </div>
+                                </ion-slide>
+                            </ion-slides> 
+                           
+                      
+                        </div>
+               
+                    </div>
+                    
+
+                </div>
+                <div class="tix-tabs">
+
+                    <div class="tix-tabs-active-content">
+                        <!--<div class="detail__price-info-wrap">
+    <div class="detail__evetn-attr">
+
+        <div class="detail__body__price-info__attr"><span class="detail__body__price-info__attr--imgVoucherTag"><img src="https://www.wickedcampers.com.au/templates/jsn_megazine_pro/favicon.ico" alt="Voucher Instan"></span><span>{{ details?.title }}</span></div>
+
+    </div>
+    </div>-->
+                        <!--<div class="hotel-name">
+                <h1><ion-title class="ion-text-capitalize" >{{ details?.title }}</ion-title></h1>
+        </div>-->
+                        <div class="tab-inactive">
+                            <div class="hotel-description">
+                                <div class="segment-title">Description</div>
+                                <div class="desc-text">
+                                    <p>{{ details.content }}</p>
+                                </div>
+
+                            </div>
+                            <div class="hotel-description">
+                                <div class="segment-title ">Package Includes</div>
+                                <div class="desc-text">
+                                    <p>{{ details.intro }}</p>
+                                   
+                                     <div class="accordion indicator-plus-before round-indicator" id="accordionHm" aria-multiselectable="true">
+                                      <div class="card m-b-0">
+                                        <div class="card-header collapsed" role="tab" id="headingOneHm" href="#collapseOneHm" data-toggle="collapse" data-parent="#accordionHm" aria-expanded="false" aria-controls="collapseOneHm">
+                                          <a class="card-title">7 Days / 6 Nights Darwin to Alice Springs Package Details: </a>
+                                        </div>
+                                        <div class="collapse" id="collapseOneHm" role="tabpanel" aria-labelledby="headingOneHm">
+                                          <div class="card-body">
+                                            Blue! No, Red!
+                                          </div>
+                                        </div>
+                                        <div class="card-header collapsed" role="tab" id="headingTwoH" href="#collapseTwoHm" data-toggle="collapse" data-parent="#accordionHm" aria-expanded="false" aria-controls="collapseTwoHm">
+                                          <a class="card-title">7 Days / 6 Nights Alice Springs to Darwin Package Details: </a>
+                                        </div>
+                                        <div class="collapse" id="collapseTwoHm" role="tabpanel" aria-labelledby="headingTwoHm">
+                                          <div class="card-body">
+                                            <img src="https://image.ibb.co/iMh9FF/XtHQKml.gif" alt="Who your daddy is?">
+                                          </div>
+                                        </div>
+                                        
+                                        
+                                      </div>
+                                    </div>	
+                             
+                                </div>
+                                
+                            </div>
+                           
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+ </ion-content>
+

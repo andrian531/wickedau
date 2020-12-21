@@ -1,0 +1,1193 @@
+<ion-header no-border class="gelap hidden-md hidden-sm hidden-lg">
+    
+    <header class="z-index-999">
+        <div class="row header-app"> </div>
+       
+      </header>
+      
+      <div class="d-flex justify-content-end">
+          <div class="mr-auto p-2">
+              <a href="/" class="url-icon">
+                <picture>
+                    <source srcset="../../assets/images/logo.webp" type="image/webp">
+                    <source srcset="../../assets/images/logo.png" type="image/jpeg"> 
+                    <img class="logo" data-src="image.jpg" alt="campervan hire Australia">
+                  </picture>
+              </a>
+          </div>
+          <div class="p-2 bd-highlight hidden-md hidden-sm">
+              <a href="tel:1800246869"><div class="font-weight-bold phone-number"><i class="fas fa-user-headset mr-2" aria-hidden="true"></i>1800 24 68 69</div></a>
+            </div>
+          <div class="p-2">
+              <div class="header-btn btn-setting">
+                  <a routerLink="/menu" routerDirection="forward">
+                  <div class="menu-trigger__container">
+                      <button class="menu-trigger__button" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-lable="Menu">
+                        <div class="inner">
+                          <span class="menu-trigger__icon"></span>
+                        </div>
+                      </button>
+                    </div>
+                  </a>
+              </div>
+          </div>
+          
+        </div>
+    </ion-header>
+  
+  <ion-content id="bodyxx" >
+      <div id="myDIV" onclick='bookfocusremove()'></div>
+    <section id="homeBanner" class="section section--borderless d-none d-sm-block hidden-xs">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                
+            </ol>
+  
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+             
+             <!-- <ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="true" [options]="slideOpts">
+                  <ion-slide *ngFor="let poke of pokemon;">
+                      <picture>
+                          <img srcset="{{ poke.img }}" media="(min-width: 1400px)" />
+                      </picture>
+                 
+                  </ion-slide>
+                  </ion-slides>
+              -->
+            
+                
+                 <div *ngFor="let poke of pokemon;" class="carousel-item {{poke.class}}" [routerLink]="['/promo/' + poke.slug ]">
+                    <picture>
+                      <source srcset="{{poke.webp}}" type="image/webp" />
+                      <source srcset="{{poke.webp}} 2x" type="image/webp" />
+                      <img data-src="{{poke.thumbs}}" data-src="{{poke.thumbs}}" alt="Wicked Promo" class="lazy d-block img-fluid" loading="lazy"/>
+                    </picture>
+                </div>
+               
+               
+           
+              
+              <!--<ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="true" [options]="slideOpts">
+                  <ion-slide *ngFor="let poke of pokemon;">
+                  <a href="promo"><img src="{{ poke.img }}"></a>
+                  </ion-slide>
+                  </ion-slides>-->
+            
+          </div>
+  
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        
+    </section>
+   
+    <div class="wck-homepage d-none d-sm-block hidden-xs">
+  
+        <div class="container">
+       
+  
+            <section class="banner-padding absolute-banner pb-0">
+              <div id="myDIV"></div>
+                <div class="header-data true">
+                    <div class="header-v3">
+                        <div class="container absolute-bg">
+                            
+                              <div>
+                                <a class="scroll-to-top rounded" style="display: inline;">
+                                    <div id="productWidget" class="product-widget widget-container focus" tabindex="0">
+                                      
+                                        <div class="product-list-container">
+                                            <div class="product-list-title">
+                                                <span><i class="fas fa-badge-check"></i> Grab an Instant Quote & Booking Online</span>
+                                            </div>
+                                            <div class="product-list-content">
+                                                <div class="product-box" tabindex="-1">
+                                                    <div class="product-logo">
+                                                      <picture>
+                                                          <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/vehicles/galleries/wicked-van-2-3/0.webp" type="image/webp">
+                                                          <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/vehicles/galleries/wicked-van-2-3/0.jpg" type="image/jpeg"> 
+                                                          <img class="lazy" data-src="image.jpg" alt="campervan">
+                                                        </picture>
+                                                    </div>
+                                                    <span class="product-label">Campervan</span>
+                                                </div>
+                                                <div class="product-box" tabindex="-1">
+                                                    <div class="product-logo">
+                                                      <picture>
+                                                          <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/vehicles/galleries/premium-armadillo-2-4x4/0.webp" type="image/webp">
+                                                          <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/vehicles/galleries/premium-armadillo-2-4x4/0.jpg" type="image/jpeg"> 
+                                                          <img class="lazy" data-src="image.jpg" alt="4wdhire">
+                                                      </picture>    
+                                                    </div>
+                                                    <span class="product-label">4WD</span>
+                                                </div>
+                                                <div class="product-box" tabindex="-1">
+                                                    <div class="product-logo">
+                                                      <picture>
+                                                          <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/vehicles/galleries/bondi-compact-3/0.webp" type="image/webp">
+                                                          <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/vehicles/galleries/bondi-compact-3/0.jpg" type="image/jpeg"> 
+                                                          <img class="lazy" data-src="image.jpg" alt="mini campers">
+                                                      </picture> 
+                                                    </div>
+                                                    <span class="product-label">Mini Camper</span>
+                                                </div>
+                                                <div class="product-box" tabindex="-1">
+                                                    <div class="product-logo">
+                                                      <picture>
+                                                          <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/vehicles/galleries/12-seater-tour-bus/0.jpg" type="image/jpeg">
+                                                          <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/vehicles/galleries/12-seater-tour-bus/0.jpg" type="image/jpeg"> 
+                                                          <img class="lazy" data-src="image.jpg" alt="bus hire">
+                                                      </picture>
+                                                      </div>
+                                                    <span class="product-label">Bus</span>
+                                                </div>
+                                                <div class="product-box" tabindex="-1">
+                                                    <div class="product-logo">
+                                                      <picture>
+                                                          <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/vehicles/galleries/allridey-car/0.webp" type="image/webp">
+                                                          <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/vehicles/galleries/allridey-car/0.jpg" type="image/jpeg"> 
+                                                          <img class="lazy" data-src="image.jpg" alt="car hire">
+                                                      </picture>
+                                                      </div>
+                                                    <span class="product-label">Car Hire</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                        <!--<iframe async ng-onload="myLoadEvent()" class="app-iframe" src="https://bookings.wickedcampers.com.au/bookingminicomnew" loading="lazy" seamless="seamless" scrolling="no" style="position: relative; width: 100%; height: 200px; border: none;"></iframe>-->
+                                        <form #step1form="ngForm" (ngSubmit)="step1form.form.valid &&gotostep2()">
+                                            <div class="product-form">
+                                                <div>
+                                                <div class="form-style">			
+                                                    <div class="switcher" (click)="swaploc()"><i class="fas fa-exchange-alt"></i></div> 
+                                                    <div class="part-component part-depart">
+                                                        <div class="title">Pickup Location</div>
+                                                        <div class="content">
+                                                            <div class="icon"><i class="fal fa-map-marker-alt"></i></div>
+                                                            <div class="user-area">
+                                                                <div class="station-list-area">
+                                                                     <select name="pickuplocation" [(ngModel)]="step1.pickuploc" #pickuploc ="ngModel" class="form-Pickup-Location"  style="width: 100%;">
+                                                                        <option *ngFor="let field of booklocation" value="{{field.id}}">{{field.location}}</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="part-component part-return">
+                                                        <div class="title">Return Location</div>
+                                                        <div class="content">
+                                                            <div class="icon"><i class="fal fa-map-marker-alt"></i></div>
+                                                            <div class="user-area">
+                                                                <div class="station-list-area">
+                                                                        <select name="dropofflocation" class="form-Dropoff-Location" [(ngModel)]="step1.dropoffloc" #dropoffloc="ngModel" required autocomplete="off" style="width: 100%;">
+                                                                            <option  *ngFor="let field of booklocation" value="{{field.id}}" >{{field.location}}</option>
+                                                                        </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="part-component part-from-date">
+                                                        <div class="title">Pickup Date</div>
+                                                        <div class="content">
+                                                            <div class="icon"><i class="fal fa-calendar-day" (click)="open()"></i></div>
+                                                            <div class="user-area">
+                                                                
+                                                                <div class="wrapper-datepicker datepicker-depart">
+                                                                    
+                                                                    
+                                                                        <input matInput [matDatepicker]="picker" (click)="picker.open()" [ngClass]="{ 'ds-invalid': step1form.submitted && pickupdate.invalid }" name="pickupdate" [(ngModel)]="step1.pickupdate"  placeholder="Select date" #pickupdate="ngModel" class="form-Pickup-Date" id="txtPickup" autocomplete="off" style="width: 100%; border: none;" required [min]="minDate">
+                                                                        
+                                                                        <mat-datepicker #picker></mat-datepicker>
+                                                                    
+                                                                    <!--<input [ngClass]="{ 'ds-invalid': step1form.submitted && pickupdate.invalid }" type="text" name="pickupdate" [(ngModel)]="step1.pickupdate"  placeholder="Select date" #pickupdate="ngModel" class="form-Pickup-Date" id="txtPickup" autocomplete="off" style="width: 100%; border: none;" required [min]="minDate" [dateTimeChange]="" [selectMode]="'rangeFrom'"[owlDateTimeTrigger]="dt3" [owlDateTime]="dt3">
+                                                                    <owl-date-time [pickerType]="'calendar'"  #dt3></owl-date-time>-->
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="part-component part-from-time">
+                                                        <div class="title">Pickup Time</div>
+                                                        <div class="content">
+                                                            <div class="icon"><i class="fal fa-clock"></i></div>
+                                                            <div class="user-area">
+                                                                <div class="wrapper-datepicker datepicker-depart">
+                                                                    <input id="txtPickupTime" [ngClass]="{ 'ds-invalid': step1form.submitted && pickuptime.invalid }" type="text" step='1800' name="pickuptime" placeholder="Pickup-Time..." class="form-Pickup-Time" id="txtPickupTime" autocomplete="off" onchange="LocUpdForm()" style="width: 100%; border: none;" [(ngModel)]="step1.pickuptime" #pickuptime="ngModel" required required [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [min]="mindateDS" [max]="maxdateDS" >
+                                                                    <owl-date-time [startAt]="mindateDS"
+                                                                     [stepMinute]="'30'" [pickerType]="'timer'" #dt2 ></owl-date-time>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                                  
+                                                    <div class="part-component part-to-date">
+                                                        <div class="title">Return Date</div>
+                                                        <div class="content">
+                                                            <div class="icon"><i class="fal fa-calendar-day"></i></div>
+                                                            <div class="user-area">
+                                                                <div class="wrapper-datepicker datepicker-return">
+                                                                    <input matInput [matDatepicker]="pickerx" (click)="pickerx.open()" [ngClass]="{ 'ds-invalid': (step1form.submitted && pickupdate.invalid) || (step1form.submitted && step1.dropoffdate<=step1.pickupdate) }" name="returndate" [(ngModel)]="step1.dropoffdate"  placeholder="Select date" #pickupdate="ngModel" class="form-Pickup-Date" id="txtReturn" autocomplete="off" style="width: 100%; border: none;" required [min]="minDate">
+                                                                        
+                                                                        <mat-datepicker #pickerx></mat-datepicker>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="part-component part-to-time">
+                                                        <div class="title">Return Time</div>
+                                                        <div class="content">
+                                                            <div class="icon"><i class="fal fa-clock"></i></div>
+                                                            <div class="user-area">
+                                                                <div class="wrapper-datepicker datepicker-return">
+                                                                    <input id="txtReturnTime" [ngClass]="{ 'ds-invalid': step1form.submitted && dropofftime.invalid }"  type="text" name="dropofftime" placeholder="Return-Time" class="form-Dropoff-Time" id="txtReturnTime" autocomplete="off" style="width: 100%; border: none;" [(ngModel)]="step1.dropofftime" #dropofftime="ngModel" required [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [min]="mindateDS" [max]="maxdateDS">
+                                                                    <owl-date-time [startAt]="mindateDS" [pickerType]="'timer'" #dt></owl-date-time>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="part-component part-passenger">
+                                                        <div class="title">Promo Code (optional)</div>
+                                                        <div class="content">
+                                                            <div class="icon"><i class="far fa-tags"></i></div>
+                                                            <div class="user-area">
+                                                                <div class="wrapper-datepicker datepicker-return">
+                                                                    <input type="text" name="form-Promo-Code" placeholder="Voucher " class="form-Promo-Code" id="txtPromoCode" autocomplete="off" style="width: 100%;border: none;" [(ngModel)]="step1.voucher">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div *ngIf="step1form.submitted && step1form.form.invalid" class="form-invalid">
+                                                    Please fill required field
+                                                </div>
+                                                <div *ngIf="step1form.submitted && step1.dropoffdate<=step1.pickupdate" class="form-invalid">
+                                                    Return date must be after Pickup date
+                                                </div>
+                                                <div class="product-form-container product-form-button-group">
+                                                    <button class="product-form-search-btn red-gradient" type="submit"><i class="fas fa-search"></i> Get Quote</button>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+        
+        <div class="landing-desktop hidden-xs">
+            <div class="hero-section"></div>
+            <div class="container">
+                <div class="section landing-top-picks-desktop" data-impression='{"event":"impression","eventCategory":"hotelContent","eventLabel":"behavioralCard"}' data-visible="true">
+                    <div class="top-picks-head">
+                        <h1 class="section-title">Campervan Hire and Cheap Car Hire</h1>
+                        <hr role="tournament6" />
+                    </div>
+                    <!--<div class="top-picks-content">
+                        <div class="container">
+                            <div class="col-xs-4 col-md-4">
+                                <div class="tp-animation-container">
+                                    <div class="bg-top-pick blue">
+                                        <a href="/p/campervans-for-sale" class="bg-top-pick blue">
+                                            <div><label class="tp-card-title">Campervan for Sale</label></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-md-4">
+                                <div class="tp-animation-container">
+                                    <div class="bg-top-pick dark-blue">
+                                        <a href="/p/cars-for-sale" class="bg-top-pick dark-blue">
+                                            <div><label class="tp-card-title">Car for Sale</label></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-md-4">
+                                <div class="tp-animation-container">
+                                    <div class="bg-top-pick pink">
+                                        <a
+                                            href="/p/buying-from-wicked"
+                                            class="bg-top-pick pink"
+                                        >
+                                            <div><label class="tp-card-title">Buying From Wicked</label></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="col-md-12 pad30">
+                          
+                      <ion-list lines="none" *ngIf="pokemon.length == 0">
+                          <ion-item *ngFor="let i of [1]">
+                            <ion-skeleton-text animated style="width: 33.333333%;height: 155px;margin-right: 5px;"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 33.333333%;height: 155px;margin-right: 5px;"></ion-skeleton-text>
+                            <ion-skeleton-text animated style="width: 33.333333%;height: 155px;"></ion-skeleton-text>
+                          </ion-item>
+                        </ion-list>
+                        
+                        <ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="true" [options]="slideOpts" >
+                            <ion-slide *ngFor="let mobil of mobil | slice:0:14" [routerLink]="['our-vehicles/' + mobil.slug_category + '/' + mobil.slug]">
+                               
+                                <div class="card-deck">
+                                  <div class="card">
+                                      <picture>
+                                          <source srcset="{{ mobil.thumbswebp }}" type="image/webp">
+                                          <source srcset="{{mobil.thumbs}}" type="image/jpeg"> 
+                                          <img class="lazy" data-src="{{mobil.thumbs}}" data-src="{{mobil.thumbs}}" alt="campervan">
+                                        </picture>
+                                    <div class="card-body">
+                                      <h5 class="card-title">{{ mobil.name }}</h5>
+                                      <p class="card-text">{{ mobil.intro }}</p>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                               
+                                
+                            </ion-slide>
+                        </ion-slides>
+                          
+                      
+                   
+                      </div>
+                </div>
+             
+  
+                <div class="section">
+                    <h4 class="section-title h4 tix-font">Our most popular locations</h4>
+                    <hr role="tournament6" />
+                    <div class="">
+                        <div class="col-md-12 pad30">
+                          
+                          <ion-list lines="none" *ngIf="pokemon.length == 0">
+                              <ion-item *ngFor="let i of [1]">
+                                <ion-skeleton-text animated style="width: 33.333333%;height: 155px;margin-right: 5px;"></ion-skeleton-text>
+                                <ion-skeleton-text animated style="width: 33.333333%;height: 155px;margin-right: 5px;"></ion-skeleton-text>
+                                <ion-skeleton-text animated style="width: 33.333333%;height: 155px;"></ion-skeleton-text>
+                              </ion-item>
+                            </ion-list>
+                            
+                            <ion-slides #mySliderkomen (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="true" [options]="slideOpts">
+                                <ion-slide *ngFor="let loca of location " [routerLink]="['locations/' + loca.category_slug + '/' + loca.slug]">
+                                    <div class="card-deck">
+                                        <div class="card">
+                                            <picture>
+                                                <source srcset="{{ loca.thumbnailwebp }}" type="image/webp">
+                                                <source srcset="{{loca.thumbnail}}" type="image/jpeg"> 
+                                                <img class="lazy loca" data-src="{{loca.thumbnail}}" data-src="{{loca.thumbnail}}" alt="locations" image-lazy-background-image="true" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="100">
+                                              </picture>
+                                          <div class="card-body">
+                                            <h5 class="card-title">{{ loca.title }}</h5>
+                                            <p class="card-text">{{ loca.intro }}</p>
+                                          </div>
+                                          
+                                        </div>
+                                    </div>
+                                  
+                                </ion-slide>
+                            </ion-slides>
+                            <div class="swiper-button-next" (click)="swipeNext()"><i class="fas fa-chevron-circle-right"></i></div>
+                            <div class="swiper-button-prev" (click)="swipePrev()"><i class="fas fa-chevron-circle-left"></i></div>
+                          
+                       
+                          </div>
+                    </div>
+                </div>
+                <div class="section">
+                  <h4 class="section-title h4 tix-font">Wicked Specials</h4>
+                  <hr role="tournament6" />
+                  <div class="">
+                      <div class="col-md-12 pad30">
+                          <ion-list lines="none" *ngIf="pokemon.length == 0">
+                              <ion-item *ngFor="let i of [1]">
+                                  <ion-skeleton-text animated style="width: 33.333333%;height: 155px;margin-right: 5px;"></ion-skeleton-text>
+                                  <ion-skeleton-text animated style="width: 33.333333%;height: 155px;margin-right: 5px;"></ion-skeleton-text>
+                                  <ion-skeleton-text animated style="width: 33.333333%;height: 155px;"></ion-skeleton-text>
+                              </ion-item>
+                            </ion-list>
+                            
+                          <ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="true" mode="ios" [options]="slideOpts">
+                              <ion-slide *ngFor="let s of special  | slice:0:6" [routerLink]="['specials/' + s.slug]">
+                                  
+                                  <div class="card-deck">
+                                    <div class="card">
+                                        <picture>
+                                            <source srcset="{{ s.thumbswebp }}" type="image/webp">
+                                            <source srcset="{{s.thumbs}}" type="image/jpeg"> 
+                                            <img class="lazy" data-src="{{s.thumbs}}" data-src="{{s.thumbs}}" alt="wicked van hire" image-lazy-background-image="true" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="100">
+                                          </picture>
+                                      <div class="card-body">
+                                        <h5 class="card-title">{{ s.title }}</h5>
+                                        <p class="card-text">{{ s.intro }}</p>
+                                      </div>
+                                      
+                                    </div>
+                                  </div>
+                                 
+                                  
+                              </ion-slide>
+                          </ion-slides>
+                            
+                        
+                     
+                        </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="cbBgPattern cbBgTint">
+        <div class="referral-program-banner zigzag-container hidden-xs" id="now">
+            
+            <div class="container">
+                <div class="banner-main">
+                    <div class="row m-b-40">
+                        <div class="col-md-12">
+                            <div class="banner-desc">
+                                <div class="banner-title"><p class="lead">Unforgettable Holidays</p></div>
+                                <ul class="list-unstyled mb-0">
+                                    <hr class="line mx-auto white" />
+                                    <li class="mb-5"><h6 class="text-center mb-0">Australia | New Zealand | North America | South Africa | UK &amp; Europe</h6></li>
+                                    <a href="/our-vehicles" class="btn red-gradient white-text font-weight-bold spacing btn-rounded pad red-shadow waves-effect waves-light"><strong>FIND MY RIDE</strong></a>
+                                </ul>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+      </div>
+  
+        <div class="landing-desktop hidden-xs">
+            <div class="hero-section"></div>
+            <div class="container">
+                <div class="section nha-section">
+                    <h4 class="section-title h4"><span translate="hm_customer_count" class="colorRed">175.000+</span><span class="hm_happy_customer">happy customers</span></h4>
+                    <hr role="tournament6" />
+                    <div class="nha-card-list j-box">
+                        <div class="col-md-12 col-xs-6">
+                            <div class="nha-card">
+                              <ion-list lines="none" *ngIf="pokemon.length == 0">
+                                  <ion-item *ngFor="let i of [1]">
+                                      <ion-skeleton-text animated style="width: 33.333333%;height: 255px;margin-right: 5px;"></ion-skeleton-text>
+                                      <ion-skeleton-text animated style="width: 33.333333%;height: 255px;margin-right: 5px;"></ion-skeleton-text>
+                                      <ion-skeleton-text animated style="width: 33.333333%;height: 255px;"></ion-skeleton-text>
+                                  </ion-item>
+                                </ion-list>
+                                
+                                <ion-slides #mySliderkomen (ionSlidesDidLoad)="slidesDidLoad(mySliderkomen)" pager="true" mode="md" [options]="slideOpts">
+                                    <ion-slide *ngFor="let rev of komen;" class="clientComment product-box text-center">
+                                        <picture>
+                                            <source srcset="{{rev.thumbswebp }}" type="image/webp">
+                                            <source srcset="{{rev.thumbnail}}" type="image/jpeg"> 
+                                            <img data-src="{{ rev.thumbnail }}" class="lazy komen" image-lazy-background-image="true" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="100" alt="wicked review"/>
+                                          </picture>
+                                        <div class="product-detail text-center">
+                                            <div>
+                                                <p>
+                                                    <span class="fontSize14">
+                                                        <i class="fas fa-quote-left"></i> {{ rev.review }} <i class="fas fa-quote-right"></i>
+                                                    </span>
+                                                </p>
+                                                <div class="colorBlack" ng-bind=" ::testimonial.name">{{ rev.name }}</div>
+                                            </div>
+                                        </div>
+                                    </ion-slide>
+                                </ion-slides>
+  
+                                <div class="swiper-button-next" (click)="swipeNext()"><i class="fas fa-chevron-circle-right"></i></div>
+                                <div class="swiper-button-prev" (click)="swipePrev()"><i class="fas fa-chevron-circle-left"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+  
+                <!--<section class="section hidden-xs">
+                    <div class="banner banner--facebook"><span class="banner__wording">Like us on Facebook</span><div class="banner__action pull-right"><span class="fb-like fb_iframe_widget" data-href="https://www.facebook.com/wickedcampers/" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=885351928512415&amp;container_width=0&amp;href=https%3A%2F%2Fwww.facebook.com%2Fwickedcampers%2F&amp;layout=button_count&amp;locale=en_GB&amp;sdk=joey&amp;share=false&amp;show_faces=true&amp;size=large"><span style="vertical-align: bottom; width: 101px; height: 28px;"><iframe ng-onload="myLoadEvent()" async name="f10d2e35015e3a8" width="1000px" height="1000px" data-testid="fb:like Facebook Social Plugin" title="fb:like Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://www.facebook.com/v2.10/plugins/like.php?action=like&amp;app_id=885351928512415&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Dfd51d6039796d8%26domain%3Dwww.wickedcampers.com.au%26origin%3Dhttps%253A%252F%252Fwww.wickedcampers.com.au%252Ffd81db2383f3c%26relation%3Dparent.parent&amp;container_width=0&amp;href=https%3A%2F%2Fwww.facebook.com%2Fwickedcampers%2F&amp;layout=button_count&amp;locale=en_GB&amp;sdk=joey&amp;share=false&amp;show_faces=true&amp;size=large" style="border: none; visibility: visible; width: 101px; height: 28px;" class=""></iframe></span></span></div></div>
+                </section>-->
+             
+                <div>
+              
+                <div class="vcenter hidden-xs">
+                    <div class="row">
+                       
+                     
+                    <div class="col-8">
+                        <div class="heading-link"><h2>Frequently Asked Questions</h2></div>
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h3 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            How old do you have to be to hire a campervan in Australia?
+                                        </button>
+                                    </h3>
+                                </div>
+  
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        You need to be at least 18 years old to be able to hire a campervan in Australia. Yes you can hire a Wicked Camper just using a valid drivers license from your country. An International License is not
+                                        required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h3 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Can I choose my campervan hire design?
+                                        </button>
+                                    </h3>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Customers are welcome to put in a request for the design on the camper which we will try our best to accommodate if available. However as a lot of our hires are one way it is not guaranteed. Customers
+                                        are also welcome to request a 'tame' van if travelling with children etc.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h3 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            What is the cheapest campervan hire in Australia?
+                                        </button>
+                                    </h3>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        On average, one can hire a 2-berth campervan for $50 for a day. The price depends on the season and availability.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingFour">
+                                    <h3 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                                            Do you have any suggestions for places to travel?
+                                        </button>
+                                    </h3>
+                                </div>
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Sure! Just look in our Trip Ideas section HERE, there’s plenty of good ideas!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-header" id="headingFive">
+                                  <h3 class="mb-0">
+                                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                          How to Book a Campervan or 4WD?
+                                      </button>
+                                  </h3>
+                              </div>
+                              <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                                  <div class="card-body">
+                                    Wanna Hire a Campervan in Australia? Well look no further - we've got locations all around Australia and the World! Call our gorgeous Roadtrip Planners today (seriously - they're freakin smoking hot!):
+                                    please visit this <a href="http://bookings.wickedcampers.com.au/">link</a>
+
+
+
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="heading-link">
+                            <h2><i class="fab fa-instagram"></i> Wickedcampers</h2>
+                            <!--<iframe async src="https://snapwidget.com/embed/443372" width="100%" height="400" scrolling="no" frameborder="0"> </iframe>-->
+                            <iframe [src]="safeSrc" width="100%" height="400"  scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen
+                            allowfullscreen></iframe> 
+                        </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+             
+               
+            </div>
+        </div>
+        <!--<div class="container hidden-xs">
+          <section class="section"><div class="banner banner--youtube"><span class="banner__wording">Subscribe to us on Youtube</span><div class="banner__action pull-right"><div style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 111px; height: 24px;" id="___ytsubscribe_0"><iframe async ng-onload="myLoadEvent()" ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 111px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" width="100%" id="I0_1595489778756" name="I0_1595489778756" src="https://www.youtube.com/subscribe_embed?usegapi=1&amp;channelid=UCv6yJEqpLYaCrOkIciLzXwQ&amp;layout=default&amp;count=default&amp;origin=https%3A%2F%2Fwww.wickedcampers.com.au&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.id.rBw6XUnLR4E.O%2Fam%3DwQc%2Fd%3D1%2Fct%3Dzgms%2Frs%3DAGLTcCOXUMRWuQ3CBiJL5SRK3icoQvIUVg%2Fm%3D__features__#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1595489778756&amp;_gfid=I0_1595489778756&amp;parent=https%3A%2F%2Fwww.wickedcampers.com.au&amp;pfname=&amp;rpctoken=14260252" data-gapiattached="true"></iframe>
+          </div></div></div></section>
+         </div>-->
+    </div>
+    <div class="cont-about-pack d-none d-sm-block hidden-xs">
+      <div class="wrap" style="position:relative;">
+          <div class="homedesk-left" style="margin-left:0px;">
+              <div align="center" class="homedesk-header"><div class="before"></div><div class="after"></div><b>Why Go Wicked? </b></div>
+              
+              <div class="fleft">
+                <picture>
+                    <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/vehicles/galleries/mystery-machine-2-3/apv-mystery-machine.webp" type="image/webp">
+                    <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/vehicles/galleries/mystery-machine-2-3/apv-mystery-machine.png" type="image/png"> 
+                    <img data-src="image.jpg" alt="campervan" align="absbottom" style="width: 550px;margin-top: 0px;margin-bottom: -16px;">
+                </picture>
+                </div>
+              <ul>
+                  <li>
+                      <h4>So Simple</h4>
+                      <p>Find your perfect campervan and hit the road, book online or call our road trip planners and we'll get you on your way.</p>
+                  </li>
+                  <li>
+                      <h4>Wicked Choices</h4>
+                      <p>From cars and mini-campers to campervans and fully equipped 4WD campers, we've got something to suit any budget.</p>
+                  </li>
+                  <li>
+                      <h4>Instant Quotes</h4>
+                      <p>Easily browse all our vehicles and locations, find your ideal ride and get an instant quote now.</p>
+                  </li>
+              </ul>
+          </div>
+          
+          <div class="homedesk-right">
+              <a href="../../assets/doc/Wicked-Campers-2020_EBook.pdf" target="”_blank”">
+                <picture>
+                    <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/wicked-campers-travel-update.webp" type="image/webp">
+                    <source srcset="https://bookings.wickedcampers.com.au/newapi/assets/media/wicked-campers-travel-update.jpg" type="image/jpeg"> 
+                    <img class="lazy" data-src="image.jpg" alt="travel update">
+                </picture>
+            </a>
+          </div>
+          
+          <div class="clear"></div>
+      </div>
+  </div>
+  
+    <div class="hidden-xs" [innerHTML]="footer"></div>
+  
+    <!--buat mobile-->
+    
+        <div class="main d-lg-none hidden-lg hidden-sm hidden-xl hidden-md">
+            <div class="content">
+                <div class="banner">
+                    <div class="banner-main">
+                      <div style="overflow-x: hidden;">
+          
+                        <div class="" style="flex-direction: row; transition: all 0s ease 0s; direction: ltr; display: flex; will-change: transform;">
+                    
+                  <ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="true" mode="md" [options]="slideOpts1">
+                      <ion-slide *ngFor="let poke of pokemon;" >
+                      <picture>
+                      <a href="/promo/{{poke.slug}}">
+                        <picture>
+                            <source srcset="{{poke.webp}}" type="image/webp" />
+                            <source srcset="{{poke.webp}} 2x" type="image/webp" />
+                            <img data-src="{{poke.thumbs}}" data-src="{{poke.thumbs}}" alt="Wicked Promo" class="lazy d-block img-fluid" loading="lazy"/>
+                          </picture>
+                        </a>
+                        <div class="ijoijo"></div>
+                      </picture>
+                    </ion-slide>
+                  </ion-slides>
+  
+                    <!--<div *ngFor="let poke of pokemon;" class="carousel-item {{poke.class}}">
+                      <picture>
+                          <img srcset="{{ poke.images }}" type="image/webp" alt="responsive image" class="d-block img-fluid" />
+                          
+                      </picture>
+                  </div>-->
+                 
+                  <!--<div class="text-allpromo"><a href="/promo">See all promos</a></div>-->
+                  </div>
+                    </div>
+                    
+                    </div>
+                    <div class="curve"><img srcset="../assets/images/curve.png" class="tix-ui-fadeIn curve-img" alt="curve" /></div>
+                    <!--<div class="text-status">6/9</div>
+                    <div class="text-allpromo">See all promos</div>-->
+                </div>
+                <div class="home-menu">
+                    <div class="landscape">
+                        <div class="container">
+                          <div class="home-menu row">
+                              <div class="col-xs-12">
+                                  <div class="text-going-anywhere"><span>Hey You, going anywhere?</span></div>
+                              </div>
+                              <!--<div class="col-xs-4">
+                                  <div class="box-menu center">
+                                      <a href="/p/bookings">
+                                          <div class="box">
+                                              <div class="placeholder-image"><img alt="product" src="../../assets/icon/campervan.jpg"></div><span class="text-title-menu">Campervan Hire</span></div>
+                                      </a>
+                                  </div>
+                              </div>
+                              <div class="col-xs-4">
+                                  <div class="box-menu center">
+                                      <a href="/p/bookings">
+                                          <div class="box">
+                                              <div class="placeholder-image"><img alt="product" src="../../assets/icon/4wdhire.jpg"></div><span class="text-title-menu">4x4 Hire</span></div>
+                                      </a>
+                                  </div>
+                              </div>
+                              <div class="col-xs-4">
+                                  <div class="box-menu center">
+                                      <a href="/p/bookings">
+                                          <div class="box">
+                                              <div class="placeholder-image"><img alt="product" src="../../assets/icon/carrental.jpg"></div><span class="text-title-menu">Car Rental</span></div>
+                                      </a>
+                                  </div>
+                              </div>
+                              <div class="col-xs-4">
+                                  <div class="box-menu center">
+                                      <a href="/p/bookings">
+                                          <div class="box">
+                                              <div class="placeholder-image"><img alt="product" src="../../assets/icon/minicamper.jpg"></div><span class="text-title-menu">Mini Campers</span></div>
+                                      </a>
+                                  </div>
+                              </div>
+                              <div class="col-xs-4">
+                                  <div class="box-menu center">
+                                      <a href="/p/bookings">
+                                          <div class="box">
+                                              <div class="placeholder-image"><img alt="product" src="../../assets/icon/bus.jpg"></div><span class="text-title-menu">Bus</span></div>
+                                      </a>
+                                  </div>
+                              </div>
+                              <div class="col-xs-4">
+                                  <div class="box-menu center">
+                                      <a href="/p/bookings">
+                                          <div class="box">
+                                              <div class="placeholder-image"><img alt="product" src="../../assets/icon/budget4wd.jpg"></div><span class="text-title-menu">Budget 4WD</span></div>
+                                      </a>
+                                  </div>
+                              </div>-->
+                              <!--<iframe async src="https://www.wickedcampers.com/app-book/au/bookingmini" scrolling="no" noresize frameborder="0"></iframe>-->
+
+                              <form #mstep1form="ngForm" (ngSubmit)="mstep1form.form.valid &&gotostep2m()">
+                                <ion-grid>
+                                 <!--<ion-row>
+                                   <ion-col size="12">
+                                     Country
+                                   </ion-col>
+                                   <ion-col size="12">
+                                     <ion-item [ngClass]="{ 'is-invalid': step1form.submitted && country.invalid }">
+                                       <ion-select class="select-st" #country ="ngModel" placeholder="Select Country"  (ionChange)="chLocation($event)" name="country" [(ngModel)]="step1.country" interface="popover" [interfaceOptions]="customCountryOptions" required>
+                                         <ion-select-option value="au" selected>Australia</ion-select-option>
+                                         <ion-select-option value="nz">New Zealand</ion-select-option>
+                                         <ion-select-option value="uk">Europe</ion-select-option>
+                                         <ion-select-option value="ca">North America</ion-select-option>
+                                         <ion-select-option value="jp">Japan</ion-select-option>
+                                         <ion-select-option value="af">Africa</ion-select-option>
+                                       </ion-select>
+                                     </ion-item>
+                                     <div *ngIf="step1form.submitted && country.invalid" class="invalid-feedback">
+                                       <div *ngIf="country.errors.required" class="form-invalid">Country is required</div>
+                                     </div>
+                                   </ion-col>
+                                 </ion-row>
+                                 <div *ngIf="alldata==1">-->
+                                 <ion-row>
+                                   <ion-col size="12">
+                                     Pickup Location
+                                   </ion-col>
+                                   <ion-col size="12">
+                                     <ion-item [ngClass]="{ 'is-invalid': mstep1form.submitted && pickuplocm.invalid }">
+                                       <ion-select class="select-st" placeholder="Select Pickup Location" name="pickuplocation" interface="action-sheet" [interfaceOptions]="PickupOptions" [(ngModel)]="step1m.pickuploc" #pickuplocm ="ngModel"  [compareWith]="compareWith" value="{{step1.pickuploc}}"  required>
+                                           <ion-select-option *ngFor="let field of booklocation" value="{{field.id}}">{{field.location}}</ion-select-option>
+                                       </ion-select>
+                                     </ion-item>
+                                     <div *ngIf="mstep1form.submitted && pickuplocm.invalid" class="invalid-feedback">
+                                       <div *ngIf="pickuplocm.errors.required" class="form-invalid">Pickup location is required</div>
+                                     </div>
+                                   </ion-col>
+                                   <ion-col size="6">
+                                     Pickup Date
+                                   </ion-col>
+                                   <ion-col size="6">
+                                     Pickup Time
+                                   </ion-col>
+                                   <ion-col size="6">
+                                     <ion-item [ngClass]="{ 'is-invalid': mstep1form.submitted && pickupdatem.invalid }">
+                                       <ion-datetime display-format="DD/MM/YYYY" picker-format="DD-MM-YYYY" name="pickupdate" [(ngModel)]="step1m.pickupdate"  placeholder="Select date" #pickupdatem="ngModel" [min]='minDate' [max]='maxDate' mode='ios' (ionChange)="setdropdate()" required></ion-datetime>
+                                     </ion-item>
+                                     <div *ngIf="mstep1form.submitted && pickupdatem.invalid" class="invalid-feedback">
+                                       <div *ngIf="pickupdatem.errors.required" class="form-invalid">Date is required</div>
+                                     </div>
+                                   </ion-col>
+                                   <ion-col size="6">
+                                     <ion-item [ngClass]="{ 'is-invalid': mstep1form.submitted && pickuptimem.invalid }">
+                                       <ion-datetime display-format="HH:mm" minuteValues="0,30" hourValues="9,10,11,12,13,14,15,16,17" picker-format="HH_mm" name="pickuptime" placeholder="Select time" [(ngModel)]="step1m.pickuptime" #pickuptimem="ngModel"  mode='ios' required></ion-datetime>
+                                     </ion-item>
+                                     <div *ngIf="mstep1form.submitted && pickuptimem.invalid" class="invalid-feedback">
+                                       <div *ngIf="pickuptimem.errors.required" class="form-invalid">Time is required</div>
+                                     </div>
+                                   </ion-col>
+                               
+                                   <ion-col size="12">
+                                     Dropoff Location
+                                   </ion-col>
+                                   <ion-col size="12">
+                                     <ion-item [ngClass]="{ 'is-invalid': mstep1form.submitted && dropofflocm.invalid }">
+                                       <ion-select class="select-st" placeholder="Select Dropoff Location" name="droplocation" interface="action-sheet" [interfaceOptions]="DropoffOptions" [(ngModel)]="step1m.dropoffloc" #dropofflocm="ngModel" [compareWith]="compareWith" value="{{step1.pickuploc}}" required>
+                                         <ion-select-option *ngFor="let field of booklocation" value="{{field.id}}" >{{field.location}}</ion-select-option>
+                                       </ion-select>
+                                     </ion-item>
+                                     <div *ngIf="mstep1form.submitted && dropofflocm.invalid" class="invalid-feedback">
+                                       <div *ngIf="dropofflocm.errors.required" class="form-invalid">Dropoff location is required</div>
+                                     </div>
+                                   </ion-col>
+                                   <ion-col size="6">
+                                     Return Date
+                                   </ion-col>
+                                   <ion-col size="6">
+                                     Return Time
+                                   </ion-col>
+                                   <ion-col size="6">
+                                     <ion-item [ngClass]="{ 'is-invalid': (mstep1form.submitted && dropoffdatem.invalid) || (mstep1form.submitted && step1m.dropoffdate<=step1m.pickupdate) }">
+                                       <ion-datetime  display-format="DD/MM/YYYY" picker-format="DD-MM-YYYY" name="returndate" placeholder="Select date" [(ngModel)]="step1m.dropoffdate" #dropoffdatem="ngModel" [min]='minDate' [max]='maxDate' mode='ios' required></ion-datetime>
+                                     </ion-item>
+                                     <div *ngIf="mstep1form.submitted && dropoffdatem.invalid" class="invalid-feedback">
+                                       <div *ngIf="dropoffdatem.errors.required" class="form-invalid">Date is required</div>
+                                     </div>
+                                     <div *ngIf="mstep1form.submitted && step1m.pickupdate >= step1m.dropoffdate" class="invalid-feedback">
+                                        <div  class="form-invalid">Return date must be after Pickup date</div>
+                                    </div>
+                                   </ion-col>
+                                   <ion-col size="6">
+                                     <ion-item [ngClass]="{ 'is-invalid': mstep1form.submitted && dropofftimem.invalid }">
+                                       <ion-datetime minuteValues="0,30" hourValues="9,10,11,12,13,14,15,16,17" display-format="HH:mm" picker-format="HH:mm" name="returntime" placeholder="Select time" [(ngModel)]="step1m.dropofftime" #dropofftimem="ngModel"  mode='ios' required></ion-datetime>
+                                     </ion-item>
+                                     <div *ngIf="mstep1form.submitted && dropofftimem.invalid" class="invalid-feedback">
+                                       <div *ngIf="dropofftimem.errors.required" class="form-invalid">Time is required</div>
+                                     </div>
+                                   </ion-col>
+                                 </ion-row>
+                                 <ion-row *ngIf="agexx==1" >
+                                   <ion-col size="6">
+                                     Driver Age
+                                   </ion-col>
+                                   <ion-col size="6">
+                                     Voucher
+                                   </ion-col>
+                                   <ion-col size="6">
+                                     <ion-item [ngClass]="{ 'is-invalid': mstep1form.submitted && agem.invalid }">
+                                       <ion-select class="select-st" placeholder="Select Age" name="droplocation" interface="action-sheet" [interfaceOptions]="AgeOptions" [(ngModel)]="step1m.age" #agem="ngModel" required>
+                                         <ion-select-option *ngFor="let field of Age" value="{{field.id}}" >{{field.driverage}}</ion-select-option>
+                                       </ion-select>
+                                     </ion-item>
+                                     <div *ngIf="mstep1form.submitted && agem.invalid" class="invalid-feedback">
+                                       <div *ngIf="agem.errors.required" class="form-invalid">Driver Age is required</div>
+                                     </div>
+                                   </ion-col>
+                                   
+                                   
+                                   <ion-col size="6">
+                                     <ion-item>
+                                       <ion-input name="voucher" placeholder="Promo code if any..." [(ngModel)]="step1m.voucher"></ion-input>
+                                     </ion-item>
+                                   </ion-col>
+                                   </ion-row>
+                                 <ion-row *ngIf="agexx==0" >
+                                   <ion-col size="12">
+                                     Voucher
+                                   </ion-col>
+                                   <ion-col size="12">
+                                     <ion-item>
+                                       <ion-input name="voucher" placeholder="Promo code if any..." [(ngModel)]="step1.voucher"></ion-input>
+                                     </ion-item>
+                                   </ion-col>
+                                 </ion-row>
+                                 <ion-row>
+                                   <ion-col size="12">
+                                     <button ion-button type="submit" class="btn-black" block >search</button>
+                                   </ion-col>
+                                 </ion-row>
+                               <!--</div>-->
+                               <div *ngIf="alldata==0">
+                                   <ion-row>
+                                    <ion-col size="12" *ngFor="let i of [1,2,3,4,5,6]">
+                                    
+                                    <ion-skeleton-text animated style="width: 25%"></ion-skeleton-text>
+                                    <ion-skeleton-text animated style="width: 100%;height: 40px;"></ion-skeleton-text>
+                                    </ion-col>   
+                                    </ion-row>
+                                </div>
+                               </ion-grid>
+                               </form>
+                          </div>
+                          
+                            <div class="landscape-card">
+                              <div class="container">
+                                  <div class="title-area">
+                                    <div class="title"><div><h2 class="title-text">Campervan Hire and Cheap Car Hire</h2></div></div>
+                                      <div class="subtitle">
+                                          Thinking of hiring a campervan, 4WD or car? Come on down baby, Wicked Campers are the sexiest cowboys on the farm!
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="false" mode="md" [options]="slideOptskom">
+                                      <ion-slide *ngFor="let mobil of mobil;">
+                                          <div style="outline: none;" data-index="0" class="slick-slide slick-active slick-current" tabindex="-1" aria-hidden="false">
+                                              <div>
+                                                  <div class="list" tabindex="-1" style="width: 100%; display: inline-block;">
+                                                     
+                                                      <div class="card">
+                                                          <a class="placeholder-container" href="our-vehicles/{{mobil.slug_category}}/{{mobil.slug}}">
+                                                              <div class="image-box " style="background-image:url({{ mobil.thumbs }})"></div>
+                                                              <div class="detail">
+                                                                  <div class="title">
+                                                                      {{ mobil.name }}
+                                                                  </div>
+                                                                  <div class="subtitle">
+                                                                      {{ mobil.intro }}
+                                                                  </div>
+                                                              </div>
+                                                          </a>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </ion-slide>
+                                  </ion-slides>
+                              </div>
+                              <!--<div>
+                                  <ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="false" mode="md" [options]="slideOpts">
+                                      <ion-slide>
+                                          <div style="outline: none;" data-index="0" class="slick-slide slick-active slick-current" tabindex="-1" aria-hidden="false">
+                                              <div>
+                                                  <div class="list" tabindex="-1" style="width: 100%; display: inline-block;">
+                                                      <a class="placeholder-container" href="/specials">
+                                                          <div class="image-box " style="background-image:url('../../assets/images/400618e1.svg'); brightness(50%);"></div>
+                                                          <div class="detail">
+                                                              <div class="title">
+                                                                  <div class="LinesEllipsis" style="
+                                                                  margin-top: -80px;
+                                                                  position: absolute;
+                                                                  color: #fff;
+                                                                  margin-left: 50px;
+                                                                  font-size: 21px;
+                                                                  ">Wicked Specials<wbr /></div>
+                                                              </div>
+                                                             
+                                                              
+                                                          </div>
+                                                      </a>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </ion-slide>
+                                      <ion-slide>
+                                          <div style="outline: none;" data-index="0" class="slick-slide slick-active slick-current" tabindex="-1" aria-hidden="false">
+                                              <div>
+                                                  <div class="list" tabindex="-1" style="width: 100%; display: inline-block;">
+                                                      <a class="placeholder-container" href="/relocations">
+                                                          <div class="image-box " style="background-image:url('../../assets/images/62e5c64e.svg');filter: brightness(50%);"></div>
+                                                          <div class="detail">
+                                                              <div class="title">
+                                                                  <div class="LinesEllipsis" style="
+                                                                  margin-top: -80px;
+                                                                  position: absolute;
+                                                                  color: #fff;
+                                                                  margin-left: 35px;
+                                                                  font-size: 21px;
+                                                                  ">Relocation Specials<wbr /></div>
+                                                              </div>
+                                                             
+                                                              
+                                                          </div>
+                                                      </a>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </ion-slide>
+                                      <ion-slide>
+                                          <div style="outline: none;" data-index="0" class="slick-slide slick-active slick-current" tabindex="-1" aria-hidden="false">
+                                              <div>
+                                                  <div class="list" tabindex="-1" style="width: 100%; display: inline-block;">
+                                                      <a class="placeholder-container" href="/p/buying-from-wicked">
+                                                          <div class="image-box " style="background-image:url('../../assets/images/2a6ba443.svg');filter: brightness(50%);"></div>
+                                                          <div class="detail">
+                                                              <div class="title">
+                                                                  <div class="LinesEllipsis" style="
+                                                                  margin-top: -80px;
+                                                                  position: absolute;
+                                                                  color: #fff;
+                                                                  margin-left: 40px;
+                                                                  font-size: 21px;
+                                                                  ">Buy From Wicked<wbr /></div>
+                                                              </div>
+                                                            
+                                                              
+                                                          </div>
+                                                      </a>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </ion-slide>
+                                  </ion-slides>
+                              </div>-->
+                        </div>
+                          <div class="potrait">
+                                <div class="container">
+                                    <div class="title-area">
+                                      <div class="title"><div><h2 class="title-text">14 Rental Locations across Australia</h2></div></div>
+                                        <div class="subtitle">
+                                            We have 14 Rental Locations in Australia, and 46 Hire Locations around the World!
+                                        </div>
+                                    </div>
+                                </div>
+  
+                                <div>
+                                    <ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="false" mode="md" [options]="slideOptsloc">
+                                        <ion-slide *ngFor="let loca of location;">
+                                            <div style="outline: none;" data-index="0" class="slick-slide slick-active slick-current" tabindex="-1" aria-hidden="false">
+                                                <div>
+                                                    <div class="list" tabindex="-1" style="width: 100%; display: inline-block;">
+                                                        <a class="placeholder-container" href="locations/{{loca.category_slug}}/{{ loca.slug }}">
+                                                            <div
+                                                                class="image-box"
+                                                                style="background-image: url({{ loca.thumbnail }})"></div>
+                                                            <div class="detail">
+                                                                <div class="title">
+                                                                   {{ loca.title }}
+                                                                </div>
+                                                                <div class="subtitle">{{ loca.intro }}</div>
+                                                                
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ion-slide>
+                                    </ion-slides>
+                                </div>
+                          </div>
+                          <div class="landscape">
+                              <div class="container">
+                                  <div class="title-area">
+                                      <div class="title"><div><h2 class="title-text">Wicked Specials</h2></div></div>
+                                    
+                                      <div class="subtitle">
+                                         Want to Hire a Wicked Camper? That is an excellent start to your roadtrip! But where to go?
+                                      </div>
+                                  </div>
+                              </div>
+  
+                              <div>
+                                  <ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="false" mode="md" [options]="slideOptskom">
+                                      <ion-slide *ngFor="let s of special  | slice:0:10" >
+                                          <div style="outline: none;" data-index="0" class="slick-slide slick-active slick-current" tabindex="-1" aria-hidden="false">
+                                              <div>
+                                                  <div class="list" tabindex="-1" style="width: 100%; display: inline-block;">
+                                                      <a class="placeholder-container" href="specials/{{ s.slug }}">
+                                                          <div
+                                                              class="image-box"
+                                                              style="background-image: url({{ s.thumbs }})"></div>
+                                                          <div class="detail">
+                                                              <div class="title">
+                                                                  {{ s.title }}
+                                                              </div>
+                                                              <div class="subtitle">{{ s.intro }}</div>
+                                                              
+                                                          </div>
+                                                      </a>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </ion-slide>
+                                  </ion-slides>
+                              </div>
+                        </div>
+                        <!--<div class="landscape">
+                          <div class="container">
+                              <div class="title-area">
+                                  <div class="title"><div class="LinesEllipsis"><div><h2 class="title-text">From Wicked Campers Blog</h2></div></div></div>
+                                
+                                  <div class="subtitle">
+                                      <div class="LinesEllipsis">Uncover your destination even before you go.<wbr /></div>
+                                  </div>
+                              </div>
+                          </div>
+  
+                          <div>
+                              <ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="false" mode="md" [options]="slideOpts">
+                                  <ion-slide *ngFor="let bg of blog  | slice:0:6" >
+                                      <div style="outline: none;" data-index="0" class="slick-slide slick-active slick-current" tabindex="-1" aria-hidden="false">
+                                          <div>
+                                              <div class="list" tabindex="-1" style="width:100%;display:inline-block">
+                                                  <div class="card">
+                                                      <a class="placeholder-container" href="blog/{{ bg.slug }}">
+                                                          <div
+                                                              class="image-box"
+                                                              style="background-image: url({{ bg.thumbs }})"></div>
+                                                          <div class="detail">
+                                                              <div class="title">
+                                                                  <div class="LinesEllipsis">{{ bg.title }}<wbr /></div>
+                                                              </div>
+                                                              <div class="subtitle"><div class="LinesEllipsis">{{ bg.intro }}<wbr></div></div>
+                                                              
+                                                          </div>
+                                                      </a>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </ion-slide>
+                              </ion-slides>
+                          </div>
+                          </div>-->
+                            <div class="potrait">
+                             <div class="section nha-section">
+                                <h4 class="section-title h4"><div class="text-going-anywhere"><span translate="hm_customer_count" class="colorRed">175.000+</span><span class="hm_happy_customer">happy customers</span></div></h4>
+                                <hr role="tournament6" />
+                                <div class="nha-card-list j-box">
+                                    <div class="col-md-12 col-xs-6">
+                                        <div class="nha-card">
+                                            <ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="false" mode="md" [options]="slideOptskom">
+                                                <ion-slide *ngFor="let rev of komen;" class="clientComment product-box text-center">
+                                                    <img src="{{ rev.thumbnail }}" class="nha-card-image komen" alt="wicked review" />
+                                                    <div class="product-detail text-center">
+                                                        <div>
+                                                            <p>
+                                                                <span class="fontSize14">
+                                                                    <i class="fas fa-quote-left"></i> {{ rev.review }} <i class="fas fa-quote-right"></i>
+                                                                </span>
+                                                            </p>
+                                                            <div class="colorBlack" ng-bind=" ::testimonial.name">{{ rev.name }}</div>
+                                                        </div>
+                                                    </div>
+                                                </ion-slide>
+                                            </ion-slides>
+              
+                                            <div class="swiper-button-next" (click)="swipeNext()"><i class="fas fa-chevron-circle-right"></i></div>
+                                            <div class="swiper-button-prev" (click)="swipePrev()"><i class="fas fa-chevron-circle-left"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div [innerHTML]="footermobile"></div>
+        </div>
+    
+  </ion-content>
+  

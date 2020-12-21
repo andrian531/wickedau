@@ -1,0 +1,98 @@
+<ion-content class="hidden-xs">
+  <section id="homeBanner" class="section section--borderless">
+    <div class="wck-homepage">
+      
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/{{details?.slug}}">{{details?.title}}</a></li>
+    </ul>
+   
+  <div *ngIf="details">
+<div class="vehicle-details__header">
+<div class="col-md-12 nopadding">
+  
+    <div class="vehicle-details__header-content white">
+     
+ 
+      
+      <div id="vehicle-overview">
+        <div class="headingbanner">
+         <img src="{{ details.custom_data }}">
+          </div>
+          <div style="font-size: 1rem">
+            <h1>{{details?.title}}</h1>
+            </div>
+      
+        <div id="divVehicleOverview"><p [innerHTML]="details.intro"></p></div>
+      </div>
+      
+      <div id="vehicle-overview">
+        
+        <div id="divVehicleOverview"><p data-pm-slice="1 1 [&quot;table&quot;,null,&quot;tableRow&quot;,null,&quot;tableCell&quot;,null]"></p>
+          <p [innerHTML]="details.content"></p>
+        </div>
+      </div>
+     
+
+    </div>
+   
+  </div>
+  </div>
+  </div>
+ 
+</div>
+</div>
+</section>
+<div [innerHTML]="footer"></div>
+</ion-content>
+
+<ion-header no-border class="hidden-lg hidden-md">
+  <ion-toolbar>
+       <ion-buttons slot="start">
+           <ion-back-button color="light" defaultHref="/"></ion-back-button>
+       </ion-buttons>
+       <ion-title class="ion-text-capitalize">{{details?.title}}</ion-title>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content class="hidden-lg hidden-md">
+
+  <div *ngIf="details"> 
+    <div class="vehicle-details__header">
+      <div class="col-md-12 nopadding">
+        
+          <div class="vehicle-details__header-content white">
+           
+       
+            
+            <div id="vehicle-overview">
+              <div class="headingbanner">
+               <img src="{{ details.custom_data }}">
+                </div>
+                <div style="font-size: 1rem">
+                  <h1>{{details?.title}}</h1>
+                  </div>
+            
+              <div id="divVehicleOverview"><p [innerHTML]="details.intro"></p></div>
+            </div>
+            
+            <div id="vehicle-overview">
+              
+              <div id="divVehicleOverview"><p data-pm-slice="1 1 [&quot;table&quot;,null,&quot;tableRow&quot;,null,&quot;tableCell&quot;,null]"></p>
+                <p [innerHTML]="details.content"></p>
+              </div>
+            </div>
+           
+      
+          </div>
+         
+        </div>
+      
+        
+        </div>
+  </div>
+  
+
+ </ion-content> 
+
