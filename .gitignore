@@ -49,7 +49,7 @@ node_modules/
 www/
 dist/
 __MACOSX/
-
+src/app/services/pokemon.service.ts
 # Optional npm cache directory
 .npm
 
