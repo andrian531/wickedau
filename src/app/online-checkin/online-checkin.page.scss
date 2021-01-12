@@ -55,8 +55,8 @@
 }
 .card.sidebar-card .check-order-wrapper button {
     border-radius: 24px;
-    background-color: #fedd00;
-    color: #0064d2;
+    background-color: #e31020;
+    color: #ffffff;
     width: 100%;
     padding: 11px 8px;
     font-size: 16px;
@@ -222,4 +222,47 @@ input {
         margin: 0 auto;
         background: #ffffff;
     }
+}
+
+//bookingsmob
+ion-item {
+    --border-color: #4e333354 ;
+    --border-width: 1px;
+  }
+  ion-grid{
+    background:#f5f6fa;
+  }
+  .height30{
+    height: 30% !important;
+  }
+  .btn-black{
+    background: black;
+    color:white;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 120%;
+    border-radius: 5px;
+  }
+  .is-invalid{
+    --border-color: red !important;
+  }
+  .form-invalid{
+    color:red;
+    margin-top:5px;
+  }
+  .select-st{
+    width: 100%;
+    max-width: 100%;
+  }
+  .footer-book{
+    --background:white;
+    color:black;
+}
+.btn-book{
+    background-color: #bf0000;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
 }

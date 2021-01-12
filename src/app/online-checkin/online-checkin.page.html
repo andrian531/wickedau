@@ -17,25 +17,30 @@
             <div class="col-xs-3">
                 <div class="card card-no-shadow sidebar-card">
                     <div class="check-order-wrapper">
-                        <form autocomplete="off"><label class="check-order-title">Check Order</label>
+                        <form autocomplete="off" #checkinform="ngForm" (ngSubmit)="checkinform.form.valid && findbooking()">
+                            <label class="check-order-title">Find Your Booking</label>
                             <div class="input-wrapper">
-                                <div class="input v3 hasLabel"><input type="text" name="CheckOrderEmail" value="" placeholder="Email Address"></div>
+                                <div class="input v3 hasLabel">
+                                    <input type="email" name="CheckOrderEmail" placeholder="Email Address" [ngClass]="{ 'ds-invalid': checkinform.submitted && cfemail.invalid }" name="pickupdate" [(ngModel)]="cf.email"  #cfemail="ngModel" required>
+                                </div>
                             </div>
                             <div class="input-wrapper">
-                                <div class="input v3 hasLabel"><input type="number" name="CheckOrderOrderId" value="" placeholder="Order ID" min="1" max="6"></div>
+                                <div class="input v3 hasLabel">
+                                    <input type="number" name="CheckOrderOrderId" placeholder="Booking Number" min="1" max="6" [ngClass]="{ 'ds-invalid': checkinform.submitted && cf.bookno=='' }" name="pickupdate" [(ngModel)]="cf.bookno"  #cfbookno="ngModel" required>
+                                </div>
                             </div>
-                            <button class="check-order-button">Check My Order</button>
+                            <button class="check-order-button red-gradient" type="submit" [disabled]="disablebtnds">Find Booking</button>
                         </form>
                     </div>
-                
+                    <div class="col-xs-12" *ngIf="errormsg!=''">{{errormsg}}</div>
                 </div>
             </div>
             <div class="col-xs-9">
                 <div class="desktop-layout">
                     <div class="empty-state-background">
-                        <div class="empty-state-wrapper"><img src="../../assets/images/fd8652d2.svg" alt="empty-state-img" class="state-img">
-                            <p class="title">The easiest way to check your order</p>
-                            <p class="caption noData">Input your email address and Order ID in the check order form.</p>
+                        <div class="empty-state-wrapper"><img src="../../assets/images/checkin.svg" alt="empty-state-img" class="state-img">
+                            <p class="title">The easiest way to check & update your booking</p>
+                            <p class="caption noData">Input your email address and booking number in the check-in form.</p>
                         </div>
                     </div>
                 </div>
@@ -47,53 +52,90 @@
 </section>
   <div [innerHTML]="footer"></div>
 </ion-content>
+
 <ion-header no-border class="hidden-lg hidden-md">
     <ion-toolbar>
          <ion-buttons slot="start">
-         <ion-back-button color="light" defaultHref="/"></ion-back-button>
+            <ion-back-button color="light" defaultHref="/"></ion-back-button>
          </ion-buttons>
-         <ion-title class="ion-text-capitalize">My Order</ion-title>
+         <ion-title class="ion-text-capitalize text-center">Check-in</ion-title>
      </ion-toolbar>
  </ion-header>
 
-      <ion-content class="hidden-lg hidden-md">
-      <!--<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-          <ion-refresher-content
-            pullingIcon="arrow-dropdown"
-            pullingText="Pull to refresh"
-            refreshingSpinner="circles"
-            refreshingText="Refreshing...">
-          </ion-refresher-content>
-      </ion-refresher>-->
+    <ion-content class="hidden-lg hidden-md" *ngIf="showresult==false">
+
       <div class="tix-whats-menu">
       <img src="../../assets/img/newcekin.jpg" class="image-top">
       </div>
       <div>
-       <div class="sekeleton">  
-        <div class="ion-padding custom-skeleton">
-          <ion-col>
-           <ion-skeleton-text animated style="width: 25%"></ion-skeleton-text>
-           <ion-skeleton-text animated style="width: 100%;height: 40px;"></ion-skeleton-text>
-          </ion-col> 
-      
-          <ion-col>
-           <ion-skeleton-text animated style="width: 25%"></ion-skeleton-text>
-           <ion-skeleton-text animated style="width: 100%;height: 40px;"></ion-skeleton-text>
-          </ion-col>
-      
-          <ion-col>
-           <ion-skeleton-text animated style="width: 25%"></ion-skeleton-text>
-           <ion-skeleton-text animated style="width: 100%;height: 40px;"></ion-skeleton-text>
-          </ion-col> 
-      
-           <ion-col>
-           <ion-skeleton-text animated style="width: 100%;height: 40px;"></ion-skeleton-text>
-          </ion-col> 
-        </div>
+       <form  #mcheckinform="ngForm" (ngSubmit)="mcheckinform.form.valid && mfindbooking()">
+        <ion-grid>
+            <ion-row >
+                <ion-col size="12">
+                    Email
+                </ion-col>
+                <ion-col size="12">
+                    <ion-item [ngClass]="{ 'is-invalid': mcheckinform.submitted && mcfemail.invalid }">
+                        <ion-input name="email" placeholder="Email Address"  name="pickupdate" [(ngModel)]="mcf.email"  #mcfemail="ngModel"  required></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row >
+                <ion-col size="12">
+                  Booking Number
+                </ion-col>
+                <ion-col size="12">
+                  <ion-item [ngClass]="{ 'is-invalid': mcheckinform.submitted && mcf.bookno=='' }">
+                    <ion-input type="number" name="bookno" placeholder="Booking Number"  name="pickupdate" [(ngModel)]="mcf.bookno"  #mcfbookno="ngModel" required></ion-input>
+                  </ion-item>
+                </ion-col>
+            </ion-row>
+            
+            <ion-row>
+                <ion-col size="12">
+                    <button ion-button type="submit" class="btn-black" block >Find Booking</button>
+                </ion-col>
+                <ion-col size="12"*ngIf="errormsg!=''">{{errormsg}}</ion-col>
+            </ion-row>
+        </ion-grid>
+       </form>
        </div>
-       <iframe src="https://www.wickedcampers.com/app-book/au/checkinlogin" id="myIframe" border="0" scrolling="no" onerror="this.setAttribute('srcdoc','<p>You need to be online to view this content.</p>');" onload="if(navigator.onLine===false) eval(this.getAttribute('onerror'));">iframes not supported in your browser.</iframe>
-       </div>
-      </ion-content>
+    </ion-content>
+
+    <ion-content class="hidden-lg hidden-md" *ngIf="showresult">
+        <div *ngIf="dataloaded==false">
+            <div class="country-wrap">
+              
+              <div class="sun">Just a moment...<br><br>Getting Your booking details</div>
+              <div class="holder">
+              <div class="car"></div>
+              <div class="wheels"></div>
+              <div class="wind-holder">
+                <div class="wind"></div>
+              </div>
+              <div class="tree tree1"></div>
+              <div class="tree tree2"></div>
+              <div class="tree tree3"></div>
+              <div class="hill hill1"></div>
+              <div class="hill hill2"></div>
+            </div>
+            </div>
+          </div>
+    </ion-content>
+    <ion-footer class="hidden-lg hidden-md hidden-sm" *ngIf="showresult">
+        <ion-toolbar class="footer-book">
+          <ion-row>
+            <ion-col size="6" (click)="openinfo()" style="padding-left:10px;">
+              <b>{{bookinginfo.currencyname}} {{bookinginfo.totalcost | currency}}</b><br>
+              <small><b>(<span *ngIf="taxinclusive">inc</span> GST {{bookinginfo.currencyname}} {{bookinginfo.gst | currency}})</b></small>
+            </ion-col>
+            <ion-col size="6" *ngIf="bookinginfo.balancedue>0">
+                <button class="btn btn-book col-xs-12"  > Pay Balance</button>
+            </ion-col>
+            
+          </ion-row>
+        </ion-toolbar>
+      </ion-footer>
       
 
 

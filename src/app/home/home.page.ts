@@ -90,6 +90,10 @@ export class HomePage {
 
   public mindateDS= moment(this.dayx.setHours(10,0,0)).format();
   public maxdateDS= moment(this.dayx.setHours(16,30,0)).format();
+
+  
+
+
   @ViewChild('mySliderkomen')  slides: IonSlides;
 
   swipeNext(){
@@ -170,6 +174,10 @@ export class HomePage {
     /*(<any>window).dataLayer.push({
       event: 'virtualPageview'
     });*/
+    this.step1.pickupdate=moment().add(1, 'd').format();
+    this.step1.dropoffdate=moment().add(8, 'd').format();
+    this.step1.pickuptime=this.mindateDS;
+    this.step1.dropofftime=this.mindateDS;
   }
  
   loadPokemon(loadMore = false, event?) {

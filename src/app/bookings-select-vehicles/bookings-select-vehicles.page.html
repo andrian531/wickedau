@@ -132,10 +132,8 @@
 
 
 <ion-content class="hidden-lg hidden-md hidden-sm" *ngIf="vehdiv">
-    <div *ngIf="vehicle.length == 0">
+    <div *ngIf="dataloaded==0">
       <div class="country-wrap">
-        <!--<div class="mountain-1"></div>
-        <div class="mountain-2"></div>-->
         
         <div class="sun">Just a moment...<br><br>Loading available campervan from wicked campers</div>
         <div class="holder">
@@ -150,6 +148,12 @@
         <div class="hill hill1"></div>
         <div class="hill hill2"></div>
       </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="dataloaded==1 && vehicle.length==0">
+      <div class="col-xs-12 text-center" style="padding-top: 150px;">
+        {{errormsg}}<br>
+        no vehicles available please change your filter
       </div>
     </div>
     <ion-grid class="wadah" *ngFor="let field of vehicle">

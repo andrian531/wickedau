@@ -20,6 +20,7 @@ import {TransferHttpCacheModule} from '@nguniversal/common';
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [AppComponent,PagenotfoundComponent],
@@ -41,6 +42,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     Geolocation,
     StatusBar,
     SplashScreen,
+    CookieService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     OneSignal
   ],
