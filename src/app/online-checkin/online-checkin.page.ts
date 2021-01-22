@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import{ GlobalConstants } from '../common/global-constants';
 import { PokemonService } from './../services/pokemon.service';
 import {  Title, Meta } from '@angular/platform-browser';
@@ -19,7 +19,7 @@ export class OnlineCheckinPage implements OnInit {
   errormsg="";
   showresult=false;
   dataloaded=false;
-
+  infodiv=false;
   //form variable
   cf={
     email:"",
@@ -33,6 +33,11 @@ export class OnlineCheckinPage implements OnInit {
   //view variable
   footer = GlobalConstants.sitefooter;
   bookinginfo:any=[];
+  rateinfo:any=[];
+  extrafee:any=[];
+  maindriver:any;
+  extradriver:any=[];
+  thumbnail="";
   reservationref="";
 
 
@@ -154,10 +159,25 @@ export class OnlineCheckinPage implements OnInit {
       this.dataloaded=true;
       if(ress['status']=='OK'){
         this.bookinginfo=ress['results']['bookinginfo'][0];
+        this.rateinfo=ress['results']['rateinfo'][0];
+        this.extrafee=ress['results']['extrafees'];
+        this.maindriver=ress['results']['customerinfo'][0];
+        this.extradriver=ress['results']['extradrivers'];
+        this.pokeService.bookingGetVehDetail(this.bookinginfo['vehiclecategoryid']).subscribe(dt=>{
+          this.thumbnail=dt['thumbnail'];
+        });
         //console.log(JSON.stringify(ress['results']['bookinginfo'][0]));
       }
       
     })
+  }
+  openinfo(){
+    this.showresult=false;
+    this.infodiv=true;
+  }
+  closeinfo(){
+    this.showresult=true;
+    this.infodiv=false;
   }
   /*
   public loadScript() {        

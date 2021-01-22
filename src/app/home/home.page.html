@@ -66,6 +66,7 @@
                       <source srcset="{{poke.webp}} 2x" type="image/webp" />-->
                       <img data-src="{{poke.thumbs}}" data-src="{{poke.thumbs}}" alt="Wicked Promo" class="lazy d-block img-fluid" loading="lazy"/>
                     </picture>
+                    <!--<div class="cbBgPatternx cbBgTintx"></div>-->
                 </div>
                
                
@@ -98,16 +99,18 @@
        
   
             <section class="banner-padding absolute-banner pb-0">
-              <div id="myDIV"></div>
+                <div id="myDIV" onclick='bookfocusremove()'></div>
                 <div class="header-data true">
                     <div class="header-v3">
                         <div class="container absolute-bg">
                             
                               <div>
                                 <a class="scroll-to-top rounded" style="display: inline;">
-                                    <div id="productWidget" class="product-widget widget-container focus" tabindex="0">
+                                   
+
+                                    <div id="productWidget" class="product-widget widget-container" tabindex="0">
                                       
-                                        <div class="product-list-container">
+                                        <div onclick="bookfocus()" class="product-list-container">
                                             <div class="product-list-title">
                                                 <span><i class="fas fa-badge-check"></i> Grab an Instant Quote & Booking Online</span>
                                             </div>
@@ -277,7 +280,7 @@
                                                     Return date must be after Pickup date
                                                 </div>
                                                 <div class="product-form-container product-form-button-group">
-                                                    <button class="product-form-search-btn red-gradient" type="submit"><i class="fas fa-search"></i> Get Quote</button>
+                                                    <button class="product-form-search-btn red-gradient" type="submit"><i class="fas fa-search"></i> Search</button>
                                                 </div>
                                                 </div>
                                             </div>

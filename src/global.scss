@@ -137,7 +137,9 @@ h5 {
   a, button, figure, img, select, span, time {
     display: inline-block;
   }
-  
+  .pull-right {
+    float: right!important;
+}
   .container {
     max-width: 1220px;
   }
@@ -254,7 +256,116 @@ h5 {
     padding-top: 11rem;
     
   }
- 
+  .hero-section {
+    margin-top: 20px;
+  }
+  .progress {
+    background-color: #26ab4e;
+}
+input.mat-input-element {
+  margin-top: 0;
+}
+.pad-top-booking {
+  background: #f5f6fa;
+}
+.page .gateway {
+  margin: 15px -15px 0px 0px;
+  border-radius: 4px;
+  overflow: visible;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+.flex {
+  -ms-box-orient: horizontal;
+  display: -moz-flex;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+.page .gateway li {
+  margin: 0;
+  width: 33%;
+  padding: 15px 10px;
+  list-style: none;
+  position: relative;
+  text-align: center;
+  line-height: 80%;
+}
+.page .gateway li.active {
+  background: #b20503;
+}
+.page .gateway li.active i, .page .gateway li.ok i {
+  display: block;
+  margin: 0 auto;
+  -webkit-filter: grayscale(0) brightness(100%);
+  filter: grayscale(0) brightness(100%);
+}
+i.fas.green {
+  color: #2bd300;
+  fill: #2bd300;
+}
+i.fas.s18 {
+  font-size: 18px;
+}
+.page .gateway li.active span {
+  color: #fff;
+}
+.page .gateway li span {
+  display: block;
+  font-weight: 700;
+}
+.page .gateway li span {
+  font-size: 14px;
+}
+.page .gateway li {
+  padding: 0 5px;
+  line-height: 40px;
+  height: 40px;
+}
+.fas {
+  line-height: 0;
+}
+.green {
+  color: #0E8438 !important;
+}
+i.far.s18 {
+  font-size: 18px;
+}
+.far {
+  line-height: 0;
+}
+.blue {
+  color: #053973 !important;
+}
+.far {
+  font-weight: 400;
+}
+.kotakan {
+  background: #fff;
+}
+.page .gateway li .icn {
+  display: none;
+  height: auto;
+}
+.page .gateway li.ok .icn {
+  margin: 0 10px 0 0;
+}
+.page .gateway li.ok .icn, .page .gateway li.ok span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.page .gateway li.ok .icn, .page .gateway li.ok span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.page .gateway li span {
+  display: block;
+  font-weight: 700;
+}
+.page .gateway li span {
+  font-size: 14px;
+}
   #loader { 
     border: 12px solid #f3f3f3; 
     border-radius: 50%; 
@@ -286,7 +397,7 @@ h5 {
     position: relative;
   }
   .absolute-bg {
-    margin-top: -80px;
+    margin-top: -111px;
   }
   .carousel-indicators {
     bottom: 50px!important;
@@ -312,6 +423,7 @@ h5 {
     border-radius: 10px;
     margin-right: 6px;
   }
+  
   .wck-homepage {
     background: #f7f7f7;
     margin-top: 0px;
@@ -334,7 +446,7 @@ h5 {
   }
   .product-widget .product-list-container {
     padding: 18px 40px;
-    height: 121px;
+    height: 111px;
     background-color: #ffffff;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -363,7 +475,7 @@ h5 {
     display: inline-block;
     padding: 7px 4px;
     width: 86px;
-    height: 86px;
+    height: 78px;
     border: 1px solid #c7d6f5;
     border-radius: 8px;
     outline: none;
@@ -404,8 +516,8 @@ h5 {
     background-color: #fff;
     max-width: 1180px;
     margin: 0 auto;
-    height: 120px;
-    padding: 15px 25px;
+    height: 96px;
+    padding: 0px 25px;
     border-top:1px solid #dee2ee;
     border-bottom:1px solid #dee2ee;
   }
@@ -433,11 +545,12 @@ h5 {
     height: 95px;
   }
   .form-style .part-component .title {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     height: 32px;
     position: relative;
     font-size: 14px;
     color: #8a93a7;
+    margin-top: 18px
   }
   .form-style .part-component>.content>.icon {
     margin-right: 5px;
@@ -449,16 +562,18 @@ h5 {
     width: 70%;
     position: relative;
     display: inline-block;
+    font-size: 16px;
   }
   .station-list-area {
     position: relative;
     height: 22px;
+    font-size: 16px;
   }
   .form-style .switcher {
     position: absolute;
     top: 30%;
 	  left: 188px;
-    margin-top: -30px;
+    margin-top: 0px;
     width: 32px;
     height: 32px;
     padding-top: 6px;
@@ -571,9 +686,9 @@ h5 {
     -webkit-appearance: none; 
     appearance: none;
       /* and then whatever styles you want*/
-    height: 30px; 
+    height: 34px; 
     width: 100px;
-    padding: 5px;
+    padding: 5px 5px;
     border:none;
     color:black;
   }
@@ -663,8 +778,8 @@ h5 {
     transform: scale(0.33);
     }
     .swiper-pagination-bullet {
-      width: 15px!important;
-      height: 15px!important;
+      width: 10px!important;
+      height: 10px!important;
       display: inline-block;
       border-radius: 100%;
       background: #000000;
@@ -1002,6 +1117,20 @@ h5 {
   .white, .picker__list-item, .picker__box .picker__header .picker__select--month.browser-default, .picker__box .picker__header .picker__select--year.browser-default {
     background-color: #fff !important;
   }
+  .cbBgPatternx {
+    background: url(https://www.wickedcampers.com/pattern-inspirational.png);
+}
+.cbBgTintx {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background-position: center;
+    overflow: hidden;
+    position: absolute;
+}
+  
   .red-gradient {
     background-image: linear-gradient(40deg, #ff1d1d, #b41919) !important;
   }
@@ -1602,7 +1731,7 @@ hr.line-dots {
 }
 .book-focus{
   position: fixed;
-  width: 81%;
+  width: 85%;
   top:200px;
 }
 .placeholder {

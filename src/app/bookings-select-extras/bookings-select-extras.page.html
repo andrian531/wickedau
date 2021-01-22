@@ -1,6 +1,6 @@
 <ion-content class="hidden-xs">
   <div class="landing-desktop hidden-xs pad-top-booking">
-    <div class="hero-section"></div>
+
     <div class="container" *ngIf="liabilitylist.length == 0">
       <div class="row" >
         <div class="colxs-12 center loader"></div>
@@ -8,8 +8,36 @@
       </div>
     </div>
     <div class="container" *ngIf="liabilitylist.length > 0">
-      <div class="col-xs-4">
-        <div class="detail-box " style="padding-bottom: 0px;">
+      <div class="container">
+      <div class="col-xs-12 page">
+        <ul class="gateway flex">
+        <li class="ok">
+        <a href="/bookings-select-vehicles" data-type="cacheCustomerDetails">
+        <div class="icn">
+        
+        <i class="fas fa-check-circle icon s18 green icon-check-b"></i>
+        </div>
+        <span>Select Vehicle</span>
+       </a>
+        </li>
+        <li class="active">
+        <div class="icn">
+        <i class="glyph-icon icon s18 blue icon-truck-c"></i>
+        </div>
+        <span>Select cover and optional extras</span>
+        </li>
+        <li class="ok">
+        <div class="icn">
+          <i class="far fa-credit-card icon s18 blue icon-check-b"></i>
+        </div>
+        <span>Details and payment</span>
+        </li>
+        </ul>
+        </div>
+      </div>
+      <div class="container">
+      <div class="col-xs-4 sidebar">
+        <div class="detail-box kotakan" style="padding-bottom: 0px;">
           <img class="animate__animated animate__backInLeft" src="{{thumbnail}}"/>
           <h2><b>Booking Details...</b></h2>
           <div class="row">
@@ -75,7 +103,7 @@
               </div>
             </div>
             <!--total-->
-            <div class="col-xs-12 pull-left" style="top:10px;margin:10px;border-bottom: 1px solid;padding: 5px;"></div>
+            <div class="col-xs-12 pull-left" style="top: 0;margin: 14px 0px;border-bottom: 1px solid;padding: 0px;"></div>
             <div class="col-xs-6">
               <b>Total :</b>
             </div>
@@ -104,11 +132,13 @@
             </div>
           </div>
         </div>
+        
       </div>
 
       <div class="col-xs-8" style="margin-bottom: 15px;" *ngIf="divfeeds">
+        <div class="row">
         <!--Insurance-->
-        <div class="col-xs-12 detail-box">
+        <div class="col-xs-12 detail-box kotakan">
           <h2 class="ds-h2-extras">Select Your Damage Cover</h2>
           <p class="ds-txt-extras">You must select one of the options below to continue with your booking. All options refer to van/damage only. Rooftop tents are not covered.</p>
           <div class="col-xs-12 ds-wadah-extras" *ngFor="let item of liabilitylist" [ngClass]="{ 'ds-selected': item.selected}" (click)="selectinsu(item.id)">
@@ -184,10 +214,10 @@
             <button class="btn col-xs-6 btn-big" onclick="bkds()">Book Now</button>
           </div>
         </div>
-        
+      </div>
       </div>
       <!--quote-->
-      <div class="col-xs-12 detail-box hidden" style="margin-bottom:15px;" id="quoteds" >
+      <div class="col-xs-12 detail-box hidden" style="margin-bottom: 15px;padding: 150px 0;" id="quoteds" >
         <h2 class="ds-h2-extras">Your Details</h2>
         <form #quoteform="ngForm" (ngSubmit)="quoteform.valid && quote()">
           <div class="col-xs-6 input-xtras">
@@ -232,7 +262,7 @@
         </form>
       </div>
       <!--book form-->
-      <div class="col-xs-12 detail-box hidden" style="padding:15px;margin-bottom:15px;" id="bookds">
+      <div class="col-xs-12 detail-box hidden" style="padding:133px 0;margin-bottom:15px;" id="bookds">
         
         <form #bookform="ngForm" (ngSubmit)="bookform.form.valid && bookdsfr()">
           <div class="col-xs-12">
@@ -353,6 +383,25 @@
               </select>
             </div>
 
+            <!--flight number form-->
+            <div *ngIf="showflight"> 
+            <div class="col-xs-6 input-xtras">
+              <label>Arrival:</label>
+            </div> 
+            <div class="col-xs-6 input-xtras">
+              <input class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && datafr.flightin=='')|| (validatords==false && datafr.flightin=='') }" name="area" [(ngModel)]="datafr.flightin" #bookarea="ngModel" placeholder="Flight No.Arrival">
+              
+            </div>
+            <div class="col-xs-6 input-xtras">
+              <label>Departure:</label>
+            </div> 
+            <div class="col-xs-6 input-xtras">
+              <input class="form form-control" [ngClass]="{ 'ds-invalid': (bookform.submitted && datafr.flightout=='')|| (validatords==false && datafr.flightout=='') }" name="area" [(ngModel)]="datafr.flightout" #bookarea="ngModel" placeholder="Flight No.Departure">
+              
+            </div>
+            </div>
+            <!--end of flight number form-->
+
           </div>
 
           <div class="col-xs-6">
@@ -405,6 +454,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
   <div class="hidden-xs" [innerHTML]="footer"></div>
 </ion-content>
@@ -609,6 +659,7 @@
         <h3>Your Adventure</h3>
         <p>Please tell us where you will be travelling in your vehicle</p>
       </div>
+      
       <div class="col-xs-12 input-form">
         <ion-item [ngClass]="{ 'is-invalid': (mobileform.submitted && mformarea.invalid) || (validatorm==false && datafr.areaofuseid==0)}">
           <ion-select class="select-st" interface="action-sheet"  type="text" name="notravel" [(ngModel)]="datafr.areaofuseid" #mformarea="ngModel" placeholder="Area of use..." [interfaceOptions]="Optsetting" required>
@@ -616,6 +667,16 @@
           </ion-select>
         </ion-item>
       </div>
+
+      <!--flight form-->
+      <div class="col-xs-12 input-form" *ngIf="showflight">
+        <input type="text" class="form form-control inputm"  [ngClass]="{ 'ds-invalid': (mobileform.submitted && mformflightin.invalid) || (validatorm==false && mformflightin.invalid) }" type="text" name="flightin" [(ngModel)]="datafr.flightin" #mformflightin="ngModel" placeholder="Arrival No.flight" required>
+      </div>
+      <div class="col-xs-12 input-form" *ngIf="showflight">
+        <input type="text" class="form form-control inputm"  [ngClass]="{ 'ds-invalid': (mobileform.submitted && mformflightout.invalid) || (validatorm==false && mformflightout.invalid) }" type="text" name="flightout" [(ngModel)]="datafr.flightout" #mformflightout="ngModel" placeholder="Departure No.flight" required>
+      </div>
+      <!--end of flight form-->
+
       <div class="col-xs-12 input-form">
         <textarea [ngClass]="{ 'is-invalid': (mobileform.submitted && mformareadetail.invalid) || (validatorm==false && mformareadetail.invalid)}" [(ngModel)]="remark.areadetail" #mformareadetail="ngModel" class="form form-control inputm" placeholder="Area of use details" rows="4" name="marreadetail" [required]="true"></textarea>
       </div>

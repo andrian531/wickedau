@@ -1,13 +1,47 @@
 <ion-content class="hidden-xs">
   <div class="landing-desktop hidden-xs  pad-top-booking">
-    <div class="hero-section"></div>
+ 
     <div class="container">
       <div class="row" *ngIf="dataload == false">
         <div class="colxs-12 center loader"></div>
         <div class="col-xs-12 text-center text-loader">Just a moment...</div>
       </div>
-      <div class="col-xs-4">
-        <div class="detail-box " style="padding-bottom: 20px;" *ngIf="dataload">
+      <div class="container">
+     
+      <div class="col-xs-12 page">
+        <ul class="gateway flex">
+        <li class="ok">
+        <div class="icn">
+        
+        <i class="fas fa-check-circle icon s18 green icon-check-b"></i>
+        </div>
+        <span>Select Vehicle</span>
+        </li>
+        <li class="ok">
+          <a href="/bookings-select-extras" data-type="cacheCustomerDetails">
+        <div class="icn">
+          
+          <i class="fas fa-check-circle icon s18 green icon-check-b"></i>
+        </div>
+        <span>Select cover and optional extras</span>
+        </a>
+        </li>
+        
+          <li class="active">
+        <div class="icn">
+          <i class="far fa-credit-card icon s18 blue icon-check-b"></i>
+        </div>
+        <span>Details and payment</span>
+        </li>
+        
+        </ul>
+        </div>
+      
+    </div>
+      <div class="container" style=" margin-bottom: 30px;">
+      <div class="col-xs-4 sidebar row-no-padding">
+        
+        <div class="detail-box kotakan" style="padding-bottom: 20px;" *ngIf="dataload">
           <img src="{{thumbnail}}"/>
           <h2><b>Booking Details...</b></h2>
           <div class="row">
@@ -49,7 +83,7 @@
           </div>
           <!--total-->
           <div class="row">
-            <div class="col-xs-12 pull-left" style="top:10px;margin:10px;border-bottom: 1px solid;padding: 5px;"></div>
+            <div class="col-xs-12 pull-left" style="top: 10px;margin: 10px 0;border-bottom: 1px solid;padding: 5px;"></div>
             <div class="col-xs-6">
               <b class="big-text">Total :</b>
             </div>
@@ -68,22 +102,47 @@
             </div>
           </div>
         </div>
+        <div class="kotakan box listed whyus">
+          <div class="sidebar_title">Why book with us?</div>
+          
+          <ul class="check_list bold">
+          <li>
+          <span><i class="fas fa-check-circle icon s18 green icon-check-b"></i></span>
+          <span>Find your perfect campervan and hit the road, book online or call our road trip planners and we'll get you on your way.</span>
+          </li>
+          <li>
+          <span><i class="fas fa-check-circle icon s18 green icon-check-b"></i></span>
+          <span>From cars and mini-campers to campervans and fully equipped 4WD campers, we've got something to suit any budget.</span>
+          </li>
+          <li>
+          <span><i class="fas fa-check-circle icon s18 green icon-check-b"></i></span>
+          <span>Price Beat Guarantee</span>
+          </li>
+          <li>
+          <span><i class="fas fa-check-circle icon s18 green icon-check-b"></i></span>
+          <span>Easily browse all our vehicles and locations, find your ideal ride and get an instant quote now.</span>
+          </li>
+          
+          </ul>
+          </div>
       </div>
 
       <div class="col-xs-8" *ngIf="dataload" >
-        <div class="container" >
-          <div class="col-xs-12 detail-box">
+        <div class="row" >
+          <div class="col-xs-12 detail-box kotakan">
             <div class="alert alert-warning" role="alert" *ngIf="warning!=''">
               {{warning}}
             </div>
             <div *ngIf="payexpresurl">
               <iframe class="iframe-pay" [src]="payexpresurl" style="width:100%;min-height: 600px;"></iframe>
             </div>
+            
           </div>
       
         </div>
+        
       </div>
-
+    </div>
     </div>
   </div>
 </ion-content>

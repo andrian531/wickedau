@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild} from '@angular/core';
 import { PokemonService } from './../services/pokemon.service';
 import { IonInput, IonList, IonSlides,AlertController ,NavParams} from '@ionic/angular';
 import { ActivatedRoute, Router , NavigationExtras } from '@angular/router';
 import swal from 'sweetalert2';
 import{ GlobalConstants } from '../common/global-constants';
+
 import {  Title, Meta } from '@angular/platform-browser';
+import * as moment from 'moment';
 @Component({
   selector: 'app-bookings-select-vehicles',
   templateUrl: './bookings-select-vehicles.page.html',
@@ -18,10 +20,12 @@ export class BookingsSelectVehiclesPage implements OnInit {
   vehdiv:boolean=true;
   vcat:any;
   carcount=0;
+  mySlider: any;
   catfilter:any=[];
   seatfilter:any=[];
   slidediv:boolean=false;
   imgslide:any;
+  //testdata
   step1s={
     country:'au',
     pickuploc:'8',
@@ -33,6 +37,7 @@ export class BookingsSelectVehiclesPage implements OnInit {
     voucher:'STONED',
     age:'1'
   };
+  //endtestdata
   test={
     level1:{
       0:'test',
@@ -53,15 +58,40 @@ export class BookingsSelectVehiclesPage implements OnInit {
   filterType: any = [];
   maxpay=0;
   dataloaded=0;
+
+  @ViewChild('mySliderx')  slides: IonSlides;
+
+  swipeNext(){
+    this.slides.slideNext();
+  }
+  swipePrev(){
+    this.slides.slidePrev(); 
+  }
+
+
+
+  //data form search
+  booksearchdata={};
+  locationlist={};
+  formdata:any;
+  public minDate = moment().add(0, 'd').format();
+  public maxDate = moment().add(5, 'y').format();
+  dayx = new Date();
+
+  public mindateDS= moment(this.dayx.setHours(10,0,0)).format();
+  public maxdateDS= moment(this.dayx.setHours(16,30,0)).format();
+  rdata=true;
   constructor(private route: ActivatedRoute,private pokeService: PokemonService,private router: Router, public alertController: AlertController,private titleService: Title,private metaService: Meta) { 
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.reqdata = this.router.getCurrentNavigation().extras.state.data;
         sessionStorage.setItem('step3session', JSON.stringify(this.reqdata));
         console.log("postdata");
+        console.log(JSON.stringify(this.reqdata));
       } else if(sessionStorage.getItem("step3session")){
         this.reqdata=JSON.parse(sessionStorage.getItem("step3session"));
         console.log("sessiondata");
+        console.log(JSON.stringify(this.reqdata));
       }
     });
   }
@@ -72,10 +102,22 @@ export class BookingsSelectVehiclesPage implements OnInit {
     this.metaService.updateTag({ name: 'description', content: 'Find cheap Campervan hire at over 46 locations in 10 countries ✅ Rent a campervan deals ✅ Book in 60 seconds ✅ Trusted by 1+ million customers.' });
     //test
     
+    this.getvehiclelist(this.reqdata);
+    this.getlocationlist();
+  }
+  refreshdata(){
+    this.rdata=false;
+    this.getvehiclelist(this.formdata);
+    this.reqdata=this.formdata;
     console.log(this.reqdata);
-    //end test
-    this.pokeService.getRCMVehicles(this.reqdata).subscribe(res => {
+    console.log(this.formdata);
+  }
+  getvehiclelist(params){
+    this.vehicle=[];
+    this.vehiclefilter=[];
+    this.pokeService.getRCMVehicles(params).subscribe(res => {
       this.dataloaded=1;
+      
       //console.log(res);
       if(res['status']!="OK"){
         this.error=1;
@@ -94,8 +136,11 @@ export class BookingsSelectVehiclesPage implements OnInit {
             }
             this.pokeService.bookingGetVehDetail(v['vehiclecategoryid']).subscribe(dt=>{
               vv['thumbnail']=dt['thumbnail'];
+              vv['slides']=dt['slides'];
               vv['spec']=dt['specification'];
               vv['desc']=dt['description'];
+              vv['slugcat']=dt['slugcat'];
+              vv['slugmobil']=dt['slugmobil'];
               vv['typeid']=dt['typeid'];
               vv['currency']=res['results']['locationfees'][0]['currencyname'];
             });
@@ -111,13 +156,28 @@ export class BookingsSelectVehiclesPage implements OnInit {
           });
           this.carcount=this.vehicle.length;
         }
+        //loadlocation
+        
+        for(let v of res['results']['locations']){
+          if(v['id']==this.reqdata['pickuploc']) this.booksearchdata['pickup']=v['location'];
+          if(v['id']==this.reqdata['dropoffloc']) this.booksearchdata['dropoff']=v['location'];
+        }
+        this.booksearchdata['pickupdate']=moment(this.reqdata.pickupdate).format("ddd DD MMM YYYY");
+        this.booksearchdata['dropoffdate']=moment(this.reqdata.dropoffdate).format("ddd DD MMM YYYY");
       }
       console.log(this.vehicle);
-      
+      console.log(this.locationlist);
       //console.log(this.vehicle.sort(this.dynamicSort("categoryfriendlydescription")))
+      this.formdata=params;
+      this.rdata=true;
     });
   }
-  
+  getlocationlist(){
+    this.pokeService.getRCMLocation(this.reqdata.country).subscribe(res => {
+      this.locationlist= res['results']['locations'];
+      
+    });
+  }
   openSlide(id){
     this.vehdiv=false;
     this.slidediv=true;
@@ -194,15 +254,35 @@ export class BookingsSelectVehiclesPage implements OnInit {
   //end of filter
   booknow(catid,id){
     //console.log(catid+'-'+id);
-    this.reqdata['catid']=catid;
-    this.reqdata['id']=id;
-    //console.log(JSON.stringify(this.reqdata));
+    //this.reqdata['catid']=catid;
+    //this.reqdata['id']=id;
+    console.log(JSON.stringify(this.reqdata));
     let navigationExtras: NavigationExtras = {
       state: {
-        data: this.reqdata
+        data: {
+          country:this.reqdata['country'],
+          pickuploc:this.reqdata['pickuploc'],
+          pickupdate:moment(this.reqdata['pickupdate']).format(),
+          pickuptime:this.reqdata['pickuptime'],
+          dropoffloc:this.reqdata['dropoffloc'],
+          dropoffdate:moment(this.reqdata['dropoffdate']).format(),
+          dropofftime:this.reqdata['dropofftime'],
+          voucher:this.reqdata['voucher'],
+          age:this.reqdata['age'],
+          catid:catid,
+          id:id
+        }
       }
     };
     this.router.navigate(['bookings-select-extras'], navigationExtras);
   }
+
+  @ViewChild('picker') picker;
+  open() {
+    this.picker.open();
+  }
+
+
+  
 
 }

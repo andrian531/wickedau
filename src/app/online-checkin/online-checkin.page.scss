@@ -265,4 +265,87 @@ ion-item {
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 1.5px;
+    line-height: .8;
 }
+.btn-book span{
+    font-size: 9px;
+    letter-spacing: .9px;
+}
+.arrow{
+    font-size: 40px;
+    color: white;
+}
+.arrow-up-btm{
+    position: absolute;
+    bottom: 60px;
+    text-align: center;
+    width: 100%;
+    color: #8080808c;
+    line-height: 1;
+}
+
+.animated {
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+  }
+  @-webkit-keyframes bounce {
+    0%, 100% {
+      -webkit-transform: translateY(0);
+    }
+    50% {
+      -webkit-transform: translateY(-5px);
+    }
+  }
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+  .bounce {
+    -webkit-animation-name: bounce;
+    animation-name: bounce;
+  }
+  .wadah{
+    margin-top: 15px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+    width: 94vw;
+    margin: 8px auto;
+    border-radius: 6px;
+    padding: 0px;
+    background: white;
+    --bg-opacity: 1;
+    background-color: #fff;
+    padding-bottom: 10px;
+  }
+  .head-wadah{
+    font-size: 18px;
+    font-weight: bold;
+    background: #80808040;
+    padding: 0.5em;
+  }
+  .body-wadah{
+      padding: .5em;
+  }
+  .sub-head-wadah{
+      border-bottom:0.5px solid #8080803d;
+      width: 100%;
+      padding-left: .5em;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+  }
+  .footer-wadah{
+      margin-top: 10px;
+  }
+  .footer-wadah a{
+      width: 100%;
+  }

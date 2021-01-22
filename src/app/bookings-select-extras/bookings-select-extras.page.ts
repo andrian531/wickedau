@@ -89,7 +89,9 @@ export class BookingsSelectExtrasPage implements OnInit {
     campaigncode:'',
     remark:'',
     numbertravelling:0,
-    areaofuseid:0
+    areaofuseid:0,
+    flightin:'',
+    flightout:''
   };
   formquote={
     firstname:'',
@@ -142,6 +144,8 @@ export class BookingsSelectExtrasPage implements OnInit {
   validatorm=true;
   validatords=true;
   startDate = new Date(1990, 0, 1);
+
+  showflight=false;
   constructor(private route: ActivatedRoute,private pokeService: PokemonService,private router: Router, public alertController: AlertController ,private titleService: Title,private metaService: Meta) { 
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
@@ -380,6 +384,17 @@ export class BookingsSelectExtrasPage implements OnInit {
   calcTotal(){
     this.totalmandatory=[];
     this.totaloptionalfee=[];
+    var flighttemp=0;
+    this.selectedoptfee.forEach(opt => {
+      if(opt['id']==4364) flighttemp=1;
+    });
+    if(flighttemp==1) {
+      this.showflight=true;
+    }else{
+      this.showflight=false;
+    }
+    console.log(JSON.stringify(this.selectedoptfee));
+    console.log(this.showflight);
     this.pokeService.getRCMcalcTotal(this.calcoption,JSON.stringify(this.selectedmandatory),JSON.stringify(this.selectedoptfee)).subscribe(res => {
       console.log(res);
       let dummyopt=[];
@@ -433,12 +448,17 @@ export class BookingsSelectExtrasPage implements OnInit {
     else if((this.aggrementlist.length>=this.aggrementcontrolds.length)) {this.validatords=false; console.log('9')}
     else if(this.aggrementcontrolds.includes(false)){this.validatords=false; console.log('10')}
     else {this.validatords=true;}
+
+    if(this.showflight==true){
+      if(this.datafr.flightin=='') {this.validatords=false; console.log('11')}
+      if(this.datafr.flightout=='') {this.validatords=false; console.log('12')}
+    } else {this.validatords=true;}
     if(type=='deposit'){
       paytype='deposit';
     }else{
       paytype='full';
     }
-    
+    console.log("validator:"+this.validatords);
     if(this.validatords==true){
       console.log(paytype);
       this.datafr.remark='--areadetail--'+this.remark.areadetail+'--comment--'+this.remark.comment+'--paytype--'+type;
@@ -531,6 +551,11 @@ export class BookingsSelectExtrasPage implements OnInit {
     else if((this.aggrementlist.length>=this.aggrementcontrol.length)) {this.validatorm=false; console.log('9')}
     else if(this.aggrementcontrol.includes(false)){this.validatorm=false; console.log('10')}
     else {this.validatorm=true;}
+
+    if(this.showflight==true){
+      if(this.datafr.flightin=='') {this.validatorm=false; console.log('11')}
+      if(this.datafr.flightout=='') {this.validatorm=false; console.log('12')}
+    } else {this.validatorm=true;}
     this.datafr.bookingtype=2;
     if(type=='deposit'){
       paytype='deposit';

@@ -1,40 +1,136 @@
 <ion-content class="hidden-xs">
   <div class="landing-desktop hidden-xs pad-top-booking">
+ 
     <div class="hero-section"></div>
-    <div class="container" *ngIf="dataloaded==0">
-      <div class="row" >
-        <div class="colxs-12 center loader"></div>
-        <div class="col-xs-12 text-center" style="margin-top: 300px; margin-bottom:20px;font-weight: bold;">Just a moment...<br><br>Loading available campervan from wicked campers</div>
-      </div>
+
+    <div class="naik container" *ngIf="dataloaded==0">
+     
+            
+        <ion-list lines="none" *ngIf="dataloaded ==0">
+          <ion-item *ngFor="let i of [1]">
+            <div class="col-xs-3" style="padding-left: 0px;">
+              
+              <ion-skeleton-text animated style="width: 100%;height: 595px;"></ion-skeleton-text>
+            </div>
+            <div class="col-xs-9" >
+              <div class="row" style="padding-right: 0px;">
+              <ion-skeleton-text animated style="width: 100%;height: 189px;margin-top: 15px;"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%;height: 189px;margin-top: 15px;"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 100%;height: 189px;margin-top: 15px;"></ion-skeleton-text>
+            </div>
+            </div>
+           
+          </ion-item>
+        </ion-list>
+       
     </div>
     <div class="container" *ngIf="dataloaded==1">
       
-      <div class="col-xs-12" style="padding-right:0px;">
-        <div class="col-xs-9 pull-right" style="padding-left:0px;padding-right:0px;">
-          <div class="col-xs-3 pull-right" style="padding-right:0px;">
-            <select  #sort
-        (change)='changesort(sort.value)' class="form-control " id="exampleFormControlSelect1">
-              <option>Sort</option>
-              <option value="categoryfriendlydescription,asc">Name Ascending</option>
-              <option value="categoryfriendlydescription,dsc">Name Descending</option>
-              <option value="totalrateafterdiscount,asc">Price Ascending</option>
-              <option value="totalrateafterdiscount,dsc">Price Descending</option>
-            </select>
+      
+      <div class="col-xs-3 vehicle_details " style="margin-bottom: 30px;">
+        <div class="sidebar">
+          <div class="box lg_grey_bg js_search_details no-border">
+            <h2>Your Search</h2>
+            <div class="your_search">
+            
+            <div class="top">
+            <h3>Pick Up:</h3>
+            <span>{{booksearchdata.pickup}}</span>
+            <span>{{booksearchdata.pickupdate}}</span>
+            </div>
+            
+            <div class="bottom">
+            <h3>Drop off:</h3>
+            <span>{{booksearchdata.dropoff}}</span>
+            <span>{{booksearchdata.dropoffdate}}</span>
+            </div>
+            
+            <div id="muncul">
+            <button class="btn btn_blue btn_medium js_change_search" onclick="switchVisible();">Change search</button>
+            </div>
+           
+           
+            </div>
+            </div>
+            
+  
+            <div id="hilang" class="box lg_grey_bg js_search_details no-border">
+              <h2>Change your search</h2>
+              <form #rfdform="ngForm" (ngSubmit)="refreshdata()">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Pick up location</label>
+                  
+                  <select name="pickuplocation" class="fulls form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Select Pickup Location"  [(ngModel)]="formdata.pickuploc" #pickuploc ="ngModel">
+                    <option disabled>Select Pickup Location</option>
+                    <option *ngFor="let field of locationlist" value="{{field.id}}">{{field.location}}</option>
+                </select>
+                </div>
+                <div class="form-group row no-gutters">
+                  <div class="col-sm-6">
+                    <label for="exampleInputEmail1">Pick up date</label>
+                    <input class="half-left form-control" matInput [matDatepicker]="picker" (click)="picker.open()"  name="pickupdate" [(ngModel)]="formdata.pickupdate"  placeholder="Select date" #pickupdate="ngModel"  id="txtPickup" autocomplete="off" required [min]="minDate">
+                    <mat-datepicker #picker></mat-datepicker>
+              
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="exampleInputEmail1">Pick up time</label>
+                    <input type="text" class="half-right form-control" id="txtPickupTime" step='1800' name="pickuptime" placeholder="Pickup-Time..." id="txtPickupTime" autocomplete="off" [(ngModel)]="formdata.pickuptime" #pickuptime="ngModel" required required [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [min]="mindateDS" [max]="maxdateDS" >
+                    <owl-date-time [startAt]="mindateDS"
+                     [stepMinute]="'30'" [pickerType]="'timer'" #dt2 ></owl-date-time>
+              
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Drop off location</label>
+                  <select name="pickuplocation" class="fulls form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Select Dropoff Location"  style="width: 100%;" [(ngModel)]="formdata.dropoffloc" #dropoffloc ="ngModel">
+                    <option disabled>Select Dropoff Location</option>
+                    <option *ngFor="let field of locationlist" value="{{field.id}}">{{field.location}}</option>
+                </select>
+                </div>
+              <div class="form-group row no-gutters">
+                <div class="col-sm-6">
+                  <label for="exampleInputEmail1">Drop off date</label>
+                  <input type="text" class="half-left form-control" matInput [matDatepicker]="pickerx" (click)="pickerx.open()" name="returndate" [(ngModel)]="formdata.dropoffdate"  placeholder="Select date" #pickupdate="ngModel" id="txtReturn" autocomplete="off" required [min]="minDate">
+                  <mat-datepicker #pickerx></mat-datepicker>
+            
+                </div>
+                <div class="col-sm-6">
+                  <label for="exampleInputEmail1">Drop off time</label>
+                  <input type="text" class="half-right form-control"  name="dropofftime" placeholder="Return-Time" id="txtReturnTime" autocomplete="off"  [(ngModel)]="formdata.dropofftime" #dropofftime="ngModel" required [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [min]="mindateDS" [max]="maxdateDS">
+                  <owl-date-time [startAt]="mindateDS" [pickerType]="'timer'" #dt></owl-date-time>
+            
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Promo Code (optional)</label>
+                <input type="text" class="fulls form-control" [(ngModel)]="formdata.voucher" name="voucher" placeholder="voucher">
+              </div>
+              <button type="submit" class="btn btn_green js_animate hide_itinerary" style="bottom: 45px;">Search</button>
+              </form>
+             </div> 
+            
+  
           </div>
-          <div class="col-xs-9" style="padding-left:0px;margin-left:-10px;">
-            Showing {{carcount}} result
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-3" style="margin-bottom: 30px;">
-        <div class="filter-box">
+        <div class="kotak">
           <h3>Filter by</h3>
-          <div class="filter-title color-grey">Total Price</div>
-          <ion-range min="0" max="{{maxpay}}" id="dual-range" dual-knobs pin color="danger" [(ngModel)]="rangeValues" (click)="filterprice()" >
-            <ion-label slot="start" class="color-grey">0</ion-label>
-            <ion-label slot="end" class="color-grey">{{maxpay}}</ion-label>
+        </div>
+        
+        <div class="filter-box">
+         
+          
+          
+          <div class="filter-title color-grey">Price Range</div>
+          <div class="row">
+          <div class="col-xs-12">
+          <ion-range min="0" max="{{maxpay}}" class="gede" id="dual-range" dual-knobs pin color="danger" [(ngModel)]="rangeValues" (click)="filterprice()" >
+            
           </ion-range>
-            <p class="text-center color-grey">{{rangeValues.lower+'-'+rangeValues.upper}}</p>
+        </div>
+          <div class="col-xs-6"><ion-label slot="start" class="color-grey">AUD {{rangeValues.lower}}</ion-label></div>
+          <div class="col-xs-6" style="text-align: right;"> <ion-label slot="end" class="color-grey">AUD {{maxpay}}</ion-label></div>
+        </div>
+           
+           
             <div class="filter-title color-grey" style="margin-bottom:10px;">Category</div>
             <div class="row">
               <div class="col-xs-12" *ngFor="let cat of vcat">
@@ -42,6 +138,7 @@
                 <label for="group{{cat.id}}" class="label-cf color-grey">{{cat.title}}</label>
               </div>
             </div>
+            
             <div class="filter-title color-grey" style="margin-bottom:10px;">Passenger Capability</div>
             <div class="row">
               <div class="col-xs-12" >
@@ -64,28 +161,90 @@
         </div>
       </div>
       <div class="col-xs-9">
+        <div class="row" style="padding-right:0px;">
+           <div class="col-xs-9" style="padding: 0px 10px;font-size: 16px;border: solid 1px #ddd;">
+              <div class="col-xs-7 pad-0">
+                <div class="progress">
+                  <div id="dynamic" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                    <span id="current-progress"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-5" style="margin-top: 7px;">
+                Results displaying: 1 - {{carcount}} of {{carcount}}
+              </div>
+            </div>
+            <div class="col-xs-3 pull-right pickup" style="padding-right:0px;">
+              <select #sort (change)='changesort(sort.value)' class="form-control " id="exampleFormControlSelect1" style="padding: 0px 10px;margin-top: 0px;height: 42px;">
+                <option >Sort By</option>
+                <option value="categoryfriendlydescription,asc">Name Ascending</option>
+                <option value="categoryfriendlydescription,dsc">Name Descending</option>
+                <option value="totalrateafterdiscount,asc">Lowest Price</option>
+                <option value="totalrateafterdiscount,dsc">Highest Price</option>
+              </select>
+              
+            </div>
+          
+        </div>
         <div class="row" *ngIf="vehicle.length==0">
-          <div class="col-xs-12 text-center" style="padding-top: 150px;">
+          <div class="col-xs-12 text-center pad-0" style="padding-top: 8px;">
+           
+            <ion-item *ngFor="let i of [1]">
+              
+              <div class="col-xs-12" >
+                <div class="row" style="padding-right: 0px;">
+                <ion-skeleton-text animated style="width: 100%;height: 189px;margin-top: 15px;"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%;height: 189px;margin-top: 15px;"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%;height: 189px;margin-top: 15px;"></ion-skeleton-text>
+              </div>
+              </div>
+             
+            </ion-item>
             no vehicles available please change your filter
+         
+           
           </div>
         </div>
         <div class="row" *ngFor="let field of vehicle">
-          <div class="col-xs-12 wadahx">
+          <div class="col-xs-12 wadahx ">
             <div class="col-xs-4" style="padding:10px;">
-              <img src="{{field.thumbnail}}"/>
+              
+             
+              <div style="flex-direction: row; transition: transform 0.35s cubic-bezier(0.15, 0.3, 0.25, 1) 0s; direction: ltr; display: flex; transform: translate(0%, 0px);">
+                <ion-slides #mySlider (ionSlidesDidLoad)="(mySlider)"  pager="true" mode="md" [options]="slideOpts1">
+                    
+                    <ion-slide *ngFor="let slides of field.slides">
+                      <div style="width:100%;-webkit-flex-shrink:0;flex-shrink:0;overflow:auto" aria-hidden="true">
+                         
+                          <div class="slider-item  cursor-pointer">          
+                            <img src="{{slides.url}}">
+                           
+                  </div>
+                  </div>
+                  </ion-slide>
+                   
+                    
+                </ion-slides>
+                
+             
             </div>
-            <div class="col-xs-8">
-              <div class="col-sm-12 col-lg-8">
+            </div>
+            <div class="col-xs-8 pad-0">
+              <div class="col-sm-12 col-lg-8" style="padding: .9rem;">
                 <div class="titlex">{{field.categoryfriendlydescription}}</div>
                 <p>{{field.desc}}</p>
                 <div class="row"  style="margin-left: 0px;">
                   <div *ngFor="let sp of field.spec" class="col-xs-6 spec" style="margin-bottom:2px;">
-                    <i class="fa fa-check" aria-hidden="true" ></i> {{sp.value}}
+                    <i class="fas fa-check-circle" aria-hidden="true" ></i> 
+                    {{sp.value}}
                   </div>
+                  <a href="our-vehicles/{{field.slugcat}}/{{field.slugmobil}}" target="_blank" class="full-specs conf_result_v">
+                    <span>Vehicle Details / Depot Info / Rental Terms</span>
+                    </a>
                 </div>
               </div>
-              <div class="col-sm-12 col-lg-4">
-                <div class="col-sm-6 col-lg-12 pad-0" style="margin-bottom:10px;">
+              <div class="col-sm-12 col-lg-4 greys">
+                <div class="col-sm-6 col-lg-12 pad-0" style="margin-bottom:28px;">
                   <div class="col-xs-12 pad-0" *ngIf="field.avgrate == field.discounteddailyrate">
                     <span class="pr-mini">Daily Rate:</span>
                   </div> 
@@ -102,10 +261,11 @@
                 <div class="col-sm-6 col-lg-12 pad-0">
                   <div class="col-xs-12 pad-0"><span class="pr-mini">Initial Estimate:</span></div>
                   <div class="col-xs-12 pr-normal pad-0">{{field.currency}} {{field.totalrateafterdiscount | currency}}</div>
-                  <div class="col-xs-12 bookx pad-0" (click)="booknow(field.vehiclecategorytypeid,field.vehiclecategoryid)">
-                    Book Now 
-                    <i class="fa fa-chevron-right pull-right" aria-hidden="true" style="padding:3px;"></i>
+                  <div class="col-xs-12 bookx pad-0 shiny" (click)="booknow(field.vehiclecategorytypeid,field.vehiclecategoryid)">
+                    Select
+                    <i></i>
                   </div>
+                 
                 </div>
                 
               </div>
@@ -132,8 +292,10 @@
 
 
 <ion-content class="hidden-lg hidden-md hidden-sm" *ngIf="vehdiv">
-    <div *ngIf="dataloaded==0">
+    <div *ngIf="vehicle.length == 0">
       <div class="country-wrap">
+        <!--<div class="mountain-1"></div>
+        <div class="mountain-2"></div>-->
         
         <div class="sun">Just a moment...<br><br>Loading available campervan from wicked campers</div>
         <div class="holder">
@@ -148,12 +310,6 @@
         <div class="hill hill1"></div>
         <div class="hill hill2"></div>
       </div>
-      </div>
-    </div>
-    <div class="row" *ngIf="dataloaded==1 && vehicle.length==0">
-      <div class="col-xs-12 text-center" style="padding-top: 150px;">
-        {{errormsg}}<br>
-        no vehicles available please change your filter
       </div>
     </div>
     <ion-grid class="wadah" *ngFor="let field of vehicle">

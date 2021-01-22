@@ -53,7 +53,7 @@
   <div [innerHTML]="footer"></div>
 </ion-content>
 
-<ion-header no-border class="hidden-lg hidden-md">
+<ion-header no-border class="hidden-lg hidden-md" *ngIf="showresult==true&& infodiv==false">
     <ion-toolbar>
          <ion-buttons slot="start">
             <ion-back-button color="light" defaultHref="/"></ion-back-button>
@@ -62,7 +62,7 @@
      </ion-toolbar>
  </ion-header>
 
-    <ion-content class="hidden-lg hidden-md" *ngIf="showresult==false">
+    <ion-content class="hidden-lg hidden-md" *ngIf="showresult==false && infodiv==false">
 
       <div class="tix-whats-menu">
       <img src="../../assets/img/newcekin.jpg" class="image-top">
@@ -106,36 +106,169 @@
         <div *ngIf="dataloaded==false">
             <div class="country-wrap">
               
-              <div class="sun">Just a moment...<br><br>Getting Your booking details</div>
-              <div class="holder">
-              <div class="car"></div>
-              <div class="wheels"></div>
-              <div class="wind-holder">
-                <div class="wind"></div>
-              </div>
-              <div class="tree tree1"></div>
-              <div class="tree tree2"></div>
-              <div class="tree tree3"></div>
-              <div class="hill hill1"></div>
-              <div class="hill hill2"></div>
+                <div class="sun">Just a moment...<br><br>Getting Your booking details</div>
+                <div class="holder">
+                    <div class="car"></div>
+                    <div class="wheels"></div>
+                    <div class="wind-holder">
+                        <div class="wind"></div>
+                    </div>
+                    <div class="tree tree1"></div>
+                    <div class="tree tree2"></div>
+                    <div class="tree tree3"></div>
+                    <div class="hill hill1"></div>
+                    <div class="hill hill2"></div>
+                </div>
             </div>
+        </div>
+        <div class="row" *ngIf="showresult && dataloaded" style="margin-top: 15px;margin-bottom: 30px;">
+            <div class="col-xs-12 wadah">
+                <div class="head-wadah">1.Driver Details</div>
+                <div class="body-wadah container">
+                    <span class="sub-head-wadah">Main Driver</span>
+                    <div class="col-xs-6">Name</div>
+                    <div class="col-xs-6 text-right">{{maindriver.firstname}} {{maindriver.lastname}}</div>
+
+                    <div class="col-xs-6">License Number</div>
+                    <div class="col-xs-6 text-right">{{maindriver.licenseno}}</div>
+
+                    <div class="col-xs-6">Phone</div>
+                    <div class="col-xs-6 text-right">{{maindriver.phone}}</div>
+
+                    <div class="col-xs-6">Email</div>
+                    <div class="col-xs-6 text-right">{{maindriver.email}}</div>
+                </div>
+                <div class="footer-wadah container">
+                    <a routerLink="/checkin-driver"><button class="btn btn-book col-xs-12"> Update Driver </button></a>
+                </div>
             </div>
-          </div>
+
+            <div class="col-xs-12 wadah">
+                <div class="head-wadah">2.Update Extras</div>
+                <div class="body-wadah">
+                    <p style="padding-left: .5em;">Forgot to add an extra? You can add it here. Please note: Damage Cover & extras cannot be downgraded or deleted via our checkin platform. If you would like to do so please contact us.</p>
+                </div>
+                <div class="footer-wadah container">
+                    <a routerLink="/checkin-select-extras"><button class="btn btn-book col-xs-12"> Update Extras </button></a>
+                </div>
+            </div>
+
+            <div class="col-xs-12 wadah">
+                <div class="head-wadah">3.Upload Document</div>
+                <div class="body-wadah">
+                    <p style="padding-left: .5em;">upload your driving license and selfie photo, to validate your identity.</p>
+                </div>
+                <div class="footer-wadah container">
+                    <a routerLink="/checkin-document"><button class="btn btn-book col-xs-12"> Upload Document </button></a>
+                </div>
+            </div>
+        </div>
     </ion-content>
-    <ion-footer class="hidden-lg hidden-md hidden-sm" *ngIf="showresult">
+    <ion-footer class="hidden-lg hidden-md hidden-sm" *ngIf="showresult && dataloaded">
+        <div class="arrow-up-btm animated bounce" (click)="openinfo()"><i class="fas fa-angle-double-up"></i><br><span>more info</span></div>
         <ion-toolbar class="footer-book">
           <ion-row>
-            <ion-col size="6" (click)="openinfo()" style="padding-left:10px;">
+            <ion-col size="6" (click)="openinfo()" style="padding-left:10px;padding-top: 9px;">
               <b>{{bookinginfo.currencyname}} {{bookinginfo.totalcost | currency}}</b><br>
-              <small><b>(<span *ngIf="taxinclusive">inc</span> GST {{bookinginfo.currencyname}} {{bookinginfo.gst | currency}})</b></small>
+              <small><b>(<span *ngIf="bookinginfo.isgstinclusive==true">inc</span> GST {{bookinginfo.currencyname}} {{bookinginfo.gst | currency}})</b></small>
             </ion-col>
             <ion-col size="6" *ngIf="bookinginfo.balancedue>0">
-                <button class="btn btn-book col-xs-12"  > Pay Balance</button>
+                <a routerLink="/checkin-payment" style="width:100%;"><button class="btn btn-book col-xs-12"> Pay Balance <br><span>({{bookinginfo.currencyname}} {{bookinginfo.balancedue | currency}})</span></button></a>
             </ion-col>
             
           </ion-row>
         </ion-toolbar>
       </ion-footer>
       
+      <!--info-->
+<ion-header class="hidden-lg hidden-md hidden-sm" *ngIf="infodiv">
+    <ion-toolbar>
+      <ion-toolbar>
+        <ion-row>
+          <ion-col size="2">
+            <ion-icon  name="arrow-back-outline" class="arrow" (click)="closeinfo()"></ion-icon>
+          </ion-col>
+          <ion-col size="10">
+            <ion-title  class="text-center">Order Summary</ion-title>
+          </ion-col>
+        </ion-row>
+      </ion-toolbar>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="hidden-lg hidden-md hidden-sm" *ngIf="infodiv">
+    <div class="row" style="margin:10px;">
+      <div class="col-xs-12 pull-left" style="top:10px;margin:10px;border-bottom: 1px solid;padding: 5px;">
+        <b>{{bookinginfo.vehiclecategory}}</b><br>
+        <small>{{bookinginfo.reservationstatus}}</small>
+      </div>
+      <div class="col-xs-12" style="margin-bottom:10px;">
+        <img src="{{thumbnail}}"/>
+      </div>
+      <div class="col-xs-6">
+        <b>Pickup</b><br>
+        <span>{{bookinginfo.pickuplocationname}}</span><br>
+        <span>{{bookinginfo.pickupdate}}</span><br>
+        <span>{{bookinginfo.pickuptime}}</span>
+      </div>
+      <div class="col-xs-6 text-right">
+        <b>Dropoff</b><br>
+        <span>{{bookinginfo.dropofflocationname}}</span><br>
+        <span>{{bookinginfo.dropoffdate}}</span><br>
+        <span>{{bookinginfo.dropofftime}}</span>
+      </div>
+      <div class="col-xs-12">
+        <br>
+        <b>Fees</b><br>
+        <b>Daily Rate:</b>
+      </div>
+      <!--daily rate-->
+      <div class="col-xs-6">
+        {{rateinfo.numberofdays}} Days @ {{bookinginfo.currencyname}} {{rateinfo.dailyrateafterdiscount | currency}} 
+      </div>
+      <div class="col-xs-6 text-right">
+        {{bookinginfo.currencyname}} {{rateinfo.ratesubtotal | currency}}
+      </div>
+      <!--<div class="col-xs-12" *ngIf="rateinfo.dailyrateafterdiscount != rateinfo.dailyratebeforediscount">
+        <small class="text-red">Total discount {{bookinginfo.currencyname}} {{carinfo.totaldiscountamount | currency}} already included in rental rate</small>
+      </div>-->
+  
+      <!--kms-->
+      <div class="col-xs-12">
+        <br>
+        <b>Kms Charges:</b>
+        
+      </div>
+      <div class="col-xs-6">
+        {{bookinginfo.kmcharges_description}}
+      </div>
+      <div class="col-xs-6 text-right">
+        {{bookinginfo.currencyname}} {{bookinginfo.kmcharges_additionalkmtotalamount | currency}}
+      </div>
+      <!--extra fee-->
+      <div class="col-xs-12">
+        <br>
+        <b>Extra Fees:</b>
+      </div>
+      <div class="col-xs-12" *ngFor="let item of extrafee" >
+        <div class="col-xs-6" style="left: -15px;">
+          {{item.name}}
+        </div>
+        <div class="col-xs-6 text-right" style="right: -15px;">
+          {{bookinginfo.currencyname}} {{item.totalfeeamount | currency}}
+        </div>
+      </div>
+      <!--total-->
+      <div class="col-xs-12 pull-left" style="top:10px;margin:10px;border-bottom: 1px solid;padding: 5px;"></div>
+      <div class="col-xs-6">
+        <b>Total :</b>
+      </div>
+      <div class="col-xs-6 text-right">
+        <b>{{bookinginfo.currencyname}} {{bookinginfo.totalcost | currency}}</b><br>
+        <small><b>(<span *ngIf="bookinginfo.isgstinclusive==true">inc</span> GST {{bookinginfo.currencyname}} {{bookinginfo.gst | currency}})</b></small>
+      </div>
+    </div>
+  </ion-content>
+  <!--end of info -->
 
 
