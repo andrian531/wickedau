@@ -39,6 +39,7 @@
               "src/assets/sitemap.xml"
             ],
             "styles": [
+              "node_modules/sweetalert2/src/sweetalert2.scss",
               {
                 "input": "src/theme/variables.scss"
               },
@@ -46,7 +47,9 @@
                 "input": "src/global.scss"
               }
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/sweetalert2/dist/sweetalert2.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -107,8 +110,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "styles": [],
-            "scripts": [],
+            "styles": ["node_modules/sweetalert2/src/sweetalert2.scss"],
+            "scripts": ["node_modules/sweetalert2/dist/sweetalert2.js"],
             "assets": [
               {
                 "glob": "favicon.ico",

@@ -85,8 +85,8 @@ export class OnlineCheckinPage implements OnInit {
   }
 
   findbooking(){
-    
     if(this.cf.email!="" && this.cf.bookno!=""){
+      this.showresult=false;
       this.disablebtnds=true;
       if(this.token==""){
         this.pokeService.getCheckinToken().subscribe(res => {
@@ -97,6 +97,8 @@ export class OnlineCheckinPage implements OnInit {
             }else{
               this.showresult=true;
               this.errormsg="";
+              sessionStorage.setItem('checkinref', resx['results'][0]['reservationref']);
+              this.getbookinfo(res['access_token'],resx['results'][0]['reservationref']);
             }
             this.disablebtnds=false;
           });
@@ -110,6 +112,8 @@ export class OnlineCheckinPage implements OnInit {
           }else{
             this.showresult=true;
             this.errormsg="";
+            sessionStorage.setItem('checkinref', resx['results'][0]['reservationref']);
+            this.getbookinfo(this.token,resx['results'][0]['reservationref']);
           }
           this.disablebtnds=false;
         });

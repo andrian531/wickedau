@@ -29,6 +29,8 @@ export class CheckinDocumentPage implements OnInit {
  extrafee:any=[];
  maindriver:any;
  extradriver:any=[];
+ maindocument:any=[];
+ extradocument:any=[];
  thumbnail="";
  reservationref="";
  constructor(private pokeService: PokemonService, private titleService: Title, private meta: Meta,private cookiess: CookieService) {
@@ -81,6 +83,15 @@ export class CheckinDocumentPage implements OnInit {
        this.extrafee=ress['results']['extrafees'];
        this.maindriver=ress['results']['customerinfo'][0];
        this.extradriver=ress['results']['extradrivers'];
+       for(var i=0;i<ress['results']['documentlinkdata'].length;i++){
+        if(ress['results']['documentlinkdata'][i]['isprimary']==true){
+          this.maindocument.push(ress['results']['documentlinkdata'][i]);
+        }else{
+          this.extradocument.push(ress['results']['documentlinkdata'][i]);
+        }
+       }
+       console.log(this.maindocument);
+       console.log(this.extradocument);
        this.pokeService.bookingGetVehDetail(this.bookinginfo['vehiclecategoryid']).subscribe(dt=>{
          this.thumbnail=dt['thumbnail'];
        });

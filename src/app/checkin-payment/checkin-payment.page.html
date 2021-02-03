@@ -1,41 +1,123 @@
 <ion-content class="hidden-xs">
-  <section id="homeBanner" class="section section--borderless">
-    <div class="wck-homepage">
-      
-    <div class="container">
-      <div class="row">
-        <div class="container">
-          <div class="col-md-12">
-            <ul class="breadcrumb">
-                
-            </ul>
-            </div>
-        </div>
+  <div class="landing-desktop hidden-xs pad-top-booking">
+    <div class="container" *ngIf="dataloaded==false">
+      <div class="row" >
+        <div class="colxs-12 center loader"></div>
+        <div class="col-xs-12 text-center" style="margin-top: 30%; margin-bottom:20px;font-weight: bold;">Just a moment...<br><br>Loading fees for your selected vehicle</div>
+      </div>
     </div>
-    <div class="container" style="margin-bottom:20px;margin-top:0px">
-        <div class="row">
-            <div class="col-xs-3">
-                
-            </div>
-            <div class="col-xs-9">
-                <div class="desktop-layout">
-                    <div class="empty-state-background">
-                        <div class="empty-state-wrapper"><img src="../../assets/images/checkin.svg" alt="empty-state-img" class="state-img">
-                            <p class="title">The easiest way to check & update your booking</p>
-                            <p class="caption noData">Input your email address and booking number in the check-in form.</p>
-                        </div>
-                    </div>
+    <div class="container" *ngIf="dataloaded">
+      <div class="container">
+        <div class="col-xs-12 page">
+          <ul class="gateway flex">
+            <li class="ok">
+              <a routerLink="/checkin-driver">
+                <span>Update Driver</span>
+              </a>
+            </li>
+            <li class="ok">
+              <a routerLink="/checkin-select-extras">
+                <span>Update Extras</span>
+              </a>
+            </li>
+            <li class="ok">
+              <a routerLink="/checkin-document">
+                <span>Upload Document</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="col-xs-4 sidebar">
+          <div class="detail-box kotakan" style="padding-bottom: 0px;">
+            <img class="animate__animated animate__backInLeft" src="{{thumbnail}}"/>
+            <h2><b>Booking Details...</b></h2>
+            <div class="row">
+              <!--daily rate-->
+              <div class="col-xs-6">
+                {{rateinfo.numberofdays}} Days @ {{bookinginfo.currencyname}} {{rateinfo.dailyrateafterdiscount| currency}} 
+              </div>
+              <div class="col-xs-6 text-right">
+                {{bookinginfo.currencyname}} {{rateinfo.ratesubtotal | currency}}
+              </div>
+  
+              <!--kms-->
+              <div class="col-xs-12">
+                <br>
+                <b>Extra Fee:</b>
+              </div>
+              <div class="col-xs-6">
+                {{bookinginfo.kmcharges_description}}
+              </div>
+              <div class="col-xs-6 text-right">
+                {{bookinginfo.currencyname}} {{bookinginfo.kmcharges_additionalkmtotalamount | currency}}
+              </div>
+  
+              <!--optfee-->
+              <div class="col-xs-12" *ngFor="let item of extrafee" >
+                <div class="col-xs-6" style="left: -15px;">
+                {{item.name}}
                 </div>
+                <div class="col-xs-6 text-right" style="right: -15px;">
+                  {{bookinginfo.currencyname}} {{item.totalfeeamount | currency}}
+                </div>
+              </div>
+  
+              <!--total-->
+              <div class="col-xs-12 pull-left" style="top: 0;margin: 14px 0px;border-bottom: 1px solid;padding: 0px;"></div>
+              <div class="col-xs-6">
+                <b>Total :</b>
+              </div>
+              <div class="col-xs-6 text-right">
+                <b>{{bookinginfo.currencyname}} {{bookinginfo.totalcost | currency}}</b><br>
+                <small><b>(<span *ngIf="bookinginfo.isgstinclusive">inc</span> GST {{bookinginfo.currencyname}} {{bookinginfo.gst | currency}})</b></small>
+              </div>
+
+              <!--balance due-->
+              <div class="col-xs-6">
+                <b>Balance Due:</b>
+              </div>
+              <div class="col-xs-6 text-right">
+                <b>{{bookinginfo.currencyname}} {{bookinginfo.balancedue| currency}}</b>
+                
+              </div>
+              <div class="col-xs-12" style="margin:14px 0px;">
+                <a routerLink="/checkin-payment" style="width:100%;"><button class="btn btn-book col-xs-12"> Pay Balance</button></a>
+              </div>
+              <!--bookinfo-->
+              <div class="col-xs-12 vehicle-info">
+                <b>Vehicle type:</b><br>
+                {{bookinginfo.vehiclecategory}}<br>
+  
+                <br><b>Reservation Status:</b><br>
+                {{bookinginfo.reservationstatus}}<br>
+  
+                <br><b>Pickup:</b><br>
+                <span>{{bookinginfo.pickuplocationname}}</span><br>
+                <span>{{bookinginfo.pickuplocationaddress}}</span><br>
+                <span>{{bookinginfo.pickupdate}} {{bookinginfo.pickuptime}}</span><br>
+      
+      
+                <br><b>Dropoff:</b><br>
+                <span>{{bookinginfo.dropofflocationname}}</span><br>
+                <span>{{bookinginfo.dropofflocationaddress}}</span><br>
+                <span>{{bookinginfo.dropoffdate}} {{bookinginfo.dropofftime}}</span>
+                
+              </div>
             </div>
+          </div>
         </div>
+        <div class="col-xs-8" style="margin-bottom: 15px;">
+          
+        </div>
+      </div>
     </div>
-</div>
-</div>
-</section>
+  </div>
   <div [innerHTML]="footer"></div>
 </ion-content>
-
-<ion-header no-border class="hidden-lg hidden-md" *ngIf="showresult==true&& infodiv==false">
+<!--mobile-->
+<ion-header no-border class="hidden-lg hidden-md hidden-sm" *ngIf="showresult==true&& infodiv==false">
     <ion-toolbar>
          <ion-buttons slot="start">
             <ion-back-button color="light" defaultHref="/"></ion-back-button>
@@ -44,7 +126,7 @@
      </ion-toolbar>
  </ion-header>
 
-    <ion-content class="hidden-lg hidden-md" *ngIf="showresult">
+    <ion-content class="hidden-lg hidden-md hidden-sm" *ngIf="showresult">
         <div *ngIf="dataloaded==false">
             <div class="country-wrap">
               
@@ -63,7 +145,27 @@
                 </div>
             </div>
         </div>
-        
+        <div class="container">
+          <div class="col-xs-12 page">
+            <ul class="gateway flex pad-0">
+              <li class="ok">
+                <a routerLink="/checkin-driver">
+                  <span class="small-font">Update Driver</span>
+                </a>
+              </li>
+              <li class="ok">
+                <a routerLink="/checkin-select-extras">
+                  <span class="small-font">Update Extras</span>
+                </a>
+              </li>
+              <li class="ok">
+                <a routerLink="/checkin-document">
+                  <span class="small-font">Upload Document</span>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </div>
     </ion-content>
     <ion-footer class="hidden-lg hidden-md hidden-sm" *ngIf="showresult && dataloaded">
         <div class="arrow-up-btm animated bounce" (click)="openinfo()"><i class="fas fa-angle-double-up"></i><br><span>more info</span></div>
@@ -73,8 +175,10 @@
               <b>{{bookinginfo.currencyname}} {{bookinginfo.totalcost | currency}}</b><br>
               <small><b>(<span *ngIf="bookinginfo.isgstinclusive==true">inc</span> GST {{bookinginfo.currencyname}} {{bookinginfo.gst | currency}})</b></small>
             </ion-col>
-            <ion-col size="6" *ngIf="bookinginfo.balancedue>0">
-                <a routerLink="/checkin-payment" style="width:100%;"><button class="btn btn-book col-xs-12"> Pay Balance <br><span>({{bookinginfo.currencyname}} {{bookinginfo.balancedue | currency}})</span></button></a>
+            <ion-col size="6" *ngIf="bookinginfo.balancedue>0" class="text-right" style="padding-right: 10px;">
+                <!--<a routerLink="/checkin-payment" style="width:100%;"><button class="btn btn-book col-xs-12"> Pay Balance <br><span>({{bookinginfo.currencyname}} {{bookinginfo.balancedue | currency}})</span></button></a>-->
+                <small>Balance Due</small><br/>
+                <b>{{bookinginfo.currencyname}} {{bookinginfo.balancedue | currency}}</b>
             </ion-col>
             
           </ion-row>

@@ -329,8 +329,9 @@ ion-item {
   .head-wadah{
     font-size: 18px;
     font-weight: bold;
-    background: #80808040;
+    background: black;
     padding: 0.5em;
+    color: white;
   }
   .body-wadah{
       padding: .5em;
@@ -348,4 +349,19 @@ ion-item {
   }
   .footer-wadah a{
       width: 100%;
+  }
+  //desktop
+  .kotakan {
+    padding-bottom: 20px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  .sub-head-ds{
+    border-bottom:0.5px solid #8080803d;
+    width: 100%;
+    padding-left: .5em;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    margin-bottom: 10px;
   }

@@ -1,41 +1,199 @@
 <ion-content class="hidden-xs">
-  <section id="homeBanner" class="section section--borderless">
-    <div class="wck-homepage">
-      
-    <div class="container">
-      <div class="row">
-        <div class="container">
-          <div class="col-md-12">
-            <ul class="breadcrumb">
-                
-            </ul>
-            </div>
-        </div>
+  <div class="landing-desktop hidden-xs pad-top-booking">
+    <div class="container" *ngIf="liabilitylist.length == 0">
+      <div class="row" >
+        <div class="colxs-12 center loader"></div>
+        <div class="col-xs-12 text-center" style="margin-top: 30%; margin-bottom:20px;font-weight: bold;">Just a moment...<br><br>Loading fees for your selected vehicle</div>
+      </div>
     </div>
-    <div class="container" style="margin-bottom:20px;margin-top:0px">
-        <div class="row">
-            <div class="col-xs-3">
-                
-            </div>
-            <div class="col-xs-9">
-                <div class="desktop-layout">
-                    <div class="empty-state-background">
-                        <div class="empty-state-wrapper"><img src="../../assets/images/checkin.svg" alt="empty-state-img" class="state-img">
-                            <p class="title">The easiest way to check & update your booking</p>
-                            <p class="caption noData">Input your email address and booking number in the check-in form.</p>
-                        </div>
-                    </div>
+    <div class="container" *ngIf="liabilitylist.length > 0">
+      <div class="container">
+        <div class="col-xs-12 page">
+          <ul class="gateway flex">
+            <li class="ok">
+              <a routerLink="/checkin-driver">
+                <span>Update Driver</span>
+              </a>
+            </li>
+            <li class="active">
+                <span>Update Extras</span>
+            </li>
+            <li class="ok">
+              <a routerLink="/checkin-document">
+                <span>Upload Document</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="col-xs-4 sidebar">
+          <div class="detail-box kotakan" style="padding-bottom: 0px;">
+            <img class="animate__animated animate__backInLeft" src="{{thumbnail}}"/>
+            <h2><b>Booking Details...</b></h2>
+            <div class="row">
+              <!--daily rate-->
+              <div class="col-xs-6">
+                {{rateinfo.numberofdays}} Days @ {{bookinginfo.currencyname}} {{rateinfo.dailyrateafterdiscount| currency}} 
+              </div>
+              <div class="col-xs-6 text-right">
+                {{bookinginfo.currencyname}} {{rateinfo.ratesubtotal | currency}}
+              </div>
+  
+              <!--kms-->
+              <div class="col-xs-12">
+                <br>
+                <b>Extra Fee:</b>
+              </div>
+              <div class="col-xs-6">
+                {{bookinginfo.kmcharges_description}}
+              </div>
+              <div class="col-xs-6 text-right">
+                {{bookinginfo.currencyname}} {{bookinginfo.kmcharges_additionalkmtotalamount | currency}}
+              </div>
+  
+              <!--optfee-->
+              <div class="col-xs-12" *ngFor="let item of extrafee" >
+                <div class="col-xs-6" style="left: -15px;">
+                {{item.name}}
                 </div>
+                <div class="col-xs-6 text-right" style="right: -15px;">
+                  {{bookinginfo.currencyname}} {{item.totalfeeamount | currency}}
+                </div>
+              </div>
+  
+              <!--total-->
+              <div class="col-xs-12 pull-left" style="top: 0;margin: 14px 0px;border-bottom: 1px solid;padding: 0px;"></div>
+              <div class="col-xs-6">
+                <b>Total :</b>
+              </div>
+              <div class="col-xs-6 text-right">
+                <b>{{bookinginfo.currencyname}} {{bookinginfo.totalcost | currency}}</b><br>
+                <small><b>(<span *ngIf="bookinginfo.isgstinclusive">inc</span> GST {{bookinginfo.currencyname}} {{bookinginfo.gst | currency}})</b></small>
+              </div>
+
+              <!--balance due-->
+              <div class="col-xs-6">
+                <b>Balance Due:</b>
+              </div>
+              <div class="col-xs-6 text-right">
+                <b>{{bookinginfo.currencyname}} {{bookinginfo.balancedue| currency}}</b>
+                
+              </div>
+              <div class="col-xs-12" style="margin:14px 0px;">
+                <a routerLink="/checkin-payment" style="width:100%;"><button class="btn btn-book col-xs-12"> Pay Balance</button></a>
+              </div>
+              <!--bookinfo-->
+              <div class="col-xs-12 vehicle-info">
+                <b>Vehicle type:</b><br>
+                {{bookinginfo.vehiclecategory}}<br>
+  
+                <br><b>Reservation Status:</b><br>
+                {{bookinginfo.reservationstatus}}<br>
+  
+                <br><b>Pickup:</b><br>
+                <span>{{bookinginfo.pickuplocationname}}</span><br>
+                <span>{{bookinginfo.pickuplocationaddress}}</span><br>
+                <span>{{bookinginfo.pickupdate}} {{bookinginfo.pickuptime}}</span><br>
+      
+      
+                <br><b>Dropoff:</b><br>
+                <span>{{bookinginfo.dropofflocationname}}</span><br>
+                <span>{{bookinginfo.dropofflocationaddress}}</span><br>
+                <span>{{bookinginfo.dropoffdate}} {{bookinginfo.dropofftime}}</span>
+                
+              </div>
             </div>
+          </div>
         </div>
+        <div class="col-xs-8" style="margin-bottom: 15px;">
+          <div class="row">
+          <!--Insurance-->
+          <div class="col-xs-12 detail-box kotakan">
+            <h2 class="ds-h2-extras">Select Your Damage Cover</h2>
+            <p class="ds-txt-extras">You must select one of the options below to continue with your booking. All options refer to van/damage only. Rooftop tents are not covered.</p>
+            <div class="col-xs-12 ds-wadah-extras" *ngFor="let item of liabilitylist" [ngClass]="{ 'ds-selected': item.selected,'hidden': item.publish==0}" (click)="selectinsu(item.id,item.selected)">
+              <div class="col-xs-2" style="padding:5px;">
+                <img src="{{item.imgname}}">
+              </div>
+              <div class="col-xs-10 pad-0">
+                <div class="col-xs-12 ds-title-extras">
+                  <div class="col-xs-8" >{{item.name}}</div>
+                  <div class="col-xs-4 text-right extras-price">
+                    {{bookinginfo.currencyname}} {{item.fees | currency}} 
+                    <span *ngIf="item.type=='Daily'">/Day</span>
+                  </div>
+                </div>
+                <div class="col-xs-12" style="padding-top:5px;">
+                  <p>{{item.feedescription}}</p>
+                  <div class="col-xs-6" *ngFor="let ii of item.spec" class="{{ii.check}}">{{ii.text}}</div>
+                </div>
+              </div>
+              <div *ngIf="item.selected" class="ds-extras-selected">selected</div>
+            </div>
+          </div>
+  
+          <!--extras-->
+          <div class="col-xs-12 detail-box">
+            <h2 class="ds-h2-extras">Select Your Extras</h2>
+            <div class="sub-extras" *ngFor="let catopt of feegroup">
+              <h3 class="ds-title-subextras">{{catopt}}</h3>
+              <div class="col-xs-12 ds-wadah-extras" *ngFor="let item of optionalfeegroup[catopt]"  [ngClass]="{ 'ds-selected': item.selected}" (click)="addextra(item.id,item.selected)">
+                <div class="col-xs-2" style="padding:5px;">
+                  <img class="ds-img-extras" src="{{item.imgname}}">
+                </div>
+                <div class="col-xs-10 pad-0">
+                  <div class="col-xs-12 ds-title-extras">
+                    <div class="col-xs-8" [ngClass]="{ 'bold': item.id=='4364'}">{{item.name}}</div>
+                    <div class="col-xs-4 text-right extras-price">
+                      {{bookinginfo.currencyname}} {{item.fees | currency}} 
+                      <span *ngIf="item.type=='Daily'">/Day</span>
+                    </div>
+                  </div>
+                  <div class="col-xs-12" style="padding-top:5px;">
+                    <p>{{item.feedescription}}</p>
+                  </div>
+                </div>
+                <div *ngIf="item.selected" class="ds-extras-selected">selected</div>
+              </div>
+            </div>
+          </div>
+          <!--kms-->
+          <div class="col-xs-12 detail-box" *ngIf="kmslist.length>0">
+            <h2 class="ds-h2-extras">Kms Inclusions and Charges</h2>
+              <div class="col-xs-12 ds-wadah-extras" *ngFor="let item of kmslist"  [ngClass]="{ 'ds-selected': item.selected==1,'hidden': item.publish==0}" (click)="selectkms(item.id,item.selected)">
+                <div class="col-xs-2" style="padding:5px;">
+                  <img class="ds-img-extras" src="{{item.imgname}}">
+                </div>
+                <div class="col-xs-10 pad-0">
+                  <div class="col-xs-12">
+                    <span>{{item.description}}</span><br>
+                    <b>{{bookinginfo.currencyname}} {{item.totalamount | currency}}</b> 
+                      
+                  </div>
+                </div>
+                <div *ngIf="item.selected==1" class="ds-extras-selected">selected</div>
+              </div>
+          </div>
+          <div class="col-xs-12 detail-box" style="padding:15px;">
+            <div class="col-xs-6 total-big">
+              <div class="col-xs-4">Total:</div>
+              
+            </div>
+            <div class="col-xs-6 total-big">
+              <div class="col-xs-12 text-right">{{bookinginfo.currencyname}} {{bookinginfo.totalcost |currency}}</div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
     </div>
-</div>
-</div>
-</section>
+  </div>
   <div [innerHTML]="footer"></div>
 </ion-content>
 
-<ion-header no-border class="hidden-lg hidden-md" *ngIf="showresult==true&& infodiv==false">
+<!--mobile-->
+<ion-header no-border class="hidden-lg hidden-md hidden-sm" *ngIf="showresult==true&& infodiv==false">
     <ion-toolbar>
          <ion-buttons slot="start">
             <ion-back-button color="light" defaultHref="/"></ion-back-button>
@@ -44,7 +202,7 @@
      </ion-toolbar>
  </ion-header>
 
-    <ion-content class="hidden-lg hidden-md" *ngIf="showresult">
+    <ion-content class="hidden-lg hidden-md  hidden-sm" *ngIf="showresult">
         <div *ngIf="dataloaded==false">
             <div class="country-wrap">
               
@@ -63,7 +221,103 @@
                 </div>
             </div>
         </div>
-        
+        <div class="container" *ngIf="showresult && dataloaded">
+          <div class="col-xs-12 page" style="padding-left: 0px;">
+            <ul class="gateway flex pad-0">
+              <li class="ok">
+                <a routerLink="/checkin-driver">
+                  <span class="small-font">Update Driver</span>
+                </a>
+              </li>
+              <li class="active">
+                  <span class="small-font">Update Extras</span>
+              </li>
+              <li class="ok">
+                <a routerLink="/checkin-document">
+                  <span class="small-font">Upload Document</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row" class="wadah-extras" *ngIf="showresult && dataloaded">
+          <div class="col-xs-12" class="wadah-title">
+            <div class="title-extras">Select Your Damage Cover</div>
+            <small class="text-grey">required</small>
+          </div>  
+          <p style="padding:10px;">You must select one of the options below to continue with your booking. All options refer to van/damage only. Rooftop tents are not covered.</p>
+          <div class="col-xs-12 " *ngFor="let item of liabilitylist" class="wadah-extras" [ngClass]="{ 'selected': item.selected,'hidden': item.publish==0}" (click)="selectinsu(item.id,item.selected)">
+            <div class="row" style="margin:0px;padding:5px;">
+            
+            <div class="col-xs-2" style="padding:5px;">
+              <img src="{{item.imgname}}">
+            </div>
+            <div class="col-xs-10">
+              <span class="name-extras">{{item.name}}</span><br>
+              <div class="extras-price">
+                {{bookinginfo.currencyname}} {{item.fees | currency}} 
+                <span *ngIf="item.type=='Daily'">/Day</span>
+                
+              </div>
+            </div>
+            <div class="col-xs-12 wadah-desc">
+              <p>{{item.feedescription}}</p>
+              <ul class="list-spec">
+                <li *ngFor="let ii of item.spec" class="{{ii.check}}">{{ii.text}}</li>
+              </ul>
+              <div *ngIf="item.selected" class="extras-selected">selected</div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngFor="let catopt of feegroup" class="wadah-extras">
+          <div class="col-xs-12" class="wadah-title">
+            <div class="title-extras">{{catopt}}</div>
+            <small class="text-grey">Optional</small>
+          </div>  
+          <div class="col-xs-12 " *ngFor="let item of optionalfeegroup[catopt]" class="wadah-extras" [ngClass]="{ 'selected': item.selected}" (click)="addextra(item.id,item.selected)">
+            <div class="row" style="margin:0px;padding:5px;">
+            
+            <div class="col-xs-2 img-extras">
+              <img src="{{item.imgname}}">
+            </div>
+            <div class="col-xs-10">
+              <span class="name-extras" [ngClass]="{ 'bold': item.id=='4364'}">{{item.name}}</span><br>
+              <p class="desc-extras"><small>{{item.feedescription}}</small></p>
+              <div class="extras-price">
+                {{bookinginfo.currencyname}} {{item.fees | currency}} 
+                <span *ngIf="item.type=='Daily'">/Day</span>
+                
+              </div>
+              <div *ngIf="item.selected" class="extras-selected">selected</div>
+            </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="row"  class="wadah-extras" style="margin-bottom: 30px;" *ngIf="showresult && dataloaded">
+          <div class="col-xs-12" class="wadah-title">
+            <div class="title-extras">Kms Inclusions & Charges</div>
+            <small class="text-grey">required</small>
+          </div>  
+          <div class="col-xs-12 " *ngFor="let item of kmslist" class="wadah-extras" [ngClass]="{ 'selected': item.selected==1,'hidden': item.publish==0}" (click)="selectkms(item.id,item.selected)">
+            <div class="row" style="margin:0px;padding:5px;" *ngIf="item.publish==1">
+            
+            <div class="col-xs-2 img-extras">
+              <img src="https://bookings.wickedcampers.com/images/extras/{{item.id}}.png">
+            </div>
+            <div class="col-xs-10">
+              <span class="name-extras">{{item.description}}</span><br>
+              <p class="desc-extras"><small>{{item.feedescription}}</small></p>
+              <div class="extras-price">
+                {{bookinginfo.currencyname}} {{item.totalamount| currency}} 
+                
+              </div>
+              <div *ngIf="item.selected==1" class="extras-selected">selected</div>
+            </div>
+            </div>
+          </div>
+        </div>
     </ion-content>
     <ion-footer class="hidden-lg hidden-md hidden-sm" *ngIf="showresult && dataloaded">
         <div class="arrow-up-btm animated bounce" (click)="openinfo()"><i class="fas fa-angle-double-up"></i><br><span>more info</span></div>
@@ -131,7 +385,7 @@
         {{bookinginfo.currencyname}} {{rateinfo.ratesubtotal | currency}}
       </div>
       <!--<div class="col-xs-12" *ngIf="rateinfo.dailyrateafterdiscount != rateinfo.dailyratebeforediscount">
-        <small class="text-red">Total discount {{bookinginfo.currencyname}} {{carinfo.totaldiscountamount | currency}} already included in rental rate</small>
+        <small class="text-red">Total discount {{bookinginfo.currencyname}} {{bookinginfo.totaldiscountamount | currency}} already included in rental rate</small>
       </div>-->
   
       <!--kms-->

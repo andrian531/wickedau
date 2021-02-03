@@ -1,41 +1,503 @@
 <ion-content class="hidden-xs">
-  <section id="homeBanner" class="section section--borderless">
-    <div class="wck-homepage">
-      
-    <div class="container">
-      <div class="row">
-        <div class="container">
-          <div class="col-md-12">
-            <ul class="breadcrumb">
-                
-            </ul>
-            </div>
-        </div>
+  <div class="landing-desktop hidden-xs pad-top-booking">
+    <div class="container" *ngIf="dataloaded==false">
+      <div class="row" >
+        <div class="colxs-12 center loader"></div>
+        <div class="col-xs-12 text-center" style="margin-top: 30%; margin-bottom:20px;font-weight: bold;">Just a moment...<br><br>Loading fees for your selected vehicle</div>
+      </div>
     </div>
-    <div class="container" style="margin-bottom:20px;margin-top:0px">
-        <div class="row">
-            <div class="col-xs-3">
+    <div class="container" *ngIf="dataloaded">
+      <div class="container">
+        <div class="col-xs-12 page">
+          <ul class="gateway flex">
+            <li class="active">
+              
+                <span>Update Driver</span>
+              
+            </li>
+            <li class="ok">
+              <a routerLink="/checkin-select-extras">
+                <span>Update Extras</span>
+              </a>
+            </li>
+            <li class="ok">
+              <a routerLink="/checkin-document">
+                <span>Upload Document</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="col-xs-4 sidebar">
+          <div class="detail-box kotakan" style="padding-bottom: 0px;">
+            <img class="animate__animated animate__backInLeft" src="{{thumbnail}}"/>
+            <h2><b>Booking Details...</b></h2>
+            <div class="row">
+              <!--daily rate-->
+              <div class="col-xs-6">
+                {{rateinfo.numberofdays}} Days @ {{bookinginfo.currencyname}} {{rateinfo.dailyrateafterdiscount| currency}} 
+              </div>
+              <div class="col-xs-6 text-right">
+                {{bookinginfo.currencyname}} {{rateinfo.ratesubtotal | currency}}
+              </div>
+  
+              <!--kms-->
+              <div class="col-xs-12">
+                <br>
+                <b>Extra Fee:</b>
+              </div>
+              <div class="col-xs-6">
+                {{bookinginfo.kmcharges_description}}
+              </div>
+              <div class="col-xs-6 text-right">
+                {{bookinginfo.currencyname}} {{bookinginfo.kmcharges_additionalkmtotalamount | currency}}
+              </div>
+  
+              <!--optfee-->
+              <div class="col-xs-12" *ngFor="let item of extrafee" >
+                <div class="col-xs-6" style="left: -15px;">
+                {{item.name}}
+                </div>
+                <div class="col-xs-6 text-right" style="right: -15px;">
+                  {{bookinginfo.currencyname}} {{item.totalfeeamount | currency}}
+                </div>
+              </div>
+  
+              <!--total-->
+              <div class="col-xs-12 pull-left" style="top: 0;margin: 14px 0px;border-bottom: 1px solid;padding: 0px;"></div>
+              <div class="col-xs-6">
+                <b>Total :</b>
+              </div>
+              <div class="col-xs-6 text-right">
+                <b>{{bookinginfo.currencyname}} {{bookinginfo.totalcost | currency}}</b><br>
+                <small><b>(<span *ngIf="bookinginfo.isgstinclusive">inc</span> GST {{bookinginfo.currencyname}} {{bookinginfo.gst | currency}})</b></small>
+              </div>
+
+              <!--balance due-->
+              <div class="col-xs-6">
+                <b>Balance Due:</b>
+              </div>
+              <div class="col-xs-6 text-right">
+                <b>{{bookinginfo.currencyname}} {{bookinginfo.balancedue| currency}}</b>
                 
+              </div>
+              <div class="col-xs-12" style="margin:14px 0px;">
+                <a routerLink="/checkin-payment" style="width:100%;"><button class="btn btn-book col-xs-12"> Pay Balance</button></a>
+              </div>
+              <!--bookinfo-->
+              <div class="col-xs-12 vehicle-info">
+                <b>Vehicle type:</b><br>
+                {{bookinginfo.vehiclecategory}}<br>
+  
+                <br><b>Reservation Status:</b><br>
+                {{bookinginfo.reservationstatus}}<br>
+  
+                <br><b>Pickup:</b><br>
+                <span>{{bookinginfo.pickuplocationname}}</span><br>
+                <span>{{bookinginfo.pickuplocationaddress}}</span><br>
+                <span>{{bookinginfo.pickupdate}} {{bookinginfo.pickuptime}}</span><br>
+      
+      
+                <br><b>Dropoff:</b><br>
+                <span>{{bookinginfo.dropofflocationname}}</span><br>
+                <span>{{bookinginfo.dropofflocationaddress}}</span><br>
+                <span>{{bookinginfo.dropoffdate}} {{bookinginfo.dropofftime}}</span>
+                
+              </div>
             </div>
-            <div class="col-xs-9">
-                <div class="desktop-layout">
-                    <div class="empty-state-background">
-                        <div class="empty-state-wrapper"><img src="../../assets/images/checkin.svg" alt="empty-state-img" class="state-img">
-                            <p class="title">The easiest way to check & update your booking</p>
-                            <p class="caption noData">Input your email address and booking number in the check-in form.</p>
-                        </div>
-                    </div>
+          </div>
+        </div>
+        <div class="col-xs-8" style="margin-bottom: 15px;">
+          <div class="row">
+          <div class="detail-box kotakan col-xs-12">
+            <div class="head-wadah" style="margin:-15px -15px 10px">Main Driver</div>
+            <div class="body-wadah">
+              <form #mainform="ngForm" (ngSubmit)="mainform.form.valid &&editmain()">
+                <div class="col-xs-6 pad-0" style="padding-right: 5px;">
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" name="firstname" [(ngModel)]="datacustomer.firstname" readonly>
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" name="lastname" [(ngModel)]="datacustomer.lastname" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control"  name="email" [(ngModel)]="datacustomer.email" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label>Date of Birth</label>
+                    <input type="text" class="form-control" name="dob" [(ngModel)]="datacustomer.dateofbirth">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" name="phone" [(ngModel)]="datacustomer.phone">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Mobile</label>
+                    <input type="text" class="form-control" name="mobile" [(ngModel)]="datacustomer.mobile">
+                  </div>
+                  <div class="form-group">
+                    <label>License Number</label>
+                    <input type="text" class="form-control" name="lcsno" [(ngModel)]="datacustomer.licenseno">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>License Expired</label>
+                    <input type="text" class="form-control" name="lcsexp" [(ngModel)]="datacustomer.licenseexpires">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>License Issued</label>
+                    <select name="lcsiss" class="form-control" [(ngModel)]="datacustomer.licenseissued">
+                      <option *ngFor="let field of countrylist" value="{{field.country}}" >{{field.country}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-6 pad-0" style="padding-left: 5px;">
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>City</label>
+                    <input type="text" class="form-control" name="city" [(ngModel)]="datacustomer.city">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>State</label>
+                    <input type="text" class="form-control" name="state" [(ngModel)]="datacustomer.state">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>Postcode</label>
+                    <input type="text" class="form-control" name="post" [(ngModel)]="datacustomer.postcode">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Country</label>
+                    <input type="text" class="form-control" name="country" [(ngModel)]="datacustomer.country">
+                  </div>
+                  <div class="form-group">
+                    <label>Address</label>
+                    <textarea class="form-control" rows="4" name="address" [(ngModel)]="datacustomer.address"></textarea>
+                    
+                  </div>
+
+                  <button class="btn btn-book col-xs-12" type="submit"> Update Main Driver</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+          <div class="detail-box kotakan col-xs-12">
+            <div class="head-wadah" style="margin:-15px -15px 10px">Additional Driver</div>
+            <div class="body-wadah">
+                <p style="padding-left: .5em;">You can add additional drivers based on the maximum capacity of the car (max 4 people). Be aware that if you have not selected "Cover One", you will be charged an extra $2 Per Day for Additional Drivers listed on your Rental Agreement. </p>
+            </div>
+            <div class="footer-wadah container">
+                <div class="col-xs-6">additional drivers left {{remaindriver}}</div>
+                <div class="col-xs-6 right">
+                  <button class="btn btn-book col-xs-12" (click)="add()" style="margin:0px 10px;"> Add Driver </button>
                 </div>
             </div>
+            <!--extradriver1-->
+            <div class="body-wadah" *ngIf="shextradriver>=1">
+              <div class="subhead-wadah kkc-head" >Additional Driver 1 <span *ngIf="extra1.customerid>0" class="right" (click)="rmvextra(extra1,extra1.customerid)"><i class="far fa-trash-alt"></i></span></div>
+              <form  #dsextra1="ngForm" (ngSubmit)="dsextra1.form.valid &&editextra(extra1,extra1.customerid)" class="kotak-kecil container">
+                <div class="col-xs-6 pad-0" style="padding-right: 5px;">
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" name="firstname" [(ngModel)]="extra1.firstname" #dsfirstnameextra1="ngModel"  [ngClass]="{ 'ds-invalid': dsextra1.submitted && dsfirstnameextra1.invalid }" required>
+                  </div>
+                  
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" name="lastname" [(ngModel)]="extra1.lastname" #dslastnameextra1="ngModel"  [ngClass]="{ 'ds-invalid': dsextra1.submitted && dslastnameextra1.invalid }" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control"  name="email" [(ngModel)]="extra1.email" #dsemailextra1="ngModel"  [ngClass]="{ 'ds-invalid': dsextra1.submitted && dsemailextra1.invalid }" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Date of Birth</label>
+                    <input type="text" class="form-control" name="dob" [(ngModel)]="extra1.dateofbirth">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" name="phone" [(ngModel)]="extra1.phone">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Mobile</label>
+                    <input type="text" class="form-control" name="mobile" [(ngModel)]="extra1.mobile">
+                  </div>
+                  <div class="form-group">
+                    <label>License Number</label>
+                    <input type="text" class="form-control" name="lcsno" [(ngModel)]="extra1.licenseno">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>License Expired</label>
+                    <input type="text" class="form-control" name="lcsexp" [(ngModel)]="extra1.licenseexpires">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>License Issued</label>
+                    <select name="lcsiss" class="form-control" [(ngModel)]="extra1.licenseissued">
+                      <option *ngFor="let field of countrylist" value="{{field.country}}" >{{field.country}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-6 pad-0" style="padding-left: 5px;">
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>City</label>
+                    <input type="text" class="form-control" name="city" [(ngModel)]="extra1.city">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>State</label>
+                    <input type="text" class="form-control" name="state" [(ngModel)]="extra1.state">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>Postcode</label>
+                    <input type="text" class="form-control" name="post" [(ngModel)]="extra1.postcode">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Country</label>
+                    <input type="text" class="form-control" name="country" [(ngModel)]="extra1.country">
+                  </div>
+                  <div class="form-group">
+                    <label>Address</label>
+                    <textarea class="form-control" rows="4" name="address" [(ngModel)]="extra1.address"></textarea>
+                    
+                  </div>
+
+                  <button class="btn btn-book col-xs-12" type="submit"> <span *ngIf="extra1.customerid>0" class="nr">Update</span> <span *ngIf="extra1.customerid==0" class="nr">Save</span> additional driver 1</button>
+                </div>
+              </form>
+            </div>
+
+            <!--extradriver2-->
+            <div class="body-wadah" *ngIf="shextradriver>=2">
+              <div class="subhead-wadah kkc-head" >Additional Driver 2 <span *ngIf="extra2.customerid>0" class="right" (click)="rmvextra(extra2,extra2.customerid)"><i class="far fa-trash-alt"></i></span></div>
+              <form  #dsextra2="ngForm" (ngSubmit)="dsextra2.form.valid &&editextra(extra2,extra2.customerid)" class="kotak-kecil container">
+                <div class="col-xs-6 pad-0" style="padding-right: 5px;">
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" name="firstname" [(ngModel)]="extra2.firstname" #dsfirstnameextra2="ngModel"  [ngClass]="{ 'ds-invalid': dsextra2.submitted && dsfirstnameextra2.invalid }" required>
+                  </div>
+                  
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" name="lastname" [(ngModel)]="extra2.lastname" #dslastnameextra2="ngModel"  [ngClass]="{ 'ds-invalid': dsextra2.submitted && dslastnameextra2.invalid }" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control"  name="email" [(ngModel)]="extra2.email" #dsemailextra2="ngModel"  [ngClass]="{ 'ds-invalid': dsextra2.submitted && dsemailextra2.invalid }" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Date of Birth</label>
+                    <input type="text" class="form-control" name="dob" [(ngModel)]="extra2.dateofbirth">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" name="phone" [(ngModel)]="extra2.phone">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Mobile</label>
+                    <input type="text" class="form-control" name="mobile" [(ngModel)]="extra2.mobile">
+                  </div>
+                  <div class="form-group">
+                    <label>License Number</label>
+                    <input type="text" class="form-control" name="lcsno" [(ngModel)]="extra2.licenseno">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>License Expired</label>
+                    <input type="text" class="form-control" name="lcsexp" [(ngModel)]="extra2.licenseexpires">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>License Issued</label>
+                    <select name="lcsiss" class="form-control" [(ngModel)]="extra2.licenseissued">
+                      <option *ngFor="let field of countrylist" value="{{field.country}}" >{{field.country}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-6 pad-0" style="padding-left: 5px;">
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>City</label>
+                    <input type="text" class="form-control" name="city" [(ngModel)]="extra2.city">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>State</label>
+                    <input type="text" class="form-control" name="state" [(ngModel)]="extra2.state">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>Postcode</label>
+                    <input type="text" class="form-control" name="post" [(ngModel)]="extra2.postcode">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Country</label>
+                    <input type="text" class="form-control" name="country" [(ngModel)]="extra2.country">
+                  </div>
+                  <div class="form-group">
+                    <label>Address</label>
+                    <textarea class="form-control" rows="4" name="address" [(ngModel)]="extra2.address"></textarea>
+                    
+                  </div>
+
+                  <button class="btn btn-book col-xs-12" type="submit"> <span *ngIf="extra2.customerid>0" class="nr">Update</span> <span *ngIf="extra2.customerid==0" class="nr">Save</span> additional driver 2</button>
+                </div>
+              </form>
+            </div>
+
+            <!--extradriver3-->
+            <div class="body-wadah" *ngIf="shextradriver>=3">
+              <div class="subhead-wadah kkc-head" >Additional Driver 3 <span *ngIf="extra3.customerid>0" class="right" (click)="rmvextra(extra3,extra3.customerid)"><i class="far fa-trash-alt"></i></span></div>
+              <form  #dsextra3="ngForm" (ngSubmit)="dsextra3.form.valid &&editextra(extra3,extra3.customerid)" class="kotak-kecil container">
+                <div class="col-xs-6 pad-0" style="padding-right: 5px;">
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" name="firstname" [(ngModel)]="extra3.firstname" #dsfirstnameextra3="ngModel"  [ngClass]="{ 'ds-invalid': dsextra3.submitted && dsfirstnameextra3.invalid }" required>
+                  </div>
+                  
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" name="lastname" [(ngModel)]="extra3.lastname" #dslastnameextra3="ngModel"  [ngClass]="{ 'ds-invalid': dsextra3.submitted && dslastnameextra3.invalid }" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control"  name="email" [(ngModel)]="extra3.email" #dsemailextra3="ngModel"  [ngClass]="{ 'ds-invalid': dsextra3.submitted && dsemailextra3.invalid }" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Date of Birth</label>
+                    <input type="text" class="form-control" name="dob" [(ngModel)]="extra3.dateofbirth">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" name="phone" [(ngModel)]="extra3.phone">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Mobile</label>
+                    <input type="text" class="form-control" name="mobile" [(ngModel)]="extra3.mobile">
+                  </div>
+                  <div class="form-group">
+                    <label>License Number</label>
+                    <input type="text" class="form-control" name="lcsno" [(ngModel)]="extra3.licenseno">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>License Expired</label>
+                    <input type="text" class="form-control" name="lcsexp" [(ngModel)]="extra3.licenseexpires">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>License Issued</label>
+                    <select name="lcsiss" class="form-control" [(ngModel)]="extra3.licenseissued">
+                      <option *ngFor="let field of countrylist" value="{{field.country}}" >{{field.country}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-6 pad-0" style="padding-left: 5px;">
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>City</label>
+                    <input type="text" class="form-control" name="city" [(ngModel)]="extra3.city">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>State</label>
+                    <input type="text" class="form-control" name="state" [(ngModel)]="extra3.state">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>Postcode</label>
+                    <input type="text" class="form-control" name="post" [(ngModel)]="extra3.postcode">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Country</label>
+                    <input type="text" class="form-control" name="country" [(ngModel)]="extra3.country">
+                  </div>
+                  <div class="form-group">
+                    <label>Address</label>
+                    <textarea class="form-control" rows="4" name="address" [(ngModel)]="extra3.address"></textarea>
+                    
+                  </div>
+
+                  <button class="btn btn-book col-xs-12" type="submit"> <span *ngIf="extra3.customerid>0" class="nr">Update</span> <span *ngIf="extra3.customerid==0" class="nr">Save</span> additional driver 3</button>
+                </div>
+              </form>
+            </div>
+
+            <!--extradriver3-->
+            <div class="body-wadah" *ngIf="shextradriver>=4">
+              <div class="subhead-wadah kkc-head" >Additional Driver 4 <span *ngIf="extra4.customerid>0" class="right" (click)="rmvextra(extra4,extra4.customerid)"><i class="far fa-trash-alt"></i></span></div>
+              <form  #dsextra4="ngForm" (ngSubmit)="dsextra4.form.valid &&editextra(extra4,extra4.customerid)" class="kotak-kecil container">
+                <div class="col-xs-6 pad-0" style="padding-right: 5px;">
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" name="firstname" [(ngModel)]="extra4.firstname" #dsfirstnameextra4="ngModel"  [ngClass]="{ 'ds-invalid': dsextra4.submitted && dsfirstnameextra4.invalid }" required>
+                  </div>
+                  
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" name="lastname" [(ngModel)]="extra4.lastname" #dslastnameextra4="ngModel"  [ngClass]="{ 'ds-invalid': dsextra4.submitted && dslastnameextra4.invalid }" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control"  name="email" [(ngModel)]="extra4.email" #dsemailextra4="ngModel"  [ngClass]="{ 'ds-invalid': dsextra4.submitted && dsemailextra4.invalid }" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Date of Birth</label>
+                    <input type="text" class="form-control" name="dob" [(ngModel)]="extra4.dateofbirth">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" name="phone" [(ngModel)]="extra4.phone">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Mobile</label>
+                    <input type="text" class="form-control" name="mobile" [(ngModel)]="extra4.mobile">
+                  </div>
+                  <div class="form-group">
+                    <label>License Number</label>
+                    <input type="text" class="form-control" name="lcsno" [(ngModel)]="extra4.licenseno">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>License Expired</label>
+                    <input type="text" class="form-control" name="lcsexp" [(ngModel)]="extra4.licenseexpires">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>License Issued</label>
+                    <select name="lcsiss" class="form-control" [(ngModel)]="extra4.licenseissued">
+                      <option *ngFor="let field of countrylist" value="{{field.country}}" >{{field.country}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-6 pad-0" style="padding-left: 5px;">
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>City</label>
+                    <input type="text" class="form-control" name="city" [(ngModel)]="extra4.city">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>State</label>
+                    <input type="text" class="form-control" name="state" [(ngModel)]="extra4.state">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0" style="padding-right: 5px;">
+                    <label>Postcode</label>
+                    <input type="text" class="form-control" name="post" [(ngModel)]="extra4.postcode">
+                  </div>
+                  <div class="form-group col-xs-6 pad-0">
+                    <label>Country</label>
+                    <input type="text" class="form-control" name="country" [(ngModel)]="extra4.country">
+                  </div>
+                  <div class="form-group">
+                    <label>Address</label>
+                    <textarea class="form-control" rows="4" name="address" [(ngModel)]="extra4.address"></textarea>
+                    
+                  </div>
+
+                  <button class="btn btn-book col-xs-12" type="submit"> <span *ngIf="extra4.customerid>0" class="nr">Update</span> <span *ngIf="extra4.customerid==0" class="nr">Save</span> additional driver 4</button>
+                </div>
+              </form>
+            </div>
+
+
+          </div>
         </div>
+      </div>
     </div>
-</div>
-</div>
-</section>
+  </div>
+  </div>
   <div [innerHTML]="footer"></div>
 </ion-content>
-
-<ion-header no-border class="hidden-lg hidden-md" *ngIf="showresult==true&& infodiv==false">
+<!--mobile-->
+<ion-header no-border class="hidden-lg hidden-md  hidden-sm" *ngIf="showresult==true&& infodiv==false">
     <ion-toolbar>
          <ion-buttons slot="start">
             <ion-back-button color="light" defaultHref="/"></ion-back-button>
@@ -44,7 +506,7 @@
      </ion-toolbar>
  </ion-header>
 
-    <ion-content class="hidden-lg hidden-md" *ngIf="showresult">
+    <ion-content class="hidden-lg hidden-md  hidden-sm" *ngIf="showresult">
         <div *ngIf="dataloaded==false">
             <div class="country-wrap">
               
@@ -63,7 +525,826 @@
                 </div>
             </div>
         </div>
-        
+        <div class="container">
+          <div class="col-xs-12 page" style="padding-left:0px;">
+            <ul class="gateway flex pad-0">
+              <li class="active">
+                  <span class="small-font">Update Driver</span>
+              </li>
+              <li class="ok">
+                <a routerLink="/checkin-select-extras">
+                  <span class="small-font">Update Extras</span>
+                </a>
+              </li>
+              <li class="ok">
+                <a routerLink="/checkin-document">
+                  <span class="small-font">Upload Document</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      <div class="row" *ngIf="showresult && dataloaded" style="margin-top: 15px;margin-bottom: 30px;">
+        <div class="col-xs-12 wadah">
+          <div class="head-wadah">Main Driver</div>
+          <form  #mmainform="ngForm" (ngSubmit)="mmainform.form.valid &&editmain()">
+            <div class="body-wadah">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6">
+                    First Name
+                  </ion-col>
+                  <ion-col size="6">
+                    Last Name
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item class="readonly">
+                      <ion-input name="firstname" [(ngModel)]="datacustomer.firstname" readonly></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item class="readonly">
+                      <ion-input name="lastname" [(ngModel)]="datacustomer.lastname" readonly></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="12">
+                    Email
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item class="readonly">
+                      <ion-input name="email" [(ngModel)]="datacustomer.email" readonly></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="12">
+                    Date of Birth
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item >
+                      <ion-input   ></ion-input>
+                      <ion-datetime display-format="DD/MMM/YYYY" picker-format="DD-MM-YYYY" name="dob" [(ngModel)]="datacustomer.dateofbirth"  placeholder="Select date" #pickupdatem="ngModel"  [max]='maxDatebirth' mode='ios' required></ion-datetime>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    Phone
+                  </ion-col>
+                  <ion-col size="6">
+                    Mobile
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="phone" [(ngModel)]="datacustomer.phone" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="mobile" [(ngModel)]="datacustomer.mobile"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="12">
+                    License Number
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item >
+                      <ion-input name="licenseno" [(ngModel)]="datacustomer.licenseno"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    License Expired
+                  </ion-col>
+                  <ion-col size="6">
+                    License Issued
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-datetime display-format="DD/MMMM/YYYY" picker-format="DD-MMM-YYYY" name="licenseexp" [(ngModel)]="datacustomer.licenseexpires"  placeholder="Select date" #pickupdatem="ngModel" [min]='minDate' [max]='maxDate' mode='ios' required></ion-datetime>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-select class="select-st" placeholder="Select Country" name="licenseissued" interface="action-sheet" [(ngModel)]="datacustomer.licenseissued" #country="ngModel" [compareWith]="compareWith"  [interfaceOptions]="CountryOptions">
+                        <ion-select-option *ngFor="let field of countrylist" value="{{field.country}}" >{{field.country}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    City
+                  </ion-col>
+                  <ion-col size="6">
+                    State
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="city" [(ngModel)]="datacustomer.city" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="state" [(ngModel)]="datacustomer.state"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    Post Code
+                  </ion-col>
+                  <ion-col size="6">
+                    Country
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="postcode" [(ngModel)]="datacustomer.postcode" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-select class="select-st" placeholder="Select Country" name="country" interface="action-sheet" [(ngModel)]="datacustomer.countryid" #country="ngModel" [compareWith]="compareWith"  [interfaceOptions]="CountryOptions">
+                        <ion-select-option *ngFor="let field of countrylist" value="{{field.id}}" >{{field.country}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="12">
+                    Address
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-textarea name="address" [(ngModel)]="datacustomer.address"></ion-textarea>
+                    </ion-item>
+                    
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div class="footer-wadah container">
+              <button class="btn btn-book col-xs-12" type="submit"> Update Main Driver </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-xs-12 wadah">
+          <div class="head-wadah">Additional Driver</div>
+          <div class="body-wadah">
+              <p style="padding-left: .5em;">You can add additional drivers based on the maximum capacity of the car (max 4 people). Be aware that if you have not selected "Cover One", you will be charged an extra $2 Per Day for Additional Drivers listed on your Rental Agreement. </p>
+          </div>
+          <div class="footer-wadah container">
+              <small>additional drivers left {{remaindriver}}</small>
+              <button class="btn btn-book col-xs-12" (click)="add()"> Add Driver </button>
+          </div>
+          <!--extradriver1-->
+          <div class="subhead-wadah" *ngIf="shextradriver>=1">Additional Driver 1 <span *ngIf="extra1.customerid>0" class="right" (click)="rmvextra(extra1,extra1.customerid)"><i class="far fa-trash-alt"></i></span></div>
+          <form  #mextra1="ngForm" (ngSubmit)="mextra1.form.valid &&editextra(extra1,extra1.customerid)" *ngIf="shextradriver>=1">
+            <div class="body-wadah">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6">
+                    First Name
+                  </ion-col>
+                  <ion-col size="6">
+                    Last Name
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item [ngClass]="{ 'is-invalid': mextra1.submitted && firstnameextra1.invalid }">
+                      <ion-input name="firstname" [(ngModel)]="extra1.firstname" #firstnameextra1="ngModel" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="mextra1.submitted && firstnameextra1.invalid" class="invalid-feedback">
+                      <div class="form-invalid">Firstname is required</div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item [ngClass]="{ 'is-invalid': mextra1.submitted && lastnameextra1.invalid }">
+                      <ion-input name="lastname" [(ngModel)]="extra1.lastname" #lastnameextra1="ngModel" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="mextra1.submitted && lastnameextra1.invalid" class="invalid-feedback">
+                      <div class="form-invalid">Lastname is required</div>
+                    </div>
+                  </ion-col>
+
+                  <ion-col size="12">
+                    Email
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item [ngClass]="{ 'is-invalid': mextra1.submitted && emailextra1.invalid }">
+                      <ion-input name="email" [(ngModel)]="extra1.email" #emailextra1="ngModel" required></ion-input> 
+                    </ion-item>
+                    <div *ngIf="mextra1.submitted && emailextra1.invalid" class="invalid-feedback">
+                      <div class="form-invalid">Email is required</div>
+                    </div>
+                  </ion-col>
+
+                  <ion-col size="12">
+                    Date of Birth
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item >
+                      <ion-input   ></ion-input>
+                      <ion-datetime display-format="DD/MMM/YYYY" picker-format="DD-MM-YYYY" name="dob" [(ngModel)]="extra1.dateofbirth"  placeholder="Select date" #pickupdatem="ngModel"  [max]='maxDatebirth' mode='ios'></ion-datetime>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    Phone
+                  </ion-col>
+                  <ion-col size="6">
+                    Mobile
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="phone" [(ngModel)]="extra1.phone" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="mobile" [(ngModel)]="extra1.mobile"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="12">
+                    License Number
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item >
+                      <ion-input name="licenseno" [(ngModel)]="extra1.licenseno"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    License Expired
+                  </ion-col>
+                  <ion-col size="6">
+                    License Issued
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-datetime display-format="DD/MMMM/YYYY" picker-format="DD-MMM-YYYY" name="licenseexp" [(ngModel)]="extra1.licenseexpires"  placeholder="Select date" #pickupdatem="ngModel" [min]='minDate' [max]='maxDate' mode='ios'></ion-datetime>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-select class="select-st" placeholder="Select Country" name="licenseissued" interface="action-sheet" [(ngModel)]="extra1.licenseissued" #country="ngModel" [compareWith]="compareWith" [interfaceOptions]="CountryOptions">
+                        <ion-select-option *ngFor="let field of countrylist" value="{{field.country}}" >{{field.country}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    City
+                  </ion-col>
+                  <ion-col size="6">
+                    State
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="city" [(ngModel)]="extra1.city" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="state" [(ngModel)]="extra1.state"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    Post Code
+                  </ion-col>
+                  <ion-col size="6">
+                    Country
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="postcode" [(ngModel)]="extra1.postcode" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-select class="select-st" placeholder="Select Country" name="country" interface="action-sheet" [(ngModel)]="extra1.countryid" #country="ngModel" [compareWith]="compareWith" [interfaceOptions]="CountryOptions">
+                        <ion-select-option *ngFor="let field of countrylist" value="{{field.id}}" >{{field.country}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="12">
+                    Address
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-textarea name="address" [(ngModel)]="extra1.address"></ion-textarea>
+                    </ion-item>
+                    
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div class="footer-wadah container">
+              <button class="btn btn-book col-xs-12" type="submit"> <span *ngIf="extra1.customerid>0" class="nr">Update</span> <span *ngIf="extra1.customerid==0" class="nr">Save</span> additional driver 1</button>
+            </div>
+          </form>
+
+          <!--extradriver2-->
+          <div class="subhead-wadah" *ngIf="shextradriver>=2">Additional Driver 2 <span *ngIf="extra2.customerid>0" class="right" (click)="rmvextra(extra2,extra2.customerid)"><i class="far fa-trash-alt"></i></span></div>
+          <form  #mextra2="ngForm" (ngSubmit)="mextra2.form.valid &&editextra(extra2,extra2.customerid)" *ngIf="shextradriver>=2">
+            <div class="body-wadah">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6">
+                    First Name
+                  </ion-col>
+                  <ion-col size="6">
+                    Last Name
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item [ngClass]="{ 'is-invalid': mextra2.submitted && firstnameextra2.invalid }">
+                      <ion-input name="firstname" [(ngModel)]="extra2.firstname" #firstnameextra2="ngModel" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="mextra2.submitted && firstnameextra2.invalid" class="invalid-feedback">
+                      <div class="form-invalid">Firstname is required</div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item [ngClass]="{ 'is-invalid': mextra2.submitted && lastnameextra2.invalid }">
+                      <ion-input name="lastname" [(ngModel)]="extra2.lastname" #lastnameextra2="ngModel" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="mextra2.submitted && lastnameextra2.invalid" class="invalid-feedback">
+                      <div class="form-invalid">Lastname is required</div>
+                    </div>
+                  </ion-col>
+
+                  <ion-col size="12">
+                    Email
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item [ngClass]="{ 'is-invalid': mextra2.submitted && emailextra2.invalid }">
+                      <ion-input name="email" [(ngModel)]="extra2.email" #emailextra2="ngModel" required></ion-input> 
+                    </ion-item>
+                    <div *ngIf="mextra2.submitted && emailextra2.invalid" class="invalid-feedback">
+                      <div class="form-invalid">Email is required</div>
+                    </div>
+                  </ion-col>
+
+                  <ion-col size="12">
+                    Date of Birth
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item >
+                      <ion-input   ></ion-input>
+                      <ion-datetime display-format="DD/MMM/YYYY" picker-format="DD-MM-YYYY" name="dob" [(ngModel)]="extra2.dateofbirth"  placeholder="Select date" #pickupdatem="ngModel"  [max]='maxDatebirth' mode='ios'></ion-datetime>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    Phone
+                  </ion-col>
+                  <ion-col size="6">
+                    Mobile
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="phone" [(ngModel)]="extra2.phone" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="mobile" [(ngModel)]="extra2.mobile"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="12">
+                    License Number
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item >
+                      <ion-input name="licenseno" [(ngModel)]="extra2.licenseno"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    License Expired
+                  </ion-col>
+                  <ion-col size="6">
+                    License Issued
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-datetime display-format="DD/MMMM/YYYY" picker-format="DD-MMM-YYYY" name="licenseexp" [(ngModel)]="extra2.licenseexpires"  placeholder="Select date" #pickupdatem="ngModel" [min]='minDate' [max]='maxDate' mode='ios'></ion-datetime>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-select class="select-st" placeholder="Select Country" name="licenseissued" interface="action-sheet" [(ngModel)]="extra2.licenseissued" #country="ngModel" [compareWith]="compareWith" [interfaceOptions]="CountryOptions">
+                        <ion-select-option *ngFor="let field of countrylist" value="{{field.country}}" >{{field.country}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    City
+                  </ion-col>
+                  <ion-col size="6">
+                    State
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="city" [(ngModel)]="extra2.city" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="state" [(ngModel)]="extra2.state"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    Post Code
+                  </ion-col>
+                  <ion-col size="6">
+                    Country
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="postcode" [(ngModel)]="extra2.postcode" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-select class="select-st" placeholder="Select Country" name="country" interface="action-sheet" [(ngModel)]="extra2.countryid" #country="ngModel" [compareWith]="compareWith" [interfaceOptions]="CountryOptions">
+                        <ion-select-option *ngFor="let field of countrylist" value="{{field.id}}" >{{field.country}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  
+                  <ion-col size="12">
+                    Address
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-textarea name="address" [(ngModel)]="extra2.address"></ion-textarea>
+                    </ion-item>
+                    
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div class="footer-wadah container">
+              <button class="btn btn-book col-xs-12" type="submit"> <span *ngIf="extra2.customerid>0" class="nr">Update</span> <span *ngIf="extra2.customerid==0" class="nr">Save</span> additional driver 2</button>
+            </div>
+          </form>
+
+          <!--extradriver3-->
+          <div class="subhead-wadah" *ngIf="shextradriver>=3">Additional Driver 3 <span *ngIf="extra3.customerid>0" class="right" (click)="rmvextra(extra3,extra3.customerid)"><i class="far fa-trash-alt"></i></span></div>
+          <form  #mextra3="ngForm" (ngSubmit)="mextra3.form.valid &&editextra(extra3,extra3.customerid)" *ngIf="shextradriver>=3">
+            <div class="body-wadah">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6">
+                    First Name
+                  </ion-col>
+                  <ion-col size="6">
+                    Last Name
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item [ngClass]="{ 'is-invalid': mextra3.submitted && firstnameextra3.invalid }">
+                      <ion-input name="firstname" [(ngModel)]="extra3.firstname" #firstnameextra3="ngModel" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="mextra3.submitted && firstnameextra3.invalid" class="invalid-feedback">
+                      <div class="form-invalid">Firstname is required</div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item [ngClass]="{ 'is-invalid': mextra3.submitted && lastnameextra3.invalid }">
+                      <ion-input name="lastname" [(ngModel)]="extra3.lastname" #lastnameextra3="ngModel" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="mextra3.submitted && lastnameextra3.invalid" class="invalid-feedback">
+                      <div class="form-invalid">Lastname is required</div>
+                    </div>
+                  </ion-col>
+
+                  <ion-col size="12">
+                    Email
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item [ngClass]="{ 'is-invalid': mextra3.submitted && emailextra3.invalid }">
+                      <ion-input name="email" [(ngModel)]="extra3.email" #emailextra3="ngModel" required></ion-input> 
+                    </ion-item>
+                    <div *ngIf="mextra3.submitted && emailextra3.invalid" class="invalid-feedback">
+                      <div class="form-invalid">Email is required</div>
+                    </div>
+                  </ion-col>
+
+                  <ion-col size="12">
+                    Date of Birth
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item >
+                      <ion-input   ></ion-input>
+                      <ion-datetime display-format="DD/MMM/YYYY" picker-format="DD-MM-YYYY" name="dob" [(ngModel)]="extra3.dateofbirth"  placeholder="Select date" #pickupdatem="ngModel"  [max]='maxDatebirth' mode='ios'></ion-datetime>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    Phone
+                  </ion-col>
+                  <ion-col size="6">
+                    Mobile
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="phone" [(ngModel)]="extra3.phone" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="mobile" [(ngModel)]="extra3.mobile"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="12">
+                    License Number
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item >
+                      <ion-input name="licenseno" [(ngModel)]="extra3.licenseno"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    License Expired
+                  </ion-col>
+                  <ion-col size="6">
+                    License Issued
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-datetime display-format="DD/MMMM/YYYY" picker-format="DD-MMM-YYYY" name="licenseexp" [(ngModel)]="extra3.licenseexpires"  placeholder="Select date" #pickupdatem="ngModel" [min]='minDate' [max]='maxDate' mode='ios'></ion-datetime>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-select class="select-st" placeholder="Select Country" name="licenseissued" interface="action-sheet" [(ngModel)]="extra3.licenseissued" #country="ngModel" [compareWith]="compareWith" [interfaceOptions]="CountryOptions">
+                        <ion-select-option *ngFor="let field of countrylist" value="{{field.country}}" >{{field.country}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    City
+                  </ion-col>
+                  <ion-col size="6">
+                    State
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="city" [(ngModel)]="extra3.city" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="state" [(ngModel)]="extra3.state"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    Post Code
+                  </ion-col>
+                  <ion-col size="6">
+                    Country
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="postcode" [(ngModel)]="extra3.postcode" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-select class="select-st" placeholder="Select Country" name="country" interface="action-sheet" [(ngModel)]="extra3.countryid" #country="ngModel" [compareWith]="compareWith" [interfaceOptions]="CountryOptions">
+                        <ion-select-option *ngFor="let field of countrylist" value="{{field.id}}" >{{field.country}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    
+                  </ion-col>
+                  
+                  <ion-col size="12">
+                    Address
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-textarea name="address" [(ngModel)]="extra3.address"></ion-textarea>
+                    </ion-item>
+                    
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div class="footer-wadah container">
+              <button class="btn btn-book col-xs-12" type="submit"> <span *ngIf="extra3.customerid>0" class="nr">Update</span> <span *ngIf="extra3.customerid==0" class="nr">Save</span> additional driver 3</button>
+            </div>
+          </form>
+
+          <!--extradriver4-->
+          <div class="subhead-wadah" *ngIf="shextradriver>=4">Additional Driver 4 <span *ngIf="extra4.customerid>0" class="right" (click)="rmvextra(extra4,extra4.customerid)"><i class="far fa-trash-alt"></i></span></div>
+          <form  #mextra4="ngForm" (ngSubmit)="mextra4.form.valid &&editextra(extra4,extra4.customerid)" *ngIf="shextradriver>=4">
+            <div class="body-wadah">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6">
+                    First Name
+                  </ion-col>
+                  <ion-col size="6">
+                    Last Name
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item [ngClass]="{ 'is-invalid': mextra4.submitted && firstnameextra4.invalid }">
+                      <ion-input name="firstname" [(ngModel)]="extra4.firstname" #firstnameextra4="ngModel" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="mextra4.submitted && firstnameextra4.invalid" class="invalid-feedback">
+                      <div class="form-invalid">Firstname is required</div>
+                    </div>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item [ngClass]="{ 'is-invalid': mextra4.submitted && lastnameextra4.invalid }">
+                      <ion-input name="lastname" [(ngModel)]="extra4.lastname" #lastnameextra4="ngModel" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="mextra4.submitted && lastnameextra4.invalid" class="invalid-feedback">
+                      <div class="form-invalid">Lastname is required</div>
+                    </div>
+                  </ion-col>
+
+                  <ion-col size="12">
+                    Email
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item [ngClass]="{ 'is-invalid': mextra4.submitted && emailextra4.invalid }">
+                      <ion-input name="email" [(ngModel)]="extra4.email" #emailextra4="ngModel" required></ion-input> 
+                    </ion-item>
+                    <div *ngIf="mextra4.submitted && emailextra4.invalid" class="invalid-feedback">
+                      <div class="form-invalid">Email is required</div>
+                    </div>
+                  </ion-col>
+
+                  <ion-col size="12">
+                    Date of Birth
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item >
+                      <ion-input   ></ion-input>
+                      <ion-datetime display-format="DD/MMM/YYYY" picker-format="DD-MM-YYYY" name="dob" [(ngModel)]="extra4.dateofbirth"  placeholder="Select date" #pickupdatem="ngModel"  [max]='maxDatebirth' mode='ios'></ion-datetime>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    Phone
+                  </ion-col>
+                  <ion-col size="6">
+                    Mobile
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="phone" [(ngModel)]="extra4.phone" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="mobile" [(ngModel)]="extra4.mobile"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="12">
+                    License Number
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item >
+                      <ion-input name="licenseno" [(ngModel)]="extra4.licenseno"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    License Expired
+                  </ion-col>
+                  <ion-col size="6">
+                    License Issued
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-datetime display-format="DD/MMMM/YYYY" picker-format="DD-MMM-YYYY" name="licenseexp" [(ngModel)]="extra4.licenseexpires"  placeholder="Select date" #pickupdatem="ngModel" [min]='minDate' [max]='maxDate' mode='ios'></ion-datetime>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-select class="select-st" placeholder="Select Country" name="licenseissued" interface="action-sheet" [(ngModel)]="extra4.licenseissued" #country="ngModel" [compareWith]="compareWith" [interfaceOptions]="CountryOptions">
+                        <ion-select-option *ngFor="let field of countrylist" value="{{field.country}}" >{{field.country}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    City
+                  </ion-col>
+                  <ion-col size="6">
+                    State
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="city" [(ngModel)]="extra4.city" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="state" [(ngModel)]="extra4.state"  ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="6">
+                    Post Code
+                  </ion-col>
+                  <ion-col size="6">
+                    Country
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-input name="postcode" [(ngModel)]="extra4.postcode" ></ion-input>
+                    </ion-item>
+                    
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item >
+                      <ion-select class="select-st" placeholder="Select Country" name="country" interface="action-sheet" [(ngModel)]="extra4.countryid" #country="ngModel" [compareWith]="compareWith" [interfaceOptions]="CountryOptions">
+                        <ion-select-option *ngFor="let field of countrylist" value="{{field.id}}" >{{field.country}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    
+                  </ion-col>
+
+                  <ion-col size="12">
+                    Address
+                  </ion-col>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-textarea name="address" [(ngModel)]="extra4.address"></ion-textarea>
+                    </ion-item>
+                    
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div class="footer-wadah container">
+              <button class="btn btn-book col-xs-12" type="submit"> <span *ngIf="extra4.customerid>0" class="nr">Update</span> <span *ngIf="extra4.customerid==0" class="nr">Save</span> additional driver 4</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </ion-content>
     <ion-footer class="hidden-lg hidden-md hidden-sm" *ngIf="showresult && dataloaded">
         <div class="arrow-up-btm animated bounce" (click)="openinfo()"><i class="fas fa-angle-double-up"></i><br><span>more info</span></div>
